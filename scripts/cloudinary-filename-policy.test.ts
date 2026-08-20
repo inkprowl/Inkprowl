@@ -1,0 +1,24 @@
+import { describe, expect, it } from "vitest";
+import { classifyIncomingFile } from "./cloudinary-filename-policy";
+
+describe("INKPROWL owner upload filename policy", () => {
+  it("creates an always-free artwork record from a correctly named image", () => {
+    expect(classifyIncomingFile("art--business-animals--buffalo-tailor.png")).toEqual({
+      kind: "artwork",
+      category: "Business Animals",
+      slug: "buffalo-tailor",
+      title: "Buffalo Tailor",
+      tags: ["buffalo", "tailor"],
+    });
+  });
+
+  it("maps soundtrack and edition-video filenames to their intended public media roles", () => {
+    expect(classifyIncomingFile("song--evening-edition.mp3")).toEqual({ kind: "soundtrack", title: "Evening Edition" });
+    expect(classifyIncomingFile("edition-video--bear-bull-market.mp4")).toEqual({ kind: "edition-video", slug: "bear-bull-market" });
+  });
+
+  it("rejects unclear file names and unsupported upload types", () => {
+    expect(() => classifyIncomingFile("unlabelled-image.png")).toThrow("Unsupported INKPROWL upload filename");
+    expect(() => classifyIncomingFile("art--business-animals--lion-ledger.mp4")).toThrow("Artwork files must use an image extension");
+  });
+});
