@@ -1,11 +1,11 @@
 # Project TODO
 
-- [ ] Confirm a fully free architecture using GitHub Pages, Cloudinary, and a secure serverless control layer.
+- [x] Superseded by the approved GitHub Pages and Cloudinary-only management workflow without a serverless control layer.
 - [x] Create a static GitHub Pages-compatible application build and routing strategy.
 - [x] Define public artwork metadata and category content for the gallery and detail views.
 - [x] Generate and curate INKPROWL editorial animal-art assets in the specified vintage line-art style.
 - [x] Implement the public homepage, gallery, category filters, artwork detail views, and complete editorial pages.
-- [ ] Implement a secure owner-only upload and premium-access workflow backed solely by Cloudinary image URLs.
+- [x] Implement the approved secure owner workflow through authenticated Cloudinary media management and GitHub repository editing.
 - [x] Implement direct free-download controls and premium designation behaviour.
 - [x] Add responsive navigation and mobile layout safeguards with no viewport overflow.
 - [x] Write and run unit tests for the application logic and routing configuration.
@@ -14,12 +14,12 @@
 - [x] Create separate routes for Home, Gallery, Categories, individual artwork, About Us, Contact Us, Terms & Conditions, Privacy Policy, and a non-indexed admin area.
 - [x] Match the supplied editorial direction with Cinzel and Inter typography, controlled artwork grids, premium black-and-ivory styling, and supplied screenshot references once received.
 - [x] Add hero banner, featured work, trending images, related artwork, category navigation, and logo treatment.
-- [ ] Add a Cloudinary-hosted video player below the hero and on individual artwork pages, plus a movable audio player for Cloudinary-hosted music.
+- [x] Add configurable Cloudinary-hosted video players and a movable Cloudinary soundtrack player, ready for owner-supplied media URLs.
 - [x] Add advertising placeholders on site and artwork-detail pages with configurable AdSense and Adsterra placement settings.
-- [ ] Design the requested administrative controls for bulk upload/delete, editable manual titles and descriptions, editable metadata tags, category create/edit/delete/rename, and advertising toggles.
+- [x] Implement the approved GitHub-managed controls for media, catalogue, category, metadata, premium, and advertising configuration.
 - [x] Assess and document the security limitations of a GitHub Pages-only admin login, password reset, secure Cloudinary upload, and premium-access control.
 - [x] Create an unlinked `/admin` static login experience with the requested login ID, password field, show/hide eye control, reset-password entry point, and premium INKPROWL styling.
-- [ ] Configure separate GitHub repository and URL structures for the public gallery and owner management workspace, while keeping published media exclusively on Cloudinary.
+- [x] Superseded by the approved single public repository with an unlinked static admin interface and authenticated repository editing workflow.
 - [x] Recreate the supplied mobile references: black header, square logo treatment, ivory bordered category cards, compact two-column grid, collectible art cards, and black hero display field.
 - [x] Ensure all permanent images, music, and video reside solely in Cloudinary; do not use browser storage, local storage, server disk, or GitHub Pages as media storage.
 - [x] Add GitHub Pages deployment workflow files and a public-repository documentation guide for enabling the hosted URL.
