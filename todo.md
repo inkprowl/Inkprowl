@@ -9,7 +9,7 @@
 - [x] Implement direct free-download controls and premium designation behaviour.
 - [x] Add responsive navigation and mobile layout safeguards with no viewport overflow.
 - [x] Write and run unit tests for the application logic and routing configuration.
-- [ ] Validate the responsive interface, then provide GitHub Pages and later custom-domain deployment instructions.
+- [x] Validate the responsive interface, then provide GitHub Pages and later custom-domain deployment instructions.
 - [x] Keep the deployment design free of Cloudflare and any Cloudflare-managed services.
 - [x] Create separate routes for Home, Gallery, Categories, individual artwork, About Us, Contact Us, Terms & Conditions, Privacy Policy, and a non-indexed admin area.
 - [x] Match the supplied editorial direction with Cinzel and Inter typography, controlled artwork grids, premium black-and-ivory styling, and supplied screenshot references once received.
@@ -35,4 +35,4 @@
 - [x] Document and verify Cloudinary-only URL requirements for any future audio and video assets.
 - [x] Clarify that gallery cards use intentional 1:1 editorial crops while the individual page preserves the uploaded file’s original proportions.
 - [x] Add a tested media URL validator that permits only Cloudinary delivery URLs for images, audio, and video catalog fields.
-- [ ] Fix the GitHub Pages workflow so it installs pnpm before the cached Node setup and completes a static deployment.
+- [x] Fix the GitHub Pages workflow so it installs pnpm before the cached Node setup and completes a static deployment.
