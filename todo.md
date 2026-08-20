@@ -1,0 +1,37 @@
+# Project TODO
+
+- [ ] Confirm a fully free architecture using GitHub Pages, Cloudinary, and a secure serverless control layer.
+- [x] Create a static GitHub Pages-compatible application build and routing strategy.
+- [x] Define public artwork metadata and category content for the gallery and detail views.
+- [ ] Generate and curate INKPROWL editorial animal-art assets in the specified vintage line-art style.
+- [x] Implement the public homepage, gallery, category filters, artwork detail views, and complete editorial pages.
+- [ ] Implement a secure owner-only upload and premium-access workflow backed solely by Cloudinary image URLs.
+- [x] Implement direct free-download controls and premium designation behaviour.
+- [x] Add responsive navigation and mobile layout safeguards with no viewport overflow.
+- [x] Write and run unit tests for the application logic and routing configuration.
+- [ ] Validate the responsive interface, then provide GitHub Pages and later custom-domain deployment instructions.
+- [x] Keep the deployment design free of Cloudflare and any Cloudflare-managed services.
+- [x] Create separate routes for Home, Gallery, Categories, individual artwork, About Us, Contact Us, Terms & Conditions, Privacy Policy, and a non-indexed admin area.
+- [x] Match the supplied editorial direction with Cinzel and Inter typography, controlled artwork grids, premium black-and-ivory styling, and supplied screenshot references once received.
+- [x] Add hero banner, featured work, trending images, related artwork, category navigation, and logo treatment.
+- [ ] Add a Cloudinary-hosted video player below the hero and on individual artwork pages, plus a movable audio player for Cloudinary-hosted music.
+- [x] Add advertising placeholders on site and artwork-detail pages with configurable AdSense and Adsterra placement settings.
+- [ ] Design the requested administrative controls for bulk upload/delete, editable manual titles and descriptions, editable metadata tags, category create/edit/delete/rename, and advertising toggles.
+- [x] Assess and document the security limitations of a GitHub Pages-only admin login, password reset, secure Cloudinary upload, and premium-access control.
+- [x] Create an unlinked `/admin` static login experience with the requested login ID, password field, show/hide eye control, reset-password entry point, and premium INKPROWL styling.
+- [ ] Configure separate GitHub repository and URL structures for the public gallery and owner management workspace, while keeping published media exclusively on Cloudinary.
+- [x] Recreate the supplied mobile references: black header, square logo treatment, ivory bordered category cards, compact two-column grid, collectible art cards, and black hero display field.
+- [x] Ensure all permanent images, music, and video reside solely in Cloudinary; do not use browser storage, local storage, server disk, or GitHub Pages as media storage.
+- [x] Add GitHub Pages deployment workflow files and a public-repository documentation guide for enabling the hosted URL.
+- [x] Make mobile gallery browsing single-column with large artwork previews and controlled viewport-safe spacing.
+- [x] Add 1:1 artwork metadata and presentation support without cropping original artwork proportions.
+- [x] Add functional individual-artwork download and social share actions with Cloudinary delivery URLs.
+- [ ] Commit and push all completed INKPROWL source code to the public inkprowl GitHub repository.
+- [ ] Obtain a securely supplied GitHub token with Contents and Workflows write access for inkprowl/inkprowl.
+- [ ] Replace the rejected token with a classic GitHub personal access token that has repo and workflow scopes.
+- [x] Add Vitest coverage for hash-route registration and the separate admin path.
+- [x] Add noindex handling to the static admin route.
+- [x] Verify the requested admin login controls remain unlinked from the public navigation.
+- [x] Document and verify Cloudinary-only URL requirements for any future audio and video assets.
+- [x] Clarify that gallery cards use intentional 1:1 editorial crops while the individual page preserves the uploaded file’s original proportions.
+- [x] Add a tested media URL validator that permits only Cloudinary delivery URLs for images, audio, and video catalog fields.
