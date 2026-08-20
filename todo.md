@@ -68,5 +68,23 @@
 - [ ] Automatically map supported uploaded soundtrack, hero-film, and edition-video filenames to the matching Cloudinary-backed public media settings.
 - [x] Align all owner and GitHub Pages documentation with the accepted GitHub upload-queue to Cloudinary synchronization workflow and future custom-domain compatibility.
 - [x] Expand the owner upload guide with explicit protected `CLOUDINARY_URL` GitHub Actions secret setup and placeholder-rejection guidance.
-- [ ] Fix the GitHub Actions pnpm setup conflict and rerun the Cloudinary synchronization workflow successfully.
-- [ ] Normalize a valid copied Cloudinary API Environment Variable while rejecting blank, placeholder, or malformed protected secret values clearly.
+- [x] Fix the GitHub Actions pnpm setup conflict and rerun the Cloudinary synchronization workflow successfully.
+- [x] Normalize a valid copied Cloudinary API Environment Variable while rejecting blank, placeholder, or malformed protected secret values clearly.
+- [x] Replace the GitHub-page-first owner presentation with a polished INKPROWL admin dashboard for media, artwork, categories, music/video, branding, and advertising operations.
+- [x] Present clear in-dashboard action states that hand off to the protected GitHub upload, catalogue, deletion, and advertising workflow without misleading in-page upload claims.
+- [ ] Replace the hardcoded public owner ID/password gate with a credential-safe entry experience and verified protected connection.
+- [ ] Add a working protected backend handoff from the branded owner-admin without opening raw GitHub pages.
+- [x] Keep post-login media, catalogue, category, branding, video, and advertising controls inside the branded INKPROWL admin interface rather than linking directly to raw GitHub pages.
+- [x] Surface protected synchronization status and concise next-step guidance in the INKPROWL admin without exposing credentials or claiming browser-side write access.
+- [ ] Configure a GitHub OAuth application with Device Flow enabled for in-admin owner authorization.
+- [ ] Add a public GitHub OAuth client identifier through protected build configuration without exposing any client secret.
+- [ ] Use GitHub Device Flow to authorize the owner and keep media upload and catalogue editing inside the branded INKPROWL admin interface.
+- [ ] Replace the static-only authorization plan with a session-only GitHub fine-grained token connection that is never persisted in browser storage.
+- [ ] Add in-admin GitHub identity verification, disconnect handling, and scoped-permission guidance.
+- [ ] Connect the branded media, artwork, category, branding, music/video, and advertising controls to GitHub-backed backend operations without raw-page handoffs.
+- [ ] Keep the owner token connected for all actions during one open INKPROWL Admin session, with clear connected and disconnect states and no browser-persistent credential storage.
+- [ ] Document and enforce that no GitHub classic token or permanent owner password can be embedded in the public GitHub Pages admin source.
+- [ ] Complete and publish the credential-safe branded local login and in-admin management release without exposing a token, secret, or persistent browser credential.
+- [x] Add a simple visible logout action that returns the current INKPROWL Admin tab to the branded login screen without persisting credentials.
+- [x] Add a credential-safe password-reset request action directed to makwanasudatt56@gmail.com without exposing a reset token or private password logic in the public static site.
+- [x] Resolve the remaining dashboard compilation error and finalize the simple login, logout, and reset-request interaction states.
