@@ -1,20 +1,20 @@
 import fs from "node:fs";
 import path from "node:path";
-import { artworks, getArtworkShareUrl, siteBranding } from "../client/src/data/catalog";
+import { getArtworkShareUrl, publishedArtworks, siteBranding } from "../client/src/data/catalog";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const outputRoot = path.join(projectRoot, "client", "public", "art");
-const fallbackPreview = artworks.find((artwork) => artwork.imageUrl)?.imageUrl ?? "";
+const fallbackPreview = publishedArtworks.find((artwork) => artwork.imageUrl)?.imageUrl ?? "";
 
 const escapeHtml = (value: string) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 
 fs.rmSync(outputRoot, { recursive: true, force: true });
 
-for (const artwork of artworks) {
+for (const artwork of publishedArtworks) {
   const shareUrl = getArtworkShareUrl(artwork.slug);
   const imageUrl = artwork.imageUrl ?? siteBranding.heroBannerUrl ?? fallbackPreview;
   const title = `${artwork.title} — INKPROWL`;
-  const description = `${artwork.description} Browse this ${artwork.isPremium ? "collector" : "free"} INKPROWL edition.`;
+  const description = `${artwork.description} Browse and download this free INKPROWL edition.`;
   const redirectUrl = `https://inkprowl.github.io/inkprowl/#/art/${artwork.slug}`;
   const destination = path.join(outputRoot, artwork.slug);
   fs.mkdirSync(destination, { recursive: true });
@@ -29,4 +29,4 @@ for (const artwork of artworks) {
 </head><body><p>Opening <a href="${redirectUrl}">${escapeHtml(title)}</a>…</p><script>window.location.replace(${JSON.stringify(redirectUrl)});</script></body></html>`, "utf8");
 }
 
-console.log(`Generated ${artworks.length} INKPROWL social preview pages.`);
+console.log(`Generated ${publishedArtworks.length} INKPROWL social preview pages.`);
