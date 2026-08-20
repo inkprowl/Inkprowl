@@ -1,32 +1,32 @@
 # INKPROWL owner workflow
 
-The **inkprowl** GitHub repository is the single source of truth for the public GitHub Pages application and its editable catalogue. The repository is public so visitors can receive the static site, while write access remains limited to authenticated repository collaborators. Do not add secrets, account passwords, API keys, Cloudinary credentials, or upload presets to this repository.
+The public **inkprowl** repository is the editable source for the GitHub Pages site. Cloudinary is the only permanent store for images, songs, logo files, hero banners, and video. Repository write access and your Cloudinary login are the secure control boundary; never add passwords, API secrets, upload presets, or provider account credentials to the public static site.
 
-## 1. Publish permanent media in Cloudinary
+## Publish and remove media
 
-Upload images, music, and video to the authenticated Cloudinary Media Library. Cloudinary is the only permanent media store for INKPROWL. After upload, copy the stable `https://res.cloudinary.com/.../image/upload/...` or `https://res.cloudinary.com/.../video/upload/...` delivery URL. If an edition needs to be removed permanently, delete it in Cloudinary first and then remove or replace the matching catalogue record.
+Use the Cloudinary Media Library to bulk-upload, organize, replace, or delete permanent images, music, logos, hero banners, and client-sponsored films. Copy the stable `https://res.cloudinary.com/.../image/upload/...` or `https://res.cloudinary.com/.../video/upload/...` URL after publication. When deleting media, first remove or replace the matching URL in `client/src/data/catalog.ts`, commit the change, and then delete the Cloudinary asset. This prevents a broken public page.
 
-## 2. Edit the public collection
+## Edit collections, filenames, and metadata
 
-In GitHub, open [`client/src/data/catalog.ts`](./client/src/data/catalog.ts) and use the **Edit** control. The `artworks` array holds each title, description, category, tags, free/premium designation, image URL, optional audio URL, and optional video URL. Add, edit, or remove an entry and commit the change directly to `main` once reviewed.
+Open [`client/src/data/catalog.ts`](./client/src/data/catalog.ts) in GitHub and use the authenticated **Edit** control. Add an artwork by copying an existing entry and updating its `slug`, `title`, `description`, `category`, `tags`, `isPremium`, `imageUrl`, `audioUrl`, `videoUrl`, and optional `downloadFormats`. Use the uploaded filename as a starting point for the readable title and slug, then manually refine title, description, and tags for accurate search and social-sharing metadata.
 
-| Owner task | Source of truth | Public result |
+| Owner action | Location | Public outcome |
 |---|---|---|
-| Title, description, category, tags, and premium status | `artworks` in `catalog.ts` | Gallery cards, individual artwork pages, filters, related work, and access labels refresh. |
-| Image, audio, and video | Cloudinary URL fields in `catalog.ts` | The static site uses the published Cloudinary asset without storing media files in GitHub Pages. |
-| Hero film, default edition film, and floating soundtrack | `siteMedia` in `catalog.ts` | The configured Cloudinary player becomes available across the intended public pages. |
-| AdSense / Adsterra placement state | `advertisingSettings` in `catalog.ts` | The public placement labels show only the approved providers. |
+| Bulk image/song/video upload or delete | Cloudinary Media Library | Cloudinary holds every permanent media byte. |
+| Title, description, tag, free/premium, and format edits | `artworks` in `catalog.ts` | Gallery, detail page, download controls, related work, and social preview refresh. |
+| Rename or delete a category | `categories` and matching `artworks` records | Filters and related-art rules use the edited category value. Move editions before deleting a category. |
+| Logo and hero banner | `siteBranding` in `catalog.ts` | The square brand seal and hero visual use the approved Cloudinary image. |
+| Soundtrack, artwork film, or sponsor video | `siteMedia` / `sponsoredCampaign` in `catalog.ts` | Cloudinary media players appear only when valid URLs are configured. |
+| AdSense / Adsterra state | `advertisingSettings` in `catalog.ts` | Public placement labels reflect approved provider toggles. |
 
-## 3. Manage categories and related artwork
+## Downloads and social sharing
 
-Rename or edit a category in the `categories` list and update any matching artwork category values. Remove a category only after moving or deleting its artworks. Related artwork is calculated from matching category values, so no separate relationship table or browser storage is used.
+Free editions expose Cloudinary attachment derivatives in JPEG, PNG, and WebP through the detail page. Keep `downloadFormats` limited to approved values. Every published edition generates a static public page at `https://inkprowl.github.io/inkprowl/art/<slug>/`. That page includes Open Graph and Twitter metadata with the artwork image, title, and description, then redirects visitors to the interactive individual-edition screen. This is the URL to share on WhatsApp, X, Facebook, and similar services.
 
-## 4. Review, publish, and validate
+## Advertising and direct sponsors
 
-Every commit to `main` runs the GitHub Pages workflow. Confirm the workflow completes in the repository **Actions** tab, then open `https://inkprowl.github.io/inkprowl/` and inspect the affected page. The public site uses hash routes, such as `/#/gallery` and `/#/art/buffalo-tailor-shop`, so page navigation survives static GitHub Pages hosting.
+Use `advertisingSettings` to enable only an approved provider. The public static site intentionally does not store third-party account IDs or credentials. If you add a vetted AdSense or Adsterra snippet, put it in `client/index.html` only after reviewing privacy, consent, and policy obligations. For a direct sponsor, set `sponsoredCampaign.enabled`, client label, and a Cloudinary `videoUrl`; do not publish a client film until written approval and its intended placement are confirmed.
 
-## 5. Advertising and premium boundary
+## Publish and check
 
-Set `adsenseEnabled` or `adsterraEnabled` to `true` only after the relevant provider is approved and your legal/privacy content is updated. Do not put advertising account identifiers or unreviewed provider scripts in the repository. The static site can label and reserve placements, but any third-party code should be reviewed before adding it.
-
-Premium designations control the site’s call-to-action only. GitHub Pages and public Cloudinary delivery URLs cannot provide cryptographically protected paid downloads. If an asset must never be public, do not publish an unrestricted delivery URL for it.
+Commit the edit to `main`. GitHub Pages runs the deployment workflow, including static social-preview generation. Wait for the workflow to finish in **Actions**, then inspect the public site and at least one shared edition URL. The public app uses hash navigation (for example `/#/art/buffalo-tailor-shop`), while the share page uses the crawler-friendly non-hash edition URL above.
