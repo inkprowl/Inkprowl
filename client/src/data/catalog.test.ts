@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isApprovedClientDestination, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteMedia, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
+import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isApprovedClientDestination, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteMedia, sponsoredCampaign, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
 
 describe("INKPROWL catalog", () => {
   it("contains all requested public browsing categories", () => {
@@ -62,6 +62,10 @@ describe("INKPROWL catalog", () => {
     expect(() => validateSiteMedia({ ...siteMedia, soundtrackUrl: "https://example.com/score.mp3" })).toThrow(/Cloudinary delivery URL/);
   });
 
+  it("provides the active campaign Cloudinary film for individual artwork-player fallback", () => {
+    expect(isCloudinaryDeliveryUrl(sponsoredCampaign.videoUrl)).toBe(true);
+  });
+
   it("exposes only explicitly enabled advertising providers to public placements", () => {
     expect(activeAdvertisementProviders(advertisingSettings)).toEqual([]);
     expect(activeAdvertisementProviders({ adsenseEnabled: true, adsterraEnabled: false })).toEqual(["Google AdSense"]);
@@ -71,6 +75,10 @@ describe("INKPROWL catalog", () => {
   it("creates Cloudinary attachment URLs for each approved free-download format", () => {
     const buffalo = getArtwork("buffalo-tailor-shop")!;
     expect(availableDownloadFormats(buffalo)).toEqual(["jpg", "png", "webp"]);
+    expect(new Set(availableDownloadFormats(buffalo))).toEqual(new Set(["jpg", "png", "webp"]));
+    for (const format of ["jpg", "png", "webp"] as const) {
+      expect(getCloudinaryDownloadUrl(buffalo.imageUrl, buffalo.slug, format)).toContain(`/image/upload/f_${format},fl_attachment:inkprowl-buffalo-tailor-shop-${format}/`);
+    }
     expect(getCloudinaryDownloadUrl(buffalo.imageUrl, buffalo.slug, "webp")).toContain("/image/upload/f_webp,fl_attachment:inkprowl-buffalo-tailor-shop-webp/");
   });
 

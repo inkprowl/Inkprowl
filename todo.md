@@ -104,3 +104,22 @@
 - [x] Display an uploaded sponsored video on the public page before a client destination is configured, while showing the external visit action only when an approved HTTPS destination exists.
 - [x] Remove the obsolete hero-film placeholder and its excess mobile whitespace whenever a Cloudinary video is available.
 - [x] Make the mobile sponsor/hero player a 16:9 landscape rectangle and prevent its surrounding editorial text from being clipped or obscured.
+- [x] Correct the mobile sponsor-video renderer so the Cloudinary video fills the complete 16:9 stage without a black side gutter, and ensure the sponsor heading clears the sticky header.
+- [x] Rebuild the initial owner-admin view as a visible upload-first artwork dashboard rather than a publishing-token connection screen.
+- [x] Add a thumbnail-based artwork list with each edition’s title, description, category, publication status, metadata preview, and edit/delete controls.
+- [x] Add file-only artwork, song, and sponsor-video upload zones with accepted-format guidance and filename-derived draft metadata.
+- [x] Add editable title, description, category, tags, and auto-generated meta-title/meta-description controls to each artwork record.
+- [x] Defer the session-only GitHub publishing authorization until an owner selects an upload, save, delete, or publish action.
+- [x] Preserve the INKPROWL owner-admin login through refreshes and clear it only when the owner uses Log out, without storing media in the browser.
+- [x] Put visible Artwork Upload & Save, Song Upload & Save, and Video Upload & Save controls on the first owner-admin screen.
+- [ ] Exercise artwork, song, and sponsor-video uploads end to end and verify visible per-file queued, progress, permanent-save, and failure feedback.
+- [x] Keep thumbnail artwork records visible beside the uploader with title, description, category, metadata, edit, and delete actions.
+- [ ] End-to-end verify category Add, Rename, and Retire/Delete controls persist to the generated catalogue and update the public gallery.
+- [ ] Audit each visible owner-admin control individually and retain an unchecked item for any action not proven by a working permanent save, delete, or publish operation.
+- [x] Repair the public artwork download panel with three separate working Cloudinary download buttons for JPEG, PNG, and WebP.
+- [ ] Verify that each media action reports real GitHub queue, Cloudinary transfer, and public-site completion states during execution.
+- [x] Remove the visible GitHub token connection panel from the owner dashboard and request secure authorization only when a permanent action is selected.
+- [x] Preserve the owner publishing connection through dashboard refreshes during the same browser session and clear it only on explicit disconnect or logout.
+- [ ] Complete and publish the combined launch release: upload-first owner dashboard plus permanent public JPEG, PNG, and WebP artwork downloads.
+- [x] Replace individual artwork “awaiting film release” placeholders with the active full-frame 16:9 Cloudinary video player whenever a site video is available.
+- [ ] Perform the ordered final audit: individual video player, homepage player, downloads, owner dashboard, then public release verification.
