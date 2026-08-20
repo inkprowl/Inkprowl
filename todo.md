@@ -48,3 +48,15 @@
 - [x] Expand the owner workspace and guide for filename-derived editable titles, descriptions, tags, category rename/delete, advertising toggles, provider-code handoff, and sponsored placements.
 - [x] Expand the owner workspace with explicit filename-derived metadata, category rename/delete, provider-code handoff, and sponsored-placement guidance.
 - [x] Show branding, sponsored-campaign, and download-format configuration in the owner workspace preview.
+- [ ] Select a secure GitHub-hosted owner upload architecture that sends images, audio, and video directly to Cloudinary without routine Cloudinary-dashboard use.
+- [ ] Configure the required owner authentication and Cloudinary upload credentials without exposing a secret in the public site or repository.
+- [ ] Build a GitHub-hosted upload form that writes permanent Cloudinary asset details into the INKPROWL catalogue.
+- [ ] Validate image, audio, and video upload, deletion, and public-gallery update flows end to end.
+- [ ] Add authenticated owner controls to create, edit, rename, categorize, publish, and remove artwork catalogue records.
+- [ ] Add authenticated owner media controls to upload and delete Cloudinary images, songs, videos, logos, hero banners, and sponsor media.
+- [ ] Synchronize owner changes into GitHub-backed catalogue records and deploy the updated public gallery automatically.
+- [ ] Add owner-only AdSense and Adsterra code configuration with explicit on/off switches and safe public placement behavior.
+- [x] Convert every published INKPROWL artwork from premium-gated to unrestricted free Cloudinary download access.
+- [x] Verify all public artwork details expose JPG, PNG, and WebP downloads without a premium-access restriction.
+- [x] Keep Cloudinary-incomplete placeholder records out of public gallery, detail, and social-preview routes until their permanent media is available.
+- [ ] Clearly present the GitHub Pages-only owner workflow and the future custom-domain compatibility without misrepresenting static-site security limits.
