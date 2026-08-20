@@ -5,8 +5,10 @@ import { activeAdvertisementProviders, advertisingSettings, artworks, siteBrandi
 
 const repositoryUrl = "https://github.com/inkprowl/inkprowl";
 const catalogueUrl = `${repositoryUrl}/blob/main/client/src/data/catalog.ts`;
+const generatedCatalogueUrl = `${repositoryUrl}/blob/main/client/src/data/generated-catalog.json`;
+const uploadGuideUrl = `${repositoryUrl}/blob/main/OWNER_GITHUB_UPLOADS.md`;
 const uploadUrl = `${repositoryUrl}/upload/main/incoming`;
-const actionsUrl = `${repositoryUrl}/actions`;
+const actionsUrl = `${repositoryUrl}/actions/workflows/sync-cloudinary-media.yml`;
 
 export default function Admin() {
   const activeProviders = activeAdvertisementProviders();
@@ -44,12 +46,12 @@ export default function Admin() {
           <p className="admin-config-status">Live public configuration: <strong>{activeProviders.join(" + ") || "advertising off"}</strong> · {mediaStatus}.</p>
         </div>
         <div className="management-cards">
-          <a href={`${repositoryUrl}/blob/main/OWNER_WORKFLOW.md`} target="_blank" rel="noreferrer"><KeyRound size={20} /><strong>Owner operations guide</strong><p>Review the public catalogue, advertising, category, and Cloudinary delivery workflow in the repository.</p><ExternalLink size={16} /></a>
-          <a href={uploadUrl} target="_blank" rel="noreferrer"><KeyRound size={20} /><strong>GitHub media upload queue</strong><p>Choose image, audio, or video files in the repository upload screen. The Cloudinary sync workflow is activated after its protected secret is configured.</p><ExternalLink size={16} /></a>
-          <a href={catalogueUrl} target="_blank" rel="noreferrer"><FilePenLine size={20} /><strong>Edition metadata & downloads</strong><p>Edit the title, description, slug, tags, category, and always-free JPEG/PNG/WebP download-format list.</p><ExternalLink size={16} /></a>
+          <a href={uploadGuideUrl} target="_blank" rel="noreferrer"><KeyRound size={20} /><strong>Owner upload guide</strong><p>Use the exact filename patterns for free artwork, songs, logos, banners, sponsor film, and edition video.</p><ExternalLink size={16} /></a>
+          <a href={uploadUrl} target="_blank" rel="noreferrer"><KeyRound size={20} /><strong>GitHub media upload queue</strong><p>Choose a correctly named image, audio, or video in GitHub. The protected workflow transfers it to Cloudinary and updates the public catalogue.</p><ExternalLink size={16} /></a>
+          <a href={generatedCatalogueUrl} target="_blank" rel="noreferrer"><FilePenLine size={20} /><strong>Edition metadata & downloads</strong><p>Edit generated title, description, slug, tags, category, and always-free JPEG/PNG/WebP download-format settings.</p><ExternalLink size={16} /></a>
           <a href={catalogueUrl} target="_blank" rel="noreferrer"><SlidersHorizontal size={20} /><strong>Categories & related editions</strong><p>Rename a category, update matching editions, and only then delete it. Matching category values create the related-artwork rail.</p><ExternalLink size={16} /></a>
-          <a href={catalogueUrl} target="_blank" rel="noreferrer"><SlidersHorizontal size={20} /><strong>Brand, sponsor & media</strong><p>Set a Cloudinary logo, hero banner, soundtrack, edition film, or direct-sponsor campaign and video placement.</p><ExternalLink size={16} /></a>
-          <a href={actionsUrl} target="_blank" rel="noreferrer"><KeyRound size={20} /><strong>Sync & deployment activity</strong><p>Monitor media synchronization and the GitHub Pages build after an owner change is committed.</p><ExternalLink size={16} /></a>
+          <a href={generatedCatalogueUrl} target="_blank" rel="noreferrer"><SlidersHorizontal size={20} /><strong>Brand, sponsor & media</strong><p>Set a Cloudinary logo, hero banner, soundtrack, edition film, or direct-sponsor campaign and video placement.</p><ExternalLink size={16} /></a>
+          <a href={actionsUrl} target="_blank" rel="noreferrer"><KeyRound size={20} /><strong>Sync, delete & deployment</strong><p>Monitor synchronization, manually delete a managed Cloudinary asset, and review the GitHub Pages build after each owner change.</p><ExternalLink size={16} /></a>
         </div>
         <div className="admin-codebox">
           <span className="eyebrow">CONFIGURATION PREVIEW</span>
