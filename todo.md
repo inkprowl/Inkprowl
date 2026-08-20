@@ -60,3 +60,5 @@
 - [x] Verify all public artwork details expose JPG, PNG, and WebP downloads without a premium-access restriction.
 - [x] Keep Cloudinary-incomplete placeholder records out of public gallery, detail, and social-preview routes until their permanent media is available.
 - [ ] Clearly present the GitHub Pages-only owner workflow and the future custom-domain compatibility without misrepresenting static-site security limits.
+- [x] Replace the non-authenticating static login submission with a clear GitHub owner-access action and remove misleading password-login behavior.
+- [ ] Add a protected `CLOUDINARY_URL` GitHub Actions secret setup guide that rejects placeholder values and keeps credentials out of public source.
