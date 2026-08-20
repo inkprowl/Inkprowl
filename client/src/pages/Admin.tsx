@@ -1,7 +1,7 @@
 import { Eye, EyeOff, ExternalLink, FilePenLine, KeyRound, LockKeyhole, RotateCcw, SlidersHorizontal } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 import { Mark } from "@/components/InkprowlChrome";
-import { activeAdvertisementProviders, advertisingSettings, siteMedia } from "@/data/catalog";
+import { activeAdvertisementProviders, advertisingSettings, artworks, siteBranding, siteMedia, sponsoredCampaign } from "@/data/catalog";
 
 const repositoryUrl = "https://github.com/inkprowl/inkprowl";
 const catalogueUrl = `${repositoryUrl}/blob/main/client/src/data/catalog.ts`;
@@ -15,6 +15,7 @@ export default function Admin() {
     siteMedia.defaultArtworkFilmUrl && "edition film",
     siteMedia.soundtrackUrl && "soundtrack",
   ].filter(Boolean).join(", ") || "no media URLs configured";
+  const freeEdition = artworks.find((artwork) => !artwork.isPremium);
 
   useEffect(() => {
     const robots = document.createElement("meta");
@@ -53,14 +54,20 @@ export default function Admin() {
         </div>
         <div className="management-cards">
           <a href={`${repositoryUrl}/blob/main/OWNER_WORKFLOW.md`} target="_blank" rel="noreferrer"><KeyRound size={20} /><strong>Owner operations guide</strong><p>Follow the approved GitHub and Cloudinary workflow for editing, review, and publishing.</p><ExternalLink size={16} /></a>
-          <a href={catalogueUrl} target="_blank" rel="noreferrer"><FilePenLine size={20} /><strong>Catalogue controls</strong><p>Edit titles, descriptions, categories, metadata, free/premium status, Cloudinary URLs, media titles, and related-work data.</p><ExternalLink size={16} /></a>
-          <a href={catalogueUrl} target="_blank" rel="noreferrer"><SlidersHorizontal size={20} /><strong>Ad & media settings</strong><p>Toggle AdSense or Adsterra and configure hero film, edition film, and soundtrack URLs. Public code is never placed in the browser until you approve a provider.</p><ExternalLink size={16} /></a>
+          <a href={catalogueUrl} target="_blank" rel="noreferrer"><FilePenLine size={20} /><strong>Edition metadata & downloads</strong><p>Turn an uploaded filename into an editable title, description, slug, tags, free/premium state, and JPEG/PNG/WebP download-format list.</p><ExternalLink size={16} /></a>
+          <a href={catalogueUrl} target="_blank" rel="noreferrer"><SlidersHorizontal size={20} /><strong>Categories & related editions</strong><p>Rename a category, update matching artworks, and only then delete it. Matching category values create the public related-artwork rail.</p><ExternalLink size={16} /></a>
+          <a href={catalogueUrl} target="_blank" rel="noreferrer"><SlidersHorizontal size={20} /><strong>Brand, sponsor & media</strong><p>Set a Cloudinary logo, hero banner, soundtrack, edition film, or approved direct-sponsor campaign and video placement.</p><ExternalLink size={16} /></a>
+          <a href={catalogueUrl} target="_blank" rel="noreferrer"><KeyRound size={20} /><strong>Ad provider handoff</strong><p>Toggle approved providers in the catalogue. Review consent and policy requirements before placing a provider-supplied snippet in the HTML shell.</p><ExternalLink size={16} /></a>
           <a href="https://cloudinary.com/console" target="_blank" rel="noreferrer"><LockKeyhole size={20} /><strong>Cloudinary library</strong><p>Bulk upload, replace, organize, and delete permanent image, music, and video assets.</p><ExternalLink size={16} /></a>
         </div>
         <div className="admin-codebox">
           <span className="eyebrow">CONFIGURATION PREVIEW</span>
-          <pre>{`advertisingSettings = { adsenseEnabled: ${advertisingSettings.adsenseEnabled}, adsterraEnabled: ${advertisingSettings.adsterraEnabled} }\nsiteMedia = { heroFilmUrl, defaultArtworkFilmUrl, soundtrackUrl }`}</pre>
-          <p>Keep provider code and credentials out of GitHub Pages. Add only approved Cloudinary delivery URLs and configuration values to the catalogue, then commit and publish.</p>
+          <pre>{`advertisingSettings = { adsenseEnabled: ${advertisingSettings.adsenseEnabled}, adsterraEnabled: ${advertisingSettings.adsterraEnabled} }
+siteBranding = { logoUrl: ${Boolean(siteBranding.logoUrl)}, heroBannerUrl: ${Boolean(siteBranding.heroBannerUrl)}, heroTitle: "${siteBranding.heroTitle}" }
+sponsoredCampaign = { enabled: ${sponsoredCampaign.enabled}, videoUrl: ${Boolean(sponsoredCampaign.videoUrl)} }
+downloadFormats = ${JSON.stringify(freeEdition?.downloadFormats ?? ["jpg", "png", "webp"])}
+providerCodeHandoff = "Review provider snippet, consent, and policy before client/index.html"`}</pre>
+          <p>Keep provider credentials out of GitHub Pages. Add only approved Cloudinary delivery URLs and configuration values to the catalogue, then commit and publish. Use the owner guide before deleting a category or a permanent Cloudinary asset.</p>
         </div>
       </div>
     </div>
