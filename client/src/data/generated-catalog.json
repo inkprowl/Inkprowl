@@ -1,5 +1,29 @@
 {
-  "artworks": [],
+  "artworks": [
+    {
+      "slug": "inkprowl-e2e-check-rotated-20260821",
+      "title": "Inkprowl E2e Check Rotated 20260821",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Inkprowl E2e Check Rotated 20260821, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787256912/inkprowl/art--business-animals--inkprowl-e2e-check-rotated-20260821_oulhq4.png",
+      "orientation": "square",
+      "tags": [
+        "inkprowl",
+        "e2e",
+        "check",
+        "rotated",
+        "20260821"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:inkprowl-e2e-check-rotated-20260821"
+    }
+  ],
   "artworkOverrides": {},
   "artworkMedia": {},
   "siteMedia": {},
@@ -8,5 +32,11 @@
   "advertisingSettings": {},
   "categories": [],
   "categoryAliases": {},
-  "assets": {}
+  "assets": {
+    "artwork:inkprowl-e2e-check-rotated-20260821": {
+      "publicId": "inkprowl/art--business-animals--inkprowl-e2e-check-rotated-20260821_oulhq4",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787256912/inkprowl/art--business-animals--inkprowl-e2e-check-rotated-20260821_oulhq4.png"
+    }
+  }
 }
