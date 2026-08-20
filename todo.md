@@ -41,3 +41,10 @@
 - [x] Superseded by the approved single-repository workflow: create and link a private inkprowl-admin repository.
 - [x] Fix mobile overflow in the private owner workspace so its login controls remain inside the viewport.
 - [x] Consolidate owner-management links and documentation into the public inkprowl repository without exposing credentials or Cloudinary management actions in the static site.
+- [x] Add owner-managed Cloudinary workflow guidance for bulk image, song, logo, hero-banner, and sponsored-video uploads and deletion.
+- [x] Add editable site branding, hero-banner, campaign, and download-format configuration to the public catalogue model.
+- [x] Add individual artwork download actions for approved JPEG, PNG, and WebP Cloudinary derivatives.
+- [x] Add per-artwork static social share-preview metadata that works from publicly shareable individual-edition URLs.
+- [x] Expand the owner workspace and guide for filename-derived editable titles, descriptions, tags, category rename/delete, advertising toggles, provider-code handoff, and sponsored placements.
+- [x] Expand the owner workspace with explicit filename-derived metadata, category rename/delete, provider-code handoff, and sponsored-placement guidance.
+- [x] Show branding, sponsored-campaign, and download-format configuration in the owner workspace preview.
