@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { artworks, categories, getArtwork, isCloudinaryDeliveryUrl, relatedArtworks, validateArtworkMedia } from "./catalog";
+import { activeAdvertisementProviders, advertisingSettings, artworks, categories, getArtwork, isCloudinaryDeliveryUrl, relatedArtworks, siteMedia, validateArtworkMedia, validateSiteMedia } from "./catalog";
 
 describe("INKPROWL catalog", () => {
   it("contains all requested public browsing categories", () => {
@@ -46,5 +46,16 @@ describe("INKPROWL catalog", () => {
       ...artworks[0]!,
       imageUrl: "https://example.com/panther.png",
     })).toThrow(/Cloudinary delivery URL/);
+  });
+
+  it("keeps optional site-wide soundtrack and film settings Cloudinary-only", () => {
+    expect(() => validateSiteMedia(siteMedia)).not.toThrow();
+    expect(() => validateSiteMedia({ ...siteMedia, soundtrackUrl: "https://example.com/score.mp3" })).toThrow(/Cloudinary delivery URL/);
+  });
+
+  it("exposes only explicitly enabled advertising providers to public placements", () => {
+    expect(activeAdvertisementProviders(advertisingSettings)).toEqual([]);
+    expect(activeAdvertisementProviders({ adsenseEnabled: true, adsterraEnabled: false })).toEqual(["Google AdSense"]);
+    expect(activeAdvertisementProviders({ adsenseEnabled: true, adsterraEnabled: true })).toEqual(["Google AdSense", "Adsterra"]);
   });
 });
