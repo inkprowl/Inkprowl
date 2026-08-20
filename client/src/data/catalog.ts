@@ -39,6 +39,7 @@ export type SponsoredCampaign = {
   enabled: boolean;
   label: string;
   clientName: string;
+  clientUrl?: string;
   videoUrl?: string;
 };
 
@@ -48,13 +49,17 @@ export type AdvertisingSettings = {
 };
 
 type ManagedAsset = { publicId: string; resourceType: "image" | "video"; deliveryUrl: string };
+type CategoryDefinition = { name: string; icon?: string; count?: number };
 type GeneratedCatalogue = {
   artworks: Artwork[];
+  artworkOverrides?: Record<string, Partial<Pick<Artwork, "title" | "category" | "description" | "tags" | "isPublished">>>;
   artworkMedia: Record<string, Partial<Pick<Artwork, "audioUrl" | "videoUrl">>>;
   siteMedia: Partial<SiteMedia>;
   siteBranding: Partial<SiteBranding>;
   sponsoredCampaign: Partial<SponsoredCampaign>;
   advertisingSettings: Partial<AdvertisingSettings>;
+  categories?: CategoryDefinition[];
+  categoryAliases?: Record<string, string>;
   assets: Record<string, ManagedAsset>;
 };
 const generatedCatalogue = generatedCatalogueJson as GeneratedCatalogue;
@@ -106,6 +111,7 @@ export const sponsoredCampaign: SponsoredCampaign = {
   enabled: false,
   label: "PRESENTED IN PARTNERSHIP",
   clientName: "A considered sponsor",
+  clientUrl: undefined,
   videoUrl: undefined,
   ...generatedCatalogue.sponsoredCampaign,
 };
@@ -144,13 +150,23 @@ function validateCloudinaryVideoUrl(url: string | undefined, field: string) {
   }
 }
 
+export function isApprovedClientDestination(url: string | undefined) {
+  if (!url) return true;
+  try {
+    return new URL(url).protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export function validateOwnerConfiguration() {
   validateCloudinaryImageUrl(siteBranding.logoUrl, "siteBranding.logoUrl");
   validateCloudinaryImageUrl(siteBranding.heroBannerUrl, "siteBranding.heroBannerUrl");
   validateCloudinaryVideoUrl(sponsoredCampaign.videoUrl, "sponsoredCampaign.videoUrl");
+  if (!isApprovedClientDestination(sponsoredCampaign.clientUrl)) throw new Error("sponsoredCampaign.clientUrl must be an HTTPS client destination");
 }
 
-export const categories = [
+const baseCategories: CategoryDefinition[] = [
   { name: "Business Animals", icon: "♜", count: 19 },
   { name: "Mafia Bosses", icon: "♛", count: 8 },
   { name: "Funny Animals", icon: "✦", count: 8 },
@@ -165,6 +181,11 @@ export const categories = [
   { name: "Free Art", icon: "↓", count: 18 },
 ];
 
+const categoryAliases = generatedCatalogue.categoryAliases ?? {};
+export const categories = [...baseCategories, ...(generatedCatalogue.categories ?? [])]
+  .map((category) => ({ ...category, name: categoryAliases[category.name] ?? category.name }))
+  .filter((category, index, all) => all.findIndex((candidate) => candidate.name === category.name) === index);
+
 const manualArtworks: Artwork[] = [
   { slug: "panther-in-pinstripe-suit", title: "Panther in Pinstripe Suit", category: "Mafia Bosses", description: "A composed panther steps out in a precisely tailored pinstripe suit, rendered as an archival cross-hatched study.", isPremium: false, accent: "coal", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787239768/inkprowl-panther-collectible-edition.png", orientation: "portrait", tags: ["panther", "tailoring", "engraving"] },
   { slug: "buffalo-tailor-shop", title: "Buffalo Tailor Shop Line Art Comic", category: "Business Animals", description: "Old workshop ritual, patient hands, and a buffalo tailor judging the fall of a new suit cloth.", isPremium: false, accent: "ochre", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241850/buffalo-tailor-shop.png", orientation: "landscape", tags: ["buffalo", "tailor", "comic"] },
@@ -177,9 +198,12 @@ const manualArtworks: Artwork[] = [
 ];
 
 export const artworks: Artwork[] = [
-  ...manualArtworks.map((artwork) => ({ ...artwork, ...(generatedCatalogue.artworkMedia[artwork.slug] ?? {}) })),
-  ...generatedCatalogue.artworks.map((artwork) => ({ ...artwork, ...(generatedCatalogue.artworkMedia[artwork.slug] ?? {}) })),
-];
+  ...manualArtworks.map((artwork) => ({ ...artwork, ...(generatedCatalogue.artworkOverrides?.[artwork.slug] ?? {}), ...(generatedCatalogue.artworkMedia[artwork.slug] ?? {}) })),
+  ...generatedCatalogue.artworks.map((artwork) => ({ ...artwork, ...(generatedCatalogue.artworkOverrides?.[artwork.slug] ?? {}), ...(generatedCatalogue.artworkMedia[artwork.slug] ?? {}) })),
+].map((artwork) => ({
+  ...artwork,
+  category: categoryAliases[artwork.category] ?? artwork.category,
+}));
 
 artworks.forEach(validateArtworkMedia);
 validateSiteMedia(siteMedia);

@@ -55,10 +55,14 @@ function applyUpload(catalogue, asset, result) {
   const record = assetRecord(result);
   catalogue.assets ??= {};
   catalogue.artworks ??= [];
+  catalogue.artworkOverrides ??= {};
   catalogue.artworkMedia ??= {};
   catalogue.siteMedia ??= {};
   catalogue.siteBranding ??= {};
   catalogue.sponsoredCampaign ??= {};
+  catalogue.advertisingSettings ??= {};
+  catalogue.categories ??= [];
+  catalogue.categoryAliases ??= {};
 
   if (asset.kind === "artwork") {
     if (catalogue.artworks.some((artwork) => artwork.slug === asset.slug)) throw new Error(`A generated artwork already uses the slug ${asset.slug}. Choose a different filename or remove the old artwork first.`);

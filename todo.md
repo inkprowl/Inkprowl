@@ -48,14 +48,14 @@
 - [x] Expand the owner workspace and guide for filename-derived editable titles, descriptions, tags, category rename/delete, advertising toggles, provider-code handoff, and sponsored placements.
 - [x] Expand the owner workspace with explicit filename-derived metadata, category rename/delete, provider-code handoff, and sponsored-placement guidance.
 - [x] Show branding, sponsored-campaign, and download-format configuration in the owner workspace preview.
-- [ ] Select a secure GitHub-hosted owner upload architecture that sends images, audio, and video directly to Cloudinary without routine Cloudinary-dashboard use.
+- [x] Select a secure GitHub-hosted owner upload architecture that sends images, audio, and video directly to Cloudinary without routine Cloudinary-dashboard use.
 - [x] Configure the required owner authentication and Cloudinary upload credentials without exposing a secret in the public site or repository.
-- [ ] Build a GitHub-hosted upload form that writes permanent Cloudinary asset details into the INKPROWL catalogue.
+- [x] Build a GitHub-hosted upload form that writes permanent Cloudinary asset details into the INKPROWL catalogue.
 - [ ] Validate image, audio, and video upload, deletion, and public-gallery update flows end to end.
 - [ ] Add authenticated owner controls to create, edit, rename, categorize, publish, and remove artwork catalogue records.
 - [ ] Add authenticated owner media controls to upload and delete Cloudinary images, songs, videos, logos, hero banners, and sponsor media.
 - [ ] Synchronize owner changes into GitHub-backed catalogue records and deploy the updated public gallery automatically.
-- [ ] Add owner-only AdSense and Adsterra code configuration with explicit on/off switches and safe public placement behavior.
+- [x] Add owner-only AdSense and Adsterra code configuration with explicit on/off switches and safe public placement behavior.
 - [x] Convert every published INKPROWL artwork from premium-gated to unrestricted free Cloudinary download access.
 - [x] Verify all public artwork details expose JPG, PNG, and WebP downloads without a premium-access restriction.
 - [x] Keep Cloudinary-incomplete placeholder records out of public gallery, detail, and social-preview routes until their permanent media is available.
@@ -63,9 +63,9 @@
 - [x] Replace the non-authenticating static login submission with a clear GitHub owner-access action and remove misleading password-login behavior.
 - [x] Add a protected `CLOUDINARY_URL` GitHub Actions secret setup guide that rejects placeholder values and keeps credentials out of public source.
 - [x] Add a public free-download action for the Cloudinary soundtrack when the owner publishes one.
-- [ ] Add the accepted GitHub upload-queue workflow that treats GitHub as controlled ingestion and Cloudinary as the only public delivery source.
-- [ ] Automatically generate always-free public edition metadata from supported image filenames after Cloudinary ingestion.
-- [ ] Automatically map supported uploaded soundtrack, hero-film, and edition-video filenames to the matching Cloudinary-backed public media settings.
+- [x] Add the accepted GitHub upload-queue workflow that treats GitHub as controlled ingestion and Cloudinary as the only public delivery source.
+- [x] Automatically generate always-free public edition metadata from supported image filenames after Cloudinary ingestion.
+- [x] Automatically map supported uploaded soundtrack, hero-film, and edition-video filenames to the matching Cloudinary-backed public media settings.
 - [x] Align all owner and GitHub Pages documentation with the accepted GitHub upload-queue to Cloudinary synchronization workflow and future custom-domain compatibility.
 - [x] Expand the owner upload guide with explicit protected `CLOUDINARY_URL` GitHub Actions secret setup and placeholder-rejection guidance.
 - [x] Fix the GitHub Actions pnpm setup conflict and rerun the Cloudinary synchronization workflow successfully.
@@ -79,12 +79,20 @@
 - [ ] Configure a GitHub OAuth application with Device Flow enabled for in-admin owner authorization.
 - [ ] Add a public GitHub OAuth client identifier through protected build configuration without exposing any client secret.
 - [ ] Use GitHub Device Flow to authorize the owner and keep media upload and catalogue editing inside the branded INKPROWL admin interface.
-- [ ] Replace the static-only authorization plan with a session-only GitHub fine-grained token connection that is never persisted in browser storage.
-- [ ] Add in-admin GitHub identity verification, disconnect handling, and scoped-permission guidance.
-- [ ] Connect the branded media, artwork, category, branding, music/video, and advertising controls to GitHub-backed backend operations without raw-page handoffs.
-- [ ] Keep the owner token connected for all actions during one open INKPROWL Admin session, with clear connected and disconnect states and no browser-persistent credential storage.
-- [ ] Document and enforce that no GitHub classic token or permanent owner password can be embedded in the public GitHub Pages admin source.
+- [x] Replace the static-only authorization plan with a session-only GitHub fine-grained token connection that is never persisted in browser storage.
+- [x] Add in-admin GitHub identity verification, disconnect handling, and scoped-permission guidance.
+- [x] Connect the branded media, artwork, category, branding, music/video, and advertising controls to GitHub-backed backend operations without raw-page handoffs.
+- [x] Keep the owner token connected for all actions during one open INKPROWL Admin session, with clear connected and disconnect states and no browser-persistent credential storage.
+- [x] Document and enforce that no GitHub classic token or permanent owner password can be embedded in the public GitHub Pages admin source.
 - [ ] Complete and publish the credential-safe branded local login and in-admin management release without exposing a token, secret, or persistent browser credential.
 - [x] Add a simple visible logout action that returns the current INKPROWL Admin tab to the branded login screen without persisting credentials.
 - [x] Add a credential-safe password-reset request action directed to makwanasudatt56@gmail.com without exposing a reset token or private password logic in the public static site.
 - [x] Resolve the remaining dashboard compilation error and finalize the simple login, logout, and reset-request interaction states.
+- [x] Implement a memory-only GitHub repository connection that clears on INKPROWL admin logout and can safely write owner changes without raw GitHub page handoffs.
+- [ ] Wire every INKPROWL admin management panel to the GitHub-to-Cloudinary publishing workflow and validate the protected public-build update path.
+- [ ] Publish the verified INKPROWL source release using a temporary owner-supplied classic GitHub token with only `repo` and `workflow` scopes.
+- [x] Support bulk file-only uploads for artwork images, songs, and videos through the branded INKPROWL media intake, without media URL entry fields.
+- [x] Add a sponsored-video client destination field in the admin and make the public video placement open that approved client page when selected.
+- [x] Add visible volume sliders to the floating music player and sponsored client video player while preserving their existing playback controls.
+- [x] Add accessible artwork zoom-in and zoom-out controls to the public individual artwork view.
+- [x] Add music-player minimize, close, and playlist controls while keeping Cloudinary playback and downloads functional.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteMedia, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
+import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isApprovedClientDestination, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteMedia, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
 
 describe("INKPROWL catalog", () => {
   it("contains all requested public browsing categories", () => {
@@ -77,5 +77,12 @@ describe("INKPROWL catalog", () => {
   it("uses direct static edition URLs for social previews and validates owner media settings", () => {
     expect(getArtworkShareUrl("buffalo-tailor-shop")).toBe("https://inkprowl.github.io/inkprowl/art/buffalo-tailor-shop/");
     expect(() => validateOwnerConfiguration()).not.toThrow();
+  });
+
+  it("accepts only HTTPS destinations for sponsored client visit controls", () => {
+    expect(isApprovedClientDestination("https://client.example/campaign")).toBe(true);
+    expect(isApprovedClientDestination(undefined)).toBe(true);
+    expect(isApprovedClientDestination("http://client.example/campaign")).toBe(false);
+    expect(isApprovedClientDestination("not-a-url")).toBe(false);
   });
 });

@@ -1,9 +1,12 @@
 {
   "artworks": [],
+  "artworkOverrides": {},
   "artworkMedia": {},
   "siteMedia": {},
   "siteBranding": {},
   "sponsoredCampaign": {},
   "advertisingSettings": {},
+  "categories": [],
+  "categoryAliases": {},
   "assets": {}
 }
