@@ -35,3 +35,4 @@
 - [x] Document and verify Cloudinary-only URL requirements for any future audio and video assets.
 - [x] Clarify that gallery cards use intentional 1:1 editorial crops while the individual page preserves the uploaded file’s original proportions.
 - [x] Add a tested media URL validator that permits only Cloudinary delivery URLs for images, audio, and video catalog fields.
+- [ ] Fix the GitHub Pages workflow so it installs pnpm before the cached Node setup and completes a static deployment.
