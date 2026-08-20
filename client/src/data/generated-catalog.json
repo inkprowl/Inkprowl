@@ -3,19 +3,12 @@
   "artworkOverrides": {},
   "artworkMedia": {},
   "siteMedia": {
-    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257066/inkprowl/song--inkprowl-e2e-audio-check-20260821_yvdfio.mp3",
-    "soundtrackTitle": "Inkprowl E2e Audio Check 20260821"
+    "soundtrackTitle": "Curated sound"
   },
   "siteBranding": {},
   "sponsoredCampaign": {},
   "advertisingSettings": {},
   "categories": [],
   "categoryAliases": {},
-  "assets": {
-    "siteMedia:soundtrack": {
-      "publicId": "inkprowl/song--inkprowl-e2e-audio-check-20260821_yvdfio",
-      "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257066/inkprowl/song--inkprowl-e2e-audio-check-20260821_yvdfio.mp3"
-    }
-  }
+  "assets": {}
 }
