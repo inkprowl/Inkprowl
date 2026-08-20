@@ -1,12 +1,20 @@
 {
   "artworks": [],
   "artworkOverrides": {},
-  "artworkMedia": {},
+  "artworkMedia": {
+    "panther-in-pinstripe-suit": {
+      "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787259942/inkprowl/edition-video--panther-in-pinstripe-suit_t3on28.mp4"
+    }
+  },
   "siteMedia": {
     "soundtrackTitle": "Inkprowl Sample Soundtrack",
-    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
+    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3",
+    "heroFilmUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787259944/inkprowl/hero-film--workflow-check_uu3lup.mp4"
   },
-  "siteBranding": {},
+  "siteBranding": {
+    "heroBannerUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787259943/inkprowl/hero-banner--workflow-check_nutnux.png",
+    "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787259945/inkprowl/logo--workflow-check_od874x.png"
+  },
   "sponsoredCampaign": {
     "enabled": true,
     "clientName": "Inkprowl Sample Sponsor Placement",
@@ -25,6 +33,26 @@
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
       "resourceType": "video",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+    },
+    "artworkVideo:panther-in-pinstripe-suit": {
+      "publicId": "inkprowl/edition-video--panther-in-pinstripe-suit_t3on28",
+      "resourceType": "video",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787259942/inkprowl/edition-video--panther-in-pinstripe-suit_t3on28.mp4"
+    },
+    "siteBranding:heroBanner": {
+      "publicId": "inkprowl/hero-banner--workflow-check_nutnux",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787259943/inkprowl/hero-banner--workflow-check_nutnux.png"
+    },
+    "siteMedia:heroFilm": {
+      "publicId": "inkprowl/hero-film--workflow-check_uu3lup",
+      "resourceType": "video",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787259944/inkprowl/hero-film--workflow-check_uu3lup.mp4"
+    },
+    "siteBranding:logo": {
+      "publicId": "inkprowl/logo--workflow-check_od874x",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787259945/inkprowl/logo--workflow-check_od874x.png"
     }
   }
 }
