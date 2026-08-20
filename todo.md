@@ -36,3 +36,8 @@
 - [x] Clarify that gallery cards use intentional 1:1 editorial crops while the individual page preserves the uploaded file’s original proportions.
 - [x] Add a tested media URL validator that permits only Cloudinary delivery URLs for images, audio, and video catalog fields.
 - [x] Fix the GitHub Pages workflow so it installs pnpm before the cached Node setup and completes a static deployment.
+- [x] Add a GitHub-managed advertisement configuration with owner-controlled placement state and test coverage.
+- [x] Superseded by the approved single-repository workflow: provide an owner-workspace guide for media URL, catalogue, and advertising configuration.
+- [x] Superseded by the approved single-repository workflow: create and link a private inkprowl-admin repository.
+- [x] Fix mobile overflow in the private owner workspace so its login controls remain inside the viewport.
+- [x] Consolidate owner-management links and documentation into the public inkprowl repository without exposing credentials or Cloudinary management actions in the static site.
