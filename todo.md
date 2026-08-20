@@ -3,7 +3,7 @@
 - [ ] Confirm a fully free architecture using GitHub Pages, Cloudinary, and a secure serverless control layer.
 - [x] Create a static GitHub Pages-compatible application build and routing strategy.
 - [x] Define public artwork metadata and category content for the gallery and detail views.
-- [ ] Generate and curate INKPROWL editorial animal-art assets in the specified vintage line-art style.
+- [x] Generate and curate INKPROWL editorial animal-art assets in the specified vintage line-art style.
 - [x] Implement the public homepage, gallery, category filters, artwork detail views, and complete editorial pages.
 - [ ] Implement a secure owner-only upload and premium-access workflow backed solely by Cloudinary image URLs.
 - [x] Implement direct free-download controls and premium designation behaviour.
@@ -26,9 +26,9 @@
 - [x] Make mobile gallery browsing single-column with large artwork previews and controlled viewport-safe spacing.
 - [x] Add 1:1 artwork metadata and presentation support without cropping original artwork proportions.
 - [x] Add functional individual-artwork download and social share actions with Cloudinary delivery URLs.
-- [ ] Commit and push all completed INKPROWL source code to the public inkprowl GitHub repository.
-- [ ] Obtain a securely supplied GitHub token with Contents and Workflows write access for inkprowl/inkprowl.
-- [ ] Replace the rejected token with a classic GitHub personal access token that has repo and workflow scopes.
+- [x] Commit and push all completed INKPROWL source code to the public inkprowl GitHub repository.
+- [x] Obtain a securely supplied GitHub token with Contents and Workflows write access for inkprowl/inkprowl.
+- [x] Replace the rejected token with a classic GitHub personal access token that has repo and workflow scopes.
 - [x] Add Vitest coverage for hash-route registration and the separate admin path.
 - [x] Add noindex handling to the static admin route.
 - [x] Verify the requested admin login controls remain unlinked from the public navigation.
