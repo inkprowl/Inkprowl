@@ -1,0 +1,9 @@
+import { PageFrame } from "@/components/InkprowlChrome";
+
+const terms = ["Acceptance of Terms", "Use of the Website", "Artwork and Intellectual Property", "Free Artwork Downloads", "Premium Artwork and Collector Access", "Prohibited Use", "User Conduct", "Third-Party Services and Advertisements", "Availability of the Website", "Disclaimer of Warranties", "Limitation of Liability", "Changes to These Terms", "Contact and Governing Terms"];
+const privacy = ["Scope of This Policy", "Information You Provide", "Information Collected Automatically", "How We Use Information", "Cloudinary Media Delivery", "Advertising Providers", "Cookies and Similar Technologies", "Sharing and Disclosure", "Data Security", "Your Choices and Rights", "Policy Updates", "Contact Us"];
+const prose = "INKPROWL handles this area with care and only for the purpose of operating, improving, and protecting the artwork platform. This concise policy section should be reviewed with your legal adviser before public launch, particularly when advertising or paid collector access is enabled.";
+
+export function Terms() { return <LegalPage eyebrow="LEGAL" title={<>Terms &<br /><em>conditions.</em></>} items={terms} />; }
+export function Privacy() { return <LegalPage eyebrow="PRIVACY" title={<>Your information,<br /><em>handled with care.</em></>} items={privacy} />; }
+function LegalPage({ eyebrow, title, items }: { eyebrow: string; title: React.ReactNode; items: string[] }) { return <PageFrame><section className="legal-hero"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>Last updated: August 2026</p></section><section className="legal-list">{items.map((item, index) => <article key={item}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{item}</h2><p>{prose}</p></div></article>)}</section></PageFrame>; }
