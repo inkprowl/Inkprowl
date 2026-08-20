@@ -6,6 +6,7 @@ export type Artwork = {
   category: string;
   description: string;
   isPremium: boolean;
+  isPublished?: boolean;
   accent: string;
   imageUrl?: string;
   audioUrl?: string;
@@ -146,19 +147,20 @@ export const categories = [
 ];
 
 export const artworks: Artwork[] = [
-  { slug: "panther-in-pinstripe-suit", title: "Panther in Pinstripe Suit", category: "Mafia Bosses", description: "A composed panther steps out in a precisely tailored pinstripe suit, rendered as an archival cross-hatched study.", isPremium: true, accent: "coal", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787239768/inkprowl-panther-collectible-edition.png", orientation: "portrait", tags: ["panther", "tailoring", "engraving"] },
+  { slug: "panther-in-pinstripe-suit", title: "Panther in Pinstripe Suit", category: "Mafia Bosses", description: "A composed panther steps out in a precisely tailored pinstripe suit, rendered as an archival cross-hatched study.", isPremium: false, accent: "coal", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787239768/inkprowl-panther-collectible-edition.png", orientation: "portrait", tags: ["panther", "tailoring", "engraving"] },
   { slug: "buffalo-tailor-shop", title: "Buffalo Tailor Shop Line Art Comic", category: "Business Animals", description: "Old workshop ritual, patient hands, and a buffalo tailor judging the fall of a new suit cloth.", isPremium: false, accent: "ochre", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241850/buffalo-tailor-shop.png", orientation: "landscape", tags: ["buffalo", "tailor", "comic"] },
   { slug: "lion-king-of-the-ledger", title: "Lion, King of the Ledger", category: "Business Animals", description: "A measured lion executive at work among ledgers, fountain pens, and the quiet confidence of a corner office.", isPremium: false, accent: "gold", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241901/lion-ledger.png", orientation: "portrait", tags: ["lion", "office", "line art"] },
   { slug: "fox-after-hours-courier", title: "Fox, After-Hours Courier", category: "Funny Animals", description: "A clever fox brings a midnight dispatch through a sleeping city in a sharply cut messenger coat.", isPremium: false, accent: "rust", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241886/fox-courier.png", orientation: "portrait", tags: ["fox", "city", "comic"] },
-  { slug: "bear-bull-market", title: "Bear & Bull Market", category: "Collectible Art", description: "A bear negotiates the market’s next move with a vintage desk lamp, a marked ledger, and dry humour.", isPremium: true, accent: "umber", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241921/bear-market.png", orientation: "square", tags: ["bear", "market", "collectible"] },
-  { slug: "panther-in-the-prowl", title: "Panther in the Prowl", category: "Cross-Hatching", description: "A panther climbs through an old wooded estate; a pure line-art edition with an engraved paper texture.", isPremium: true, accent: "forest", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787239768/inkprowl-panther-collectible-edition.png", orientation: "portrait", tags: ["panther", "forest", "cross hatching"] },
-  { slug: "penguin-office-hour", title: "Penguin, Office Hour", category: "Funny Animals", description: "A quietly comic portrait of the most punctilious member of the Monday morning meeting.", isPremium: false, accent: "slate", orientation: "portrait", tags: ["penguin", "office", "free art"] },
-  { slug: "the-donkeys-new-vest", title: "The Donkey’s New Vest", category: "Tailored Animals", description: "A character study in fitted waistcoats, meticulous seams, and a perfectly misplaced sense of pride.", isPremium: false, accent: "sand", orientation: "landscape", tags: ["donkey", "tailoring", "character"] },
+  { slug: "bear-bull-market", title: "Bear & Bull Market", category: "Collectible Art", description: "A bear negotiates the market’s next move with a vintage desk lamp, a marked ledger, and dry humour.", isPremium: false, accent: "umber", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241921/bear-market.png", orientation: "square", tags: ["bear", "market", "collectible"] },
+  { slug: "panther-in-the-prowl", title: "Panther in the Prowl", category: "Cross-Hatching", description: "A panther climbs through an old wooded estate; a pure line-art edition with an engraved paper texture.", isPremium: false, accent: "forest", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787239768/inkprowl-panther-collectible-edition.png", orientation: "portrait", tags: ["panther", "forest", "cross hatching"] },
+  { slug: "penguin-office-hour", title: "Penguin, Office Hour", category: "Funny Animals", description: "A quietly comic portrait of the most punctilious member of the Monday morning meeting.", isPremium: false, isPublished: false, accent: "slate", orientation: "portrait", tags: ["penguin", "office", "free art"] },
+  { slug: "the-donkeys-new-vest", title: "The Donkey’s New Vest", category: "Tailored Animals", description: "A character study in fitted waistcoats, meticulous seams, and a perfectly misplaced sense of pride.", isPremium: false, isPublished: false, accent: "sand", orientation: "landscape", tags: ["donkey", "tailoring", "character"] },
 ];
 
 artworks.forEach(validateArtworkMedia);
 validateSiteMedia(siteMedia);
 validateOwnerConfiguration();
 
-export const getArtwork = (slug: string) => artworks.find((artwork) => artwork.slug === slug);
-export const relatedArtworks = (artwork: Artwork) => artworks.filter((candidate) => candidate.slug !== artwork.slug && candidate.category === artwork.category).slice(0, 3);
+export const publishedArtworks = artworks.filter((artwork) => artwork.isPublished !== false);
+export const getArtwork = (slug: string) => publishedArtworks.find((artwork) => artwork.slug === slug);
+export const relatedArtworks = (artwork: Artwork) => publishedArtworks.filter((candidate) => candidate.slug !== artwork.slug && candidate.category === artwork.category).slice(0, 3);
