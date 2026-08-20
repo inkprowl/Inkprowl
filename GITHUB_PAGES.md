@@ -12,20 +12,20 @@ GitHub Pages custom domain configuration can be added later from the same Settin
 
 ## Permanent media rule
 
-**Cloudinary is INKPROWL’s only permanent media store.** Do not commit images, video, music, downloads, or generated art files to this repository. Upload permanent media through Cloudinary, then store only its stable HTTPS delivery URL in `client/src/data/catalog.ts`.
+**Cloudinary is INKPROWL’s only public permanent media delivery store.** Use the authenticated GitHub [`incoming/`](./incoming/) upload queue for owner uploads; the protected GitHub Action transfers accepted files to Cloudinary, writes only their delivery URLs to `client/src/data/generated-catalog.json`, then removes the working upload from the active branch. Do not add media files to website source folders or link any visitor to a GitHub media URL.
 
 The public gallery uses intentional **1:1 editorial crops** to make a calm, single-column mobile grid. The individual artwork page uses the original Cloudinary asset without a crop, so the full uploaded proportions remain visible in the large preview and download.
 
-To remove an edition permanently, delete it through the authenticated Cloudinary Media Library first, then remove or replace its catalog entry in this repository. No public browser, static site, or GitHub Pages configuration contains Cloudinary credentials.
+To remove a generated edition permanently, run the authenticated **Sync INKPROWL media to Cloudinary** workflow with its stored asset key. No public browser, static site, or GitHub Pages configuration contains Cloudinary credentials.
 
 ## Updating the public collection
 
-Use the protected GitHub repository editing workflow for titles, descriptions, categories, free/premium flags, related work, advertisement settings, and Cloudinary URLs. A commit to `main` automatically triggers a new public static build. Use the authenticated Cloudinary account for all media uploads, replacements, organization, and deletion.
+Use the protected GitHub repository editing workflow for titles, descriptions, categories, always-free download settings, related work, advertisement settings, and generated Cloudinary delivery URLs. A commit to `main` automatically triggers the required media synchronization and a new public static build. The owner’s GitHub account is the authentication boundary.
 
-The owner-facing `/admin` design route is an interface and workflow guide only; GitHub and Cloudinary remain the sources of real authentication and management authority.
+The owner-facing `/admin` design route is an interface and workflow guide only; GitHub sign-in is the real owner authentication boundary. A later custom domain can point to this same GitHub Pages site without changing the GitHub upload queue or Cloudinary delivery design.
 
 ## Owner workflow and media players
 
-The public **inkprowl** repository also contains the owner workflow. Use [`OWNER_WORKFLOW.md`](./OWNER_WORKFLOW.md) and `client/src/data/catalog.ts` while authenticated to GitHub; repository write permissions, not the published static page, protect the ability to change source content. The `siteMedia.heroFilmUrl`, `siteMedia.defaultArtworkFilmUrl`, and `siteMedia.soundtrackUrl` fields accept only stable Cloudinary delivery URLs. An empty field leaves the corresponding player in its ready-to-configure state without requesting any non-Cloudinary asset.
+The public **inkprowl** repository also contains the owner workflow. Use [`OWNER_GITHUB_UPLOADS.md`](./OWNER_GITHUB_UPLOADS.md) and `client/src/data/generated-catalog.json` while authenticated to GitHub; repository write permissions, not the published static page, protect the ability to change source content. The `siteMedia.heroFilmUrl`, `siteMedia.defaultArtworkFilmUrl`, and `siteMedia.soundtrackUrl` fields accept only stable Cloudinary delivery URLs. An empty field leaves the corresponding player in its ready-to-configure state without requesting any non-Cloudinary asset.
 
 Use the `advertisingSettings` fields in the same catalog as the approved source of truth before adding real AdSense or Adsterra snippets. Never place Cloudinary credentials, upload presets, API secrets, or account passwords in this static repository or its published pages.
