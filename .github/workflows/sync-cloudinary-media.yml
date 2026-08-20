@@ -1,0 +1,61 @@
+name: Sync INKPROWL media to Cloudinary
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "incoming/**"
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: "sync processes files uploaded to incoming; delete removes a managed Cloudinary asset"
+        required: true
+        default: "sync"
+        type: choice
+        options: [sync, delete]
+      asset_key:
+        description: "Required only for delete; copy it from generated-catalog.json"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cloudinary-media-sync
+  cancel-in-progress: false
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.4.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Synchronize incoming media
+        if: ${{ inputs.operation == '' || inputs.operation == 'sync' }}
+        run: pnpm tsx scripts/sync-cloudinary-media.mjs sync
+      - name: Delete selected managed media
+        if: ${{ inputs.operation == 'delete' }}
+        run: pnpm tsx scripts/sync-cloudinary-media.mjs delete "${{ inputs.asset_key }}"
+      - name: Commit generated catalogue changes
+        run: |
+          if git diff --quiet; then
+            echo "No generated catalogue changes to commit."
+            exit 0
+          fi
+          git config user.name "inkprowl-media-bot"
+          git config user.email "actions@github.com"
+          git add incoming client/src/data/generated-catalog.json
+          git commit -m "chore: synchronize Cloudinary media catalogue"
+          git push
