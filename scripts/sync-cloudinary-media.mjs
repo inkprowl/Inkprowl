@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import { v2 as cloudinary } from "cloudinary";
 import { classifyIncomingFile } from "./cloudinary-filename-policy.ts";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
@@ -9,9 +8,33 @@ const cataloguePath = path.join(projectRoot, "client", "src", "data", "generated
 const operation = process.argv[2] ?? "sync";
 const requestedAssetKey = process.argv[3];
 
-if (!process.env.CLOUDINARY_URL || process.env.CLOUDINARY_URL.includes("<your_api_key>")) {
-  throw new Error("CLOUDINARY_URL must be configured as a protected GitHub Actions secret before media can be synchronized.");
+const rawCloudinaryUrl = (process.env.CLOUDINARY_URL ?? "").trim();
+const cloudinaryUrl = rawCloudinaryUrl.replace(/^CLOUDINARY_URL\s*=\s*/i, "");
+
+if (!cloudinaryUrl || /<your_api_key>|<your_api_secret>|cloud_name/i.test(cloudinaryUrl)) {
+  throw new Error("CLOUDINARY_URL is empty or still uses a placeholder. Save the real Cloudinary API Environment Variable as a repository Actions secret.");
 }
+
+let cloudinaryCredentials;
+try {
+  cloudinaryCredentials = new URL(cloudinaryUrl);
+} catch {
+  throw new Error("CLOUDINARY_URL must use the Cloudinary API Environment Variable format: cloudinary://API_KEY:API_SECRET@CLOUD_NAME");
+}
+
+if (cloudinaryCredentials.protocol !== "cloudinary:" || !cloudinaryCredentials.username || !cloudinaryCredentials.password || !cloudinaryCredentials.hostname) {
+  throw new Error("CLOUDINARY_URL must include an API key, API secret, and cloud name in the Cloudinary API Environment Variable format.");
+}
+
+process.env.CLOUDINARY_URL = cloudinaryUrl;
+const { v2: cloudinary } = await import("cloudinary");
+
+cloudinary.config({
+  cloud_name: cloudinaryCredentials.hostname,
+  api_key: decodeURIComponent(cloudinaryCredentials.username),
+  api_secret: decodeURIComponent(cloudinaryCredentials.password),
+  secure: true,
+});
 
 const readCatalogue = () => JSON.parse(fs.readFileSync(cataloguePath, "utf8"));
 const writeCatalogue = (catalogue) => fs.writeFileSync(cataloguePath, `${JSON.stringify(catalogue, null, 2)}\n`);
