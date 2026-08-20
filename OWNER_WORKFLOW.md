@@ -1,23 +1,23 @@
 # INKPROWL owner workflow
 
-The public **inkprowl** repository is the editable source for the GitHub Pages site. Cloudinary is the only permanent store for images, songs, logo files, hero banners, and video. Repository write access and your Cloudinary login are the secure control boundary; never add passwords, API secrets, upload presets, or provider account credentials to the public static site.
+The public **inkprowl** repository is the editable source for the GitHub Pages site and the owner control surface. Cloudinary is the permanent public delivery layer for images, songs, logo files, hero banners, and video. Sign in to GitHub with an account that has write access to `inkprowl/inkprowl`; never add passwords, API secrets, upload presets, or provider account credentials to the published static site.
 
 ## Publish and remove media
 
-Use the Cloudinary Media Library to bulk-upload, organize, replace, or delete permanent images, music, logos, hero banners, and client-sponsored films. Copy the stable `https://res.cloudinary.com/.../image/upload/...` or `https://res.cloudinary.com/.../video/upload/...` URL after publication. When deleting media, first remove or replace the matching URL in `client/src/data/catalog.ts`, commit the change, and then delete the Cloudinary asset. This prevents a broken public page.
+Use [the GitHub upload queue](https://github.com/inkprowl/inkprowl/upload/main/incoming) to select images, music, logos, hero banners, and client-sponsored films. The protected synchronization workflow sends each accepted file to Cloudinary, records the stable delivery URL, and removes the ingestion file from the active branch. Use [the dedicated GitHub owner upload guide](./OWNER_GITHUB_UPLOADS.md) for filename patterns and delete operations. Public visitors never download the working GitHub upload; they receive Cloudinary delivery URLs only.
 
 ## Edit collections, filenames, and metadata
 
-Open [`client/src/data/catalog.ts`](./client/src/data/catalog.ts) in GitHub and use the authenticated **Edit** control. Add an artwork by copying an existing entry and updating its `slug`, `title`, `description`, `category`, `tags`, `isPremium`, `imageUrl`, `audioUrl`, `videoUrl`, and optional `downloadFormats`. Use the uploaded filename as a starting point for the readable title and slug, then manually refine title, description, and tags for accurate search and social-sharing metadata.
+Open [`client/src/data/generated-catalog.json`](./client/src/data/generated-catalog.json) in GitHub and use the authenticated **Edit** control for owner-uploaded records. The filename creates a starting title, category, slug, and tags; refine the title, description, tags, category, media settings, or advertising state in GitHub before publishing. Keep `isPremium` as `false` and retain the approved `jpg`, `png`, and `webp` download formats for every public artwork.
 
 | Owner action | Location | Public outcome |
 |---|---|---|
-| Bulk image/song/video upload or delete | Cloudinary Media Library | Cloudinary holds every permanent media byte. |
-| Title, description, tag, free/premium, and format edits | `artworks` in `catalog.ts` | Gallery, detail page, download controls, related work, and social preview refresh. |
-| Rename or delete a category | `categories` and matching `artworks` records | Filters and related-art rules use the edited category value. Move editions before deleting a category. |
-| Logo and hero banner | `siteBranding` in `catalog.ts` | The square brand seal and hero visual use the approved Cloudinary image. |
-| Soundtrack, artwork film, or sponsor video | `siteMedia` / `sponsoredCampaign` in `catalog.ts` | Cloudinary media players appear only when valid URLs are configured. |
-| AdSense / Adsterra state | `advertisingSettings` in `catalog.ts` | Public placement labels reflect approved provider toggles. |
+| Upload an image, song, or video | `incoming/` upload queue in GitHub | The synchronization Action creates a Cloudinary delivery URL and generated catalogue record. |
+| Delete a managed asset | Run the Cloudinary sync workflow with its stored asset key | Cloudinary deletes the managed asset and the public catalogue removes its matching configuration. |
+| Title, description, tags, category, and format edits | `generated-catalog.json` in GitHub | Gallery, detail page, download controls, related work, and social preview refresh. |
+| Rename or delete a manual category | `categories` and matching artwork records in `catalog.ts` | Filters and related-art rules use the edited category value. Move editions before deleting a category. |
+| Logo, hero banner, soundtrack, artwork film, or sponsor video | Correctly named GitHub upload, then `generated-catalog.json` | The public page uses the matching Cloudinary delivery URL. |
+| AdSense / Adsterra state | `advertisingSettings` in `generated-catalog.json` | Public placement labels reflect approved provider toggles. |
 
 ## Downloads and social sharing
 
@@ -29,4 +29,4 @@ Use `advertisingSettings` to enable only an approved provider. The public static
 
 ## Publish and check
 
-Commit the edit to `main`. GitHub Pages runs the deployment workflow, including static social-preview generation. Wait for the workflow to finish in **Actions**, then inspect the public site and at least one shared edition URL. The public app uses hash navigation (for example `/#/art/buffalo-tailor-shop`), while the share page uses the crawler-friendly non-hash edition URL above.
+Commit the edit to `main`. The media synchronization workflow runs for `incoming/` files; GitHub Pages runs the static build, including social-preview generation. Wait for both workflows to finish in **Actions**, then inspect the public site and at least one shared edition URL. The public app uses hash navigation (for example `/#/art/buffalo-tailor-shop`), while the share page uses the crawler-friendly non-hash edition URL above. A later custom domain changes only the public address; the GitHub owner workflow and Cloudinary delivery architecture stay the same.
