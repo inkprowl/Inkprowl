@@ -104,7 +104,12 @@ function removeAsset(catalogue, key) {
   const asset = catalogue.assets?.[key];
   if (!asset) throw new Error(`No managed Cloudinary asset uses the key ${key}. Open generated-catalog.json to copy an available asset key.`);
   return cloudinary.uploader.destroy(asset.publicId, { resource_type: asset.resourceType, invalidate: true }).then(() => {
-    if (key.startsWith("artwork:")) catalogue.artworks = (catalogue.artworks ?? []).filter((artwork) => artwork.assetKey !== key);
+    if (key.startsWith("artwork:")) {
+      const slug = key.slice("artwork:".length);
+      catalogue.artworks = (catalogue.artworks ?? []).filter((artwork) => artwork.assetKey !== key);
+      catalogue.artworkOverrides ??= {};
+      catalogue.artworkOverrides[slug] = { ...(catalogue.artworkOverrides[slug] ?? {}), isPublished: false };
+    }
     if (key.startsWith("artworkVideo:")) {
       const slug = key.slice("artworkVideo:".length);
       const current = catalogue.artworkMedia?.[slug] ?? {};
