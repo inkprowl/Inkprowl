@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isCloudinaryDeliveryUrl, relatedArtworks, siteMedia, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
+import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteMedia, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
 
 describe("INKPROWL catalog", () => {
   it("contains all requested public browsing categories", () => {
@@ -22,13 +22,22 @@ describe("INKPROWL catalog", () => {
   it("keeps a Cloudinary-backed collectible edition in the catalog", () => {
     const panther = getArtwork("panther-in-pinstripe-suit");
 
-    expect(panther?.isPremium).toBe(true);
+    expect(panther?.isPremium).toBe(false);
     expect(panther?.imageUrl).toMatch(/^https:\/\/res\.cloudinary\.com\//);
   });
 
-  it("distinguishes both free and premium editions", () => {
-    expect(artworks.some((artwork) => artwork.isPremium)).toBe(true);
-    expect(artworks.some((artwork) => !artwork.isPremium)).toBe(true);
+  it("keeps every published edition available for free access", () => {
+    expect(artworks.every((artwork) => !artwork.isPremium)).toBe(true);
+  });
+
+  it("creates an unrestricted attachment link for every public edition", () => {
+    expect(publishedArtworks.length).toBeGreaterThan(0);
+    for (const artwork of publishedArtworks) {
+      expect(artwork.imageUrl).toMatch(/^https:\/\/res\.cloudinary\.com\//);
+      for (const format of availableDownloadFormats(artwork)) {
+        expect(getCloudinaryDownloadUrl(artwork.imageUrl, artwork.slug, format)).toContain(`fl_attachment:inkprowl-${artwork.slug}-${format}`);
+      }
+    }
   });
 
   it("never recommends the active artwork as related work", () => {
