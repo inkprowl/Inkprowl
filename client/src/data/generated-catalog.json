@@ -8,7 +8,6 @@
     "heroFilmUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787259944/inkprowl/hero-film--workflow-check_uu3lup.mp4"
   },
   "siteBranding": {
-    "heroBannerUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787259943/inkprowl/hero-banner--workflow-check_nutnux.png",
     "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787259945/inkprowl/logo--workflow-check_od874x.png"
   },
   "sponsoredCampaign": {
@@ -29,11 +28,6 @@
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
       "resourceType": "video",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
-    },
-    "siteBranding:heroBanner": {
-      "publicId": "inkprowl/hero-banner--workflow-check_nutnux",
-      "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787259943/inkprowl/hero-banner--workflow-check_nutnux.png"
     },
     "siteMedia:heroFilm": {
       "publicId": "inkprowl/hero-film--workflow-check_uu3lup",
