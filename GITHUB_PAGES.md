@@ -23,3 +23,9 @@ To remove an edition permanently, delete it through the authenticated Cloudinary
 Use the protected GitHub repository editing workflow for titles, descriptions, categories, free/premium flags, related work, advertisement settings, and Cloudinary URLs. A commit to `main` automatically triggers a new public static build. Use the authenticated Cloudinary account for all media uploads, replacements, organization, and deletion.
 
 The owner-facing `/admin` design route is an interface and workflow guide only; GitHub and Cloudinary remain the sources of real authentication and management authority.
+
+## Owner workflow and media players
+
+The public **inkprowl** repository also contains the owner workflow. Use [`OWNER_WORKFLOW.md`](./OWNER_WORKFLOW.md) and `client/src/data/catalog.ts` while authenticated to GitHub; repository write permissions, not the published static page, protect the ability to change source content. The `siteMedia.heroFilmUrl`, `siteMedia.defaultArtworkFilmUrl`, and `siteMedia.soundtrackUrl` fields accept only stable Cloudinary delivery URLs. An empty field leaves the corresponding player in its ready-to-configure state without requesting any non-Cloudinary asset.
+
+Use the `advertisingSettings` fields in the same catalog as the approved source of truth before adding real AdSense or Adsterra snippets. Never place Cloudinary credentials, upload presets, API secrets, or account passwords in this static repository or its published pages.
