@@ -103,3 +103,4 @@
 - [x] Add removable sample soundtrack and sponsor-video files through the INKPROWL GitHub-to-Cloudinary publishing workflow so the public players can be previewed live.
 - [x] Display an uploaded sponsored video on the public page before a client destination is configured, while showing the external visit action only when an approved HTTPS destination exists.
 - [x] Remove the obsolete hero-film placeholder and its excess mobile whitespace whenever a Cloudinary video is available.
+- [x] Make the mobile sponsor/hero player a 16:9 landscape rectangle and prevent its surrounding editorial text from being clipped or obscured.
