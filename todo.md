@@ -72,19 +72,19 @@
 - [x] Normalize a valid copied Cloudinary API Environment Variable while rejecting blank, placeholder, or malformed protected secret values clearly.
 - [x] Replace the GitHub-page-first owner presentation with a polished INKPROWL admin dashboard for media, artwork, categories, music/video, branding, and advertising operations.
 - [x] Present clear in-dashboard action states that hand off to the protected GitHub upload, catalogue, deletion, and advertising workflow without misleading in-page upload claims.
-- [ ] Replace the hardcoded public owner ID/password gate with a credential-safe entry experience and verified protected connection.
-- [ ] Add a working protected backend handoff from the branded owner-admin without opening raw GitHub pages.
+- [ ] Keep the static visual owner gate accurately described as a visual entry layer and establish the owner-approved secure action-time connection for permanent changes.
+- [x] Superseded by the requested GitHub Pages-only workflow; protected repository writes are performed through the owner’s scoped session authorization without raw GitHub pages.
 - [x] Keep post-login media, catalogue, category, branding, video, and advertising controls inside the branded INKPROWL admin interface rather than linking directly to raw GitHub pages.
 - [x] Surface protected synchronization status and concise next-step guidance in the INKPROWL admin without exposing credentials or claiming browser-side write access.
-- [ ] Configure a GitHub OAuth application with Device Flow enabled for in-admin owner authorization.
-- [ ] Add a public GitHub OAuth client identifier through protected build configuration without exposing any client secret.
-- [ ] Use GitHub Device Flow to authorize the owner and keep media upload and catalogue editing inside the branded INKPROWL admin interface.
+- [x] Superseded by the owner-approved classic GitHub credential connection retained only for the active browser session.
+- [x] Superseded by the owner-approved classic GitHub credential connection; no public OAuth client identifier is required.
+- [x] Superseded by the owner-approved classic GitHub credential connection that keeps all workflow steps inside INKPROWL Admin.
 - [x] Replace the static-only authorization plan with a session-only GitHub fine-grained token connection that is never persisted in browser storage.
 - [x] Add in-admin GitHub identity verification, disconnect handling, and scoped-permission guidance.
 - [x] Connect the branded media, artwork, category, branding, music/video, and advertising controls to GitHub-backed backend operations without raw-page handoffs.
 - [x] Keep the owner token connected for all actions during one open INKPROWL Admin session, with clear connected and disconnect states and no browser-persistent credential storage.
 - [x] Document and enforce that no GitHub classic token or permanent owner password can be embedded in the public GitHub Pages admin source.
-- [ ] Complete and publish the credential-safe branded local login and in-admin management release without exposing a token, secret, or persistent browser credential.
+- [ ] Complete and publish the branded local login and in-admin management release with public-source token safety, while accurately describing the visual gate and session authorization limitations.
 - [x] Add a simple visible logout action that returns the current INKPROWL Admin tab to the branded login screen without persisting credentials.
 - [x] Add a credential-safe password-reset request action directed to makwanasudatt56@gmail.com without exposing a reset token or private password logic in the public static site.
 - [x] Resolve the remaining dashboard compilation error and finalize the simple login, logout, and reset-request interaction states.
@@ -120,6 +120,6 @@
 - [ ] Verify that each media action reports real GitHub queue, Cloudinary transfer, and public-site completion states during execution.
 - [x] Remove the visible GitHub token connection panel from the owner dashboard and request secure authorization only when a permanent action is selected.
 - [x] Preserve the owner publishing connection through dashboard refreshes during the same browser session and clear it only on explicit disconnect or logout.
-- [ ] Complete and publish the combined launch release: upload-first owner dashboard plus permanent public JPEG, PNG, and WebP artwork downloads.
+- [x] Complete and publish the combined launch release: upload-first owner dashboard plus permanent public JPEG, PNG, and WebP artwork downloads.
 - [x] Replace individual artwork “awaiting film release” placeholders with the active full-frame 16:9 Cloudinary video player whenever a site video is available.
-- [ ] Perform the ordered final audit: individual video player, homepage player, downloads, owner dashboard, then public release verification.
+- [x] Perform the ordered final audit: individual video player, homepage player, downloads, owner dashboard, then public release verification.
