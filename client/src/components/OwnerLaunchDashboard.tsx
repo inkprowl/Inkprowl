@@ -8,11 +8,21 @@ type OwnerConnection = { token: string; identity: { login: string } };
 type PublishRole = "artwork" | "soundtrack" | "sponsor-video";
 type PublishState = { percent: number; tone: "idle" | "working" | "success" | "error"; message: string };
 type InventoryArtwork = { slug: string; title: string; description: string; category: string; tags: string[]; imageUrl: string };
+type PendingPublish = { role: PublishRole; files: File[]; title: string; category: string; description?: string; tags?: string[] };
+type PendingMutation = { message: string; success: string; mutate: (next: OwnerGeneratedCatalogue) => void };
 
 const initialState: PublishState = { percent: 0, tone: "idle", message: "Choose a file, review its filename-derived details, then select Upload & Publish." };
 
 function titleFromFilename(filename: string) {
   return filename.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim().replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function descriptionFromFilename(title: string, category: string) {
+  return `A free INKPROWL ${category.toLowerCase()} edition featuring ${title}. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.`;
+}
+
+function tagsFromFilename(title: string, category: string) {
+  return Array.from(new Set([...title.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 2), ...category.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 2), "inkprowl", "animal art"])).slice(0, 8);
 }
 
 function slug(value: string) {
@@ -40,10 +50,14 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
   const [songFile, setSongFile] = useState<File | null>(null);
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [artworkTitle, setArtworkTitle] = useState("");
+  const [artworkDescription, setArtworkDescription] = useState("");
+  const [artworkTags, setArtworkTags] = useState("");
   const [songTitle, setSongTitle] = useState("");
   const [videoTitle, setVideoTitle] = useState("");
   const [artworkCategory, setArtworkCategory] = useState(categories[0]?.name ?? "Business Animals");
   const [status, setStatus] = useState<PublishState>(initialState);
+  const [pendingPublish, setPendingPublish] = useState<PendingPublish | null>(null);
+  const [pendingMutation, setPendingMutation] = useState<PendingMutation | null>(null);
   const [selectedSlug, setSelectedSlug] = useState(artworks[0]?.slug ?? "");
   const artworkInventory = useMemo<InventoryArtwork[]>(() => {
     const items = new Map<string, InventoryArtwork>(artworks.map((artwork) => [artwork.slug, { slug: artwork.slug, title: artwork.title, description: artwork.description, category: artwork.category, tags: artwork.tags, imageUrl: artwork.imageUrl ?? "" }]));
@@ -74,6 +88,8 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
   const categoryNames = useMemo(() => resolvedCategoryNames(categories.map((category) => category.name), catalogue ?? normalizeOwnerCatalogue({})), [catalogue]);
   const managedAssets = useMemo(() => Object.entries(catalogue?.assets ?? {}), [catalogue]);
   const selectedArtworkIsPublished = catalogue?.artworkOverrides[selectedArtwork?.slug ?? ""]?.isPublished !== false;
+  const selectedArtworkAssetKey = selectedArtwork ? `artwork:${selectedArtwork.slug}` : "";
+  const selectedArtworkIsManaged = Boolean(selectedArtworkAssetKey && catalogue?.assets[selectedArtworkAssetKey]);
 
   useEffect(() => {
     if (!selectedArtwork) return;
@@ -98,14 +114,13 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     return true;
   }
 
-  async function mutateCatalogue(message: string, success: string, mutate: (next: OwnerGeneratedCatalogue) => void) {
-    if (requiresAuthorization() || !connection) return;
+  async function saveCatalogueMutation({ message, success, mutate }: PendingMutation, activeConnection: OwnerConnection) {
     try {
       setStatus({ percent: 25, tone: "working", message: "Saving your permanent catalogue change…" });
-      const document = await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(connection.token, GENERATED_CATALOGUE_PATH);
+      const document = await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(activeConnection.token, GENERATED_CATALOGUE_PATH);
       const next = normalizeOwnerCatalogue(document.value);
       mutate(next);
-      await writeRepositoryJson(connection.token, GENERATED_CATALOGUE_PATH, next, message, document.sha);
+      await writeRepositoryJson(activeConnection.token, GENERATED_CATALOGUE_PATH, next, message, document.sha);
       setCatalogue(next);
       setStatus({ percent: 100, tone: "success", message: `${success} GitHub Pages will rebuild automatically from this permanent catalogue commit.` });
     } catch (reason) {
@@ -113,23 +128,58 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     }
   }
 
-  async function publish(role: PublishRole, files: File[], title: string) {
-    if (requiresAuthorization() || !connection) return;
-    if (!files.length) { setStatus({ percent: 0, tone: "error", message: `Choose ${role === "artwork" ? "at least one image" : role === "soundtrack" ? "one song" : "one sponsor video"} first.` }); return; }
-    if (role !== "artwork" && files.length !== 1) { setStatus({ percent: 0, tone: "error", message: "Select one file for this media placement." }); return; }
+  async function mutateCatalogue(message: string, success: string, mutate: (next: OwnerGeneratedCatalogue) => void) {
+    const nextMutation = { message, success, mutate };
+    if (!connection) {
+      setPendingMutation(() => nextMutation);
+      setStatus({ percent: 5, tone: "working", message: "Authorise this save once. Your category or artwork change will be saved automatically when authorisation is confirmed." });
+      requestAuthorization();
+      return;
+    }
+    await saveCatalogueMutation(nextMutation, connection);
+  }
+
+  function publishValidationMessage(role: PublishRole, files: File[]) {
+    if (!files.length) return `Choose ${role === "artwork" ? "at least one image" : role === "soundtrack" ? "one song" : "one sponsor video"} first.`;
+    if (role !== "artwork" && files.length !== 1) return "Select one file for this media placement.";
     const invalid = files.find((file) => file.size > 85 * 1024 * 1024 || !file.type.startsWith(role === "artwork" ? "image/" : role === "soundtrack" ? "audio/" : "video/"));
-    if (invalid) { setStatus({ percent: 0, tone: "error", message: `${invalid.name} has the wrong file type or exceeds the 85 MB upload limit.` }); return; }
+    return invalid ? `${invalid.name} has the wrong file type or exceeds the 85 MB upload limit.` : "";
+  }
+
+  async function queuePublish({ role, files, title, category, description, tags }: PendingPublish, activeConnection: OwnerConnection) {
     try {
       setStatus({ percent: 8, tone: "working", message: "Preparing the secure publish handoff…" });
       for (let index = 0; index < files.length; index += 1) {
         const file = files[index]!;
         const derivedTitle = files.length === 1 ? title : titleFromFilename(file.name);
-        const incomingFilename = filenameFor(role, file, derivedTitle, artworkCategory);
+        const incomingFilename = filenameFor(role, file, derivedTitle, category);
         setStatus({ percent: Math.round(15 + (index / files.length) * 65), tone: "working", message: `Uploading ${file.name} to the protected publish handoff…` });
-        await queueIncomingFile(connection.token, incomingFilename, file);
+        await queueIncomingFile(activeConnection.token, incomingFilename, file);
+      }
+      if (role === "artwork") {
+        setStatus({ percent: 88, tone: "working", message: "Saving filename-derived artwork title, description, tags, and metadata…" });
+        const document = await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(activeConnection.token, GENERATED_CATALOGUE_PATH);
+        const next = normalizeOwnerCatalogue(document.value);
+        for (const file of files) {
+          const derivedTitle = files.length === 1 ? title : titleFromFilename(file.name);
+          const derivedDescription = files.length === 1 ? description || descriptionFromFilename(derivedTitle, category) : descriptionFromFilename(derivedTitle, category);
+          const derivedTags = files.length === 1 && tags?.length ? tags : tagsFromFilename(derivedTitle, category);
+          const artworkSlug = slug(derivedTitle);
+          next.artworkOverrides[artworkSlug] = {
+            ...(next.artworkOverrides[artworkSlug] ?? {}),
+            title: derivedTitle,
+            description: derivedDescription,
+            category,
+            tags: derivedTags,
+            metaTitle: `INKPROWL — ${derivedTitle}`,
+            metaDescription: derivedDescription.slice(0, 155),
+          };
+        }
+        await writeRepositoryJson(activeConnection.token, GENERATED_CATALOGUE_PATH, next, "chore: save INKPROWL artwork upload metadata", document.sha);
+        setCatalogue(next);
       }
       setStatus({ percent: 100, tone: "success", message: `${files.length} ${files.length === 1 ? "file is" : "files are"} queued. The protected workflow now transfers it to permanent Cloudinary storage, writes the delivery URL to the catalogue, and rebuilds the public site.` });
-      if (role === "artwork") { setArtworkFiles([]); setArtworkTitle(""); }
+      if (role === "artwork") { setArtworkFiles([]); setArtworkTitle(""); setArtworkDescription(""); setArtworkTags(""); }
       if (role === "soundtrack") { setSongFile(null); setSongTitle(""); }
       if (role === "sponsor-video") { setVideoFile(null); setVideoTitle(""); }
     } catch (reason) {
@@ -137,14 +187,50 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     }
   }
 
+  async function publish(role: PublishRole, files: File[], title: string) {
+    const message = publishValidationMessage(role, files);
+    if (message) { setStatus({ percent: 0, tone: "error", message }); return; }
+    const nextPublish = { role, files, title, category: artworkCategory, description: artworkDescription, tags: artworkTags.split(",").map((tag) => tag.trim()).filter(Boolean) };
+    if (!connection) {
+      setPendingPublish(nextPublish);
+      setStatus({ percent: 5, tone: "working", message: "Authorise this upload once. Your selected file will start uploading automatically as soon as authorisation is confirmed." });
+      requestAuthorization();
+      return;
+    }
+    await queuePublish(nextPublish, connection);
+  }
+
+  useEffect(() => {
+    if (!connection || !pendingPublish) return;
+    const nextPublish = pendingPublish;
+    setPendingPublish(null);
+    void queuePublish(nextPublish, connection);
+  }, [connection, pendingPublish]);
+
+  useEffect(() => {
+    if (!connection || !pendingMutation) return;
+    const nextMutation = pendingMutation;
+    setPendingMutation(null);
+    void saveCatalogueMutation(nextMutation, connection);
+  }, [connection, pendingMutation]);
+
   function chooseArtworkFiles(event: ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.target.files ?? []);
     setArtworkFiles(files);
-    if (files.length === 1) setArtworkTitle(titleFromFilename(files[0]!.name));
+    if (files.length === 1) {
+      const nextTitle = titleFromFilename(files[0]!.name);
+      setArtworkTitle(nextTitle);
+      setArtworkDescription(descriptionFromFilename(nextTitle, artworkCategory));
+      setArtworkTags(tagsFromFilename(nextTitle, artworkCategory).join(", "));
+    } else { setArtworkTitle(""); setArtworkDescription(""); setArtworkTags(""); }
   }
 
   async function removeManagedAsset(assetKey: string) {
-    if (requiresAuthorization() || !connection) return;
+    if (!connection) {
+      setStatus({ percent: 5, tone: "working", message: "Authorise permanent Cloudinary deletion once, then press Delete image again to confirm removal." });
+      requestAuthorization();
+      return;
+    }
     try {
       setStatus({ percent: 45, tone: "working", message: "Requesting permanent Cloudinary removal…" });
       await dispatchCloudinaryDeletion(connection.token, assetKey);
@@ -157,13 +243,13 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
   return <main className="owner-launch-dashboard" aria-label="INKPROWL media publishing dashboard">
     <header className="owner-launch-topbar"><div className="owner-desk-brand"><span className="brand-seal">IP</span><span>INKPROWL</span></div><span>OWNER ADMIN / CLOUDINARY DELIVERY</span><button type="button" className="owner-logout" onClick={onLogout}><LogOut size={15} /> Log out</button></header>
     <div className="owner-launch-heading"><div><span className="eyebrow">UPLOAD & PUBLISH</span><h3>Your permanent<br /><em>media desk.</em></h3><p>Choose files from your device. File names create draft titles; you can refine artwork content before publishing.</p></div><div className="owner-publish-session"><strong>{connection ? `Publishing session ready · ${connection.identity.login}` : "Publishing session ready when you save"}</strong><small>{connection ? "Your owner connection remains available during this browser session." : "Authorisation is requested only when you select an Upload & Publish or Save button."}</small></div></div>
-    <div className={`owner-publish-status ${status.tone}`}><div><span>{status.tone === "success" ? <CheckCircle2 size={17} /> : status.tone === "error" ? <XCircle size={17} /> : status.tone === "working" ? <LoaderCircle size={17} /> : <UploadCloud size={17} />}</span><p>{status.message}</p></div><progress value={status.percent} max="100" aria-label="Publishing progress" /></div>
+    <div className={`owner-publish-status ${status.tone}`} aria-live="polite"><div><span>{status.tone === "success" ? <CheckCircle2 size={17} /> : status.tone === "error" ? <XCircle size={17} /> : status.tone === "working" ? <LoaderCircle size={17} /> : <UploadCloud size={17} />}</span><p>{status.message}</p></div><progress value={status.percent} max="100" aria-label="Publishing progress" /></div>
     <div className="owner-upload-grid">
-      <article className="owner-upload-card"><div className="owner-upload-icon"><ImagePlus size={22} /></div><span className="eyebrow">ARTWORK IMAGES</span><h4>Images Upload & Publish</h4><p>PNG, JPG, JPEG, WebP, or image files. Select multiple images for a batch upload.</p><label className="launch-file-picker"><input type="file" accept="image/*" multiple onChange={chooseArtworkFiles} /><span>{artworkFiles.length ? `${artworkFiles.length} image${artworkFiles.length === 1 ? "" : "s"} selected` : "Choose artwork image files"}</span></label><label>Title <input value={artworkTitle} disabled={artworkFiles.length > 1} onChange={(event) => setArtworkTitle(event.target.value)} placeholder={artworkFiles.length > 1 ? "Filename-derived for each file" : "Auto-generated from filename"} /></label><label>Category <select value={artworkCategory} onChange={(event) => setArtworkCategory(event.target.value)}>{categoryNames.map((name) => <option key={name}>{name}</option>)}</select></label><button type="button" className="admin-primary-action" onClick={() => void publish("artwork", artworkFiles, artworkTitle)}><UploadCloud size={16} /> Upload & Publish images</button></article>
+      <article className="owner-upload-card"><div className="owner-upload-icon"><ImagePlus size={22} /></div><span className="eyebrow">ARTWORK IMAGES</span><h4>Images Upload & Publish</h4><p>PNG, JPG, JPEG, WebP, or image files. Select multiple images for a batch upload.</p><label className="launch-file-picker"><input type="file" accept="image/*" multiple onChange={chooseArtworkFiles} /><span>{artworkFiles.length ? `${artworkFiles.length} image${artworkFiles.length === 1 ? "" : "s"} selected` : "Choose artwork image files"}</span></label><label>Title <input value={artworkTitle} disabled={artworkFiles.length > 1} onChange={(event) => setArtworkTitle(event.target.value)} placeholder={artworkFiles.length > 1 ? "Filename-derived for each file" : "Auto-generated from filename"} /></label><label>Category <select value={artworkCategory} onChange={(event) => { const nextCategory = event.target.value; setArtworkCategory(nextCategory); if (artworkTitle) { setArtworkDescription(descriptionFromFilename(artworkTitle, nextCategory)); setArtworkTags(tagsFromFilename(artworkTitle, nextCategory).join(", ")); } }}>{categoryNames.map((name) => <option key={name}>{name}</option>)}</select></label>{artworkFiles.length === 1 && <><label>Description <textarea rows={3} value={artworkDescription} onChange={(event) => setArtworkDescription(event.target.value)} placeholder="Auto-generated from filename" /></label><label>Tags <input value={artworkTags} onChange={(event) => setArtworkTags(event.target.value)} placeholder="Auto-generated from filename" /></label><div className="meta-preview"><strong>Automatic public metadata</strong><span>Meta title: INKPROWL — {artworkTitle}</span><span>Meta description: {(artworkDescription || descriptionFromFilename(artworkTitle, artworkCategory)).slice(0, 155)}</span></div></>}<button type="button" className="admin-primary-action" onClick={() => void publish("artwork", artworkFiles, artworkTitle)}><UploadCloud size={16} /> Upload & Publish images</button></article>
       <article className="owner-upload-card"><div className="owner-upload-icon"><Music2 size={22} /></div><span className="eyebrow">FLOATING MUSIC PLAYER</span><h4>Song Upload & Publish</h4><p>Upload one MP3, WAV, M4A, or audio file for the public movable music player.</p><label className="launch-file-picker"><input type="file" accept="audio/*" onChange={(event) => { const file = event.target.files?.[0] ?? null; setSongFile(file); if (file) setSongTitle(titleFromFilename(file.name)); }} /><span>{songFile?.name ?? "Choose your song file"}</span></label><label>Song title <input value={songTitle} onChange={(event) => setSongTitle(event.target.value)} placeholder="Auto-generated from filename" /></label><div className="launch-spacer" /><button type="button" className="admin-primary-action" onClick={() => void publish("soundtrack", songFile ? [songFile] : [], songTitle)}><Music2 size={16} /> Upload & Publish song</button></article>
       <article className="owner-upload-card"><div className="owner-upload-icon"><Film size={22} /></div><span className="eyebrow">SPONSORED VIDEO PLAYER</span><h4>Video Upload & Publish</h4><p>Upload one landscape video file for the public sponsor stage and individual artwork film fallback.</p><label className="launch-file-picker"><input type="file" accept="video/*" onChange={(event) => { const file = event.target.files?.[0] ?? null; setVideoFile(file); if (file) setVideoTitle(titleFromFilename(file.name)); }} /><span>{videoFile?.name ?? "Choose sponsor video file"}</span></label><label>Campaign title <input value={videoTitle} onChange={(event) => setVideoTitle(event.target.value)} placeholder="Auto-generated from filename" /></label><div className="launch-spacer" /><button type="button" className="admin-primary-action" onClick={() => void publish("sponsor-video", videoFile ? [videoFile] : [], videoTitle)}><Film size={16} /> Upload & Publish video</button></article>
     </div>
-    <div className="owner-management-grid"><article className="owner-record-card"><div className="owner-card-title"><div><span className="eyebrow">ARTWORK INVENTORY</span><h4>Thumbnails, title & metadata</h4></div><span>{artworkInventory.length} editions</span></div><div className="owner-artwork-list">{artworkInventory.map((artwork) => <button type="button" key={artwork.slug} className={selectedSlug === artwork.slug ? "selected" : ""} onClick={() => setSelectedSlug(artwork.slug)}><img src={artwork.imageUrl} alt="" /><span><strong>{artwork.title}</strong><small>{artwork.category}</small></span><Pencil size={15} /></button>)}</div></article><article className="owner-record-card"><div className="owner-card-title"><div><span className="eyebrow">EDIT SELECTED EDITION</span><h4>{selectedArtwork?.title}</h4></div></div><div className="owner-edit-form"><label>Title <input value={editTitle} onChange={(event) => setEditTitle(event.target.value)} /></label><label>Description <textarea rows={3} value={editDescription} onChange={(event) => setEditDescription(event.target.value)} /></label><label>Category <select value={editCategory} onChange={(event) => setEditCategory(event.target.value)}>{categoryNames.map((name) => <option key={name}>{name}</option>)}</select></label><label>Tags <input value={editTags} onChange={(event) => setEditTags(event.target.value)} placeholder="vintage, animals, tailored" /></label><div className="meta-preview"><strong>Automatic public metadata</strong><span>Title: INKPROWL — {editTitle || selectedArtwork?.title}</span><span>Description: {(editDescription || selectedArtwork?.description || "").slice(0, 150)}</span></div><button type="button" className="admin-primary-action" onClick={() => void mutateCatalogue("chore: update INKPROWL artwork metadata", "Artwork title, description, category, tags, and public metadata are saved.", (next) => { if (!selectedArtwork) return; next.artworkOverrides[selectedArtwork.slug] = { ...(next.artworkOverrides[selectedArtwork.slug] ?? {}), title: editTitle.trim(), description: editDescription.trim(), category: editCategory, tags: editTags.split(",").map((tag) => tag.trim()).filter(Boolean), isPublished: true }; })}><Save size={16} /> Save artwork details</button><button type="button" className="admin-secondary-action" onClick={() => void mutateCatalogue(selectedArtworkIsPublished ? "chore: unpublish INKPROWL artwork" : "chore: publish INKPROWL artwork", selectedArtworkIsPublished ? "Artwork is now hidden from the public gallery." : "Artwork is now published to the public gallery.", (next) => { if (!selectedArtwork) return; next.artworkOverrides[selectedArtwork.slug] = { ...(next.artworkOverrides[selectedArtwork.slug] ?? {}), isPublished: !selectedArtworkIsPublished }; })}>{selectedArtworkIsPublished ? "Hide from public gallery" : "Publish to public gallery"}</button></div></article></div>
-    <div className="owner-management-grid"><article className="owner-record-card"><div className="owner-card-title"><div><span className="eyebrow">CATEGORIES</span><h4>Add, rename, or retire</h4></div><Tags size={19} /></div><div className="owner-edit-form"><label>Action <select value={categoryMode} onChange={(event) => setCategoryMode(event.target.value as "add" | "rename" | "retire")}><option value="add">Add category</option><option value="rename">Rename category</option><option value="retire">Retire into another category</option></select></label>{categoryMode !== "add" && <label>Existing category <select value={categorySource} onChange={(event) => setCategorySource(event.target.value)}>{categoryNames.map((name) => <option key={name}>{name}</option>)}</select></label>}<label>{categoryMode === "retire" ? "Replacement category" : "Category label"}<input value={categoryLabel} onChange={(event) => setCategoryLabel(event.target.value)} placeholder="e.g. Editorial Animals" /></label><button type="button" className="admin-primary-action" onClick={() => void mutateCatalogue("chore: update INKPROWL categories", "Category change saved.", (next) => { applyCategoryOperation(next, categories.map((category) => category.name), categoryMode, categorySource, categoryLabel); })}><Plus size={16} /> Save category action</button></div></article><article className="owner-record-card"><div className="owner-card-title"><div><span className="eyebrow">PERMANENT ASSET REMOVAL</span><h4>Cloudinary-managed files</h4></div><Trash2 size={19} /></div>{managedAssets.length ? <div className="managed-asset-list">{managedAssets.map(([key, asset]) => <div key={key}><span><strong>{key}</strong><small>{asset.resourceType} · Cloudinary</small></span><button type="button" className="admin-danger-action" onClick={() => void removeManagedAsset(key)}><Trash2 size={14} /> Delete</button></div>)}</div> : <p className="empty-managed-assets">Authorise a save to load the managed Cloudinary asset inventory.</p>}</article></div>
+    <div className="owner-management-grid"><article className="owner-record-card"><div className="owner-card-title"><div><span className="eyebrow">ARTWORK INVENTORY</span><h4>Thumbnails, title & metadata</h4></div><span>{artworkInventory.length} editions</span></div><div className="owner-artwork-list">{artworkInventory.map((artwork) => <button type="button" key={artwork.slug} className={selectedSlug === artwork.slug ? "selected" : ""} onClick={() => setSelectedSlug(artwork.slug)}><img src={artwork.imageUrl} alt="" /><span><strong>{artwork.title}</strong><small>{artwork.category}</small></span><Pencil size={15} /></button>)}</div></article><article className="owner-record-card"><div className="owner-card-title"><div><span className="eyebrow">EDIT SELECTED EDITION</span><h4>{selectedArtwork?.title}</h4></div></div><div className="owner-edit-form"><label>Title <input value={editTitle} onChange={(event) => setEditTitle(event.target.value)} /></label><label>Description <textarea rows={3} value={editDescription} onChange={(event) => setEditDescription(event.target.value)} /></label><label>Category <select value={editCategory} onChange={(event) => setEditCategory(event.target.value)}>{categoryNames.map((name) => <option key={name}>{name}</option>)}</select></label><label>Tags <input value={editTags} onChange={(event) => setEditTags(event.target.value)} placeholder="vintage, animals, tailored" /></label><div className="meta-preview"><strong>Automatic public metadata</strong><span>Title: INKPROWL — {editTitle || selectedArtwork?.title}</span><span>Description: {(editDescription || selectedArtwork?.description || "").slice(0, 150)}</span></div><button type="button" className="admin-primary-action" onClick={() => void mutateCatalogue("chore: update INKPROWL artwork metadata", "Artwork title, description, category, tags, and public metadata are saved.", (next) => { if (!selectedArtwork) return; next.artworkOverrides[selectedArtwork.slug] = { ...(next.artworkOverrides[selectedArtwork.slug] ?? {}), title: editTitle.trim(), description: editDescription.trim(), category: editCategory, tags: editTags.split(",").map((tag) => tag.trim()).filter(Boolean), metaTitle: `INKPROWL — ${editTitle.trim()}`, metaDescription: editDescription.trim().slice(0, 155), isPublished: true }; })}><Save size={16} /> Save artwork details</button><button type="button" className="admin-secondary-action" onClick={() => void mutateCatalogue(selectedArtworkIsPublished ? "chore: unpublish INKPROWL artwork" : "chore: publish INKPROWL artwork", selectedArtworkIsPublished ? "Artwork is now hidden from the public gallery." : "Artwork is now published to the public gallery.", (next) => { if (!selectedArtwork) return; next.artworkOverrides[selectedArtwork.slug] = { ...(next.artworkOverrides[selectedArtwork.slug] ?? {}), isPublished: !selectedArtworkIsPublished }; })}>{selectedArtworkIsPublished ? "Hide from public gallery" : "Publish to public gallery"}</button>{selectedArtworkIsManaged ? <button type="button" className="admin-danger-action" onClick={() => void removeManagedAsset(selectedArtworkAssetKey)}><Trash2 size={16} /> Delete image from Cloudinary</button> : <p className="owner-delete-note">This curated source edition can be hidden above. Uploaded Cloudinary editions show a permanent Delete image button here.</p>}</div></article></div>
+    <div className="owner-management-grid"><article className="owner-record-card"><div className="owner-card-title"><div><span className="eyebrow">CATEGORIES</span><h4>Add, rename, or delete</h4></div><Tags size={19} /></div><div className="owner-edit-form"><label>Action <select value={categoryMode} onChange={(event) => setCategoryMode(event.target.value as "add" | "rename" | "retire")}><option value="add">Add category</option><option value="rename">Rename category</option><option value="retire">Delete category and move editions</option></select></label>{categoryMode !== "add" && <label>Existing category <select value={categorySource} onChange={(event) => setCategorySource(event.target.value)}>{categoryNames.map((name) => <option key={name}>{name}</option>)}</select></label>}<label>{categoryMode === "retire" ? "Move editions to category" : "Category label"}<input value={categoryLabel} onChange={(event) => setCategoryLabel(event.target.value)} placeholder="e.g. Editorial Animals" /></label><button type="button" className="admin-primary-action" onClick={() => void mutateCatalogue("chore: update INKPROWL categories", categoryMode === "add" ? "Category added." : categoryMode === "rename" ? "Category renamed." : "Category deleted and editions moved.", (next) => { applyCategoryOperation(next, categories.map((category) => category.name), categoryMode, categorySource, categoryLabel); })}><Plus size={16} /> {categoryMode === "add" ? "Add category" : categoryMode === "rename" ? "Rename category" : "Delete category"}</button></div></article><article className="owner-record-card"><div className="owner-card-title"><div><span className="eyebrow">PERMANENT ASSET REMOVAL</span><h4>Cloudinary-managed files</h4></div><Trash2 size={19} /></div>{managedAssets.length ? <div className="managed-asset-list">{managedAssets.map(([key, asset]) => <div key={key}><span><strong>{key}</strong><small>{asset.resourceType} · Cloudinary</small></span><button type="button" className="admin-danger-action" onClick={() => void removeManagedAsset(key)}><Trash2 size={14} /> Delete</button></div>)}</div> : <p className="empty-managed-assets">Authorise a save to load the managed Cloudinary asset inventory.</p>}</article></div>
   </main>;
 }
