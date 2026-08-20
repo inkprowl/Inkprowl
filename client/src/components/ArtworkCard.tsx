@@ -1,6 +1,6 @@
 import { Download, LockKeyhole } from "lucide-react";
 import { Link } from "wouter";
-import type { Artwork } from "@/data/catalog";
+import { activeAdvertisementProviders, advertisingSettings, type Artwork } from "@/data/catalog";
 
 export function ArtworkVisual({ artwork, large = false }: { artwork: Artwork; large?: boolean }) {
   if (artwork.imageUrl) return <img src={artwork.imageUrl} alt={artwork.title} className="art-image" />;
@@ -28,5 +28,9 @@ export function ArtworkCard({ artwork, feature = false }: { artwork: Artwork; fe
 }
 
 export function AdSlot({ label = "Collectible editions deserve a generous frame" }: { label?: string }) {
-  return <aside className="ad-slot" aria-label="Advertisement placement"><span>ADVERTISEMENT</span><strong>{label}</strong><small>Ad placement can be enabled by the owner from the GitHub management workspace.</small></aside>;
+  const providers = activeAdvertisementProviders(advertisingSettings);
+  const providerCopy = providers.length > 0
+    ? `${providers.join(" + ")} placement enabled by the owner.`
+    : "Placement held until the owner enables an approved provider in the GitHub workspace.";
+  return <aside className="ad-slot" aria-label="Advertisement placement" data-providers={providers.join(",")}><span>{providers.length > 0 ? "ADVERTISEMENT" : "PLACEMENT HELD"}</span><strong>{label}</strong><small>{providerCopy}</small></aside>;
 }
