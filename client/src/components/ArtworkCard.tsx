@@ -1,4 +1,4 @@
-import { Download, LockKeyhole } from "lucide-react";
+import { Download } from "lucide-react";
 import { Link } from "wouter";
 import { activeAdvertisementProviders, advertisingSettings, type Artwork } from "@/data/catalog";
 
@@ -17,11 +17,11 @@ export function ArtworkVisual({ artwork, large = false }: { artwork: Artwork; la
 export function ArtworkCard({ artwork, feature = false }: { artwork: Artwork; feature?: boolean }) {
   return (
     <article className={`art-card ${feature ? "art-card-feature" : ""}`}>
-      <Link href={`/art/${artwork.slug}`} className="art-card-image"><ArtworkVisual artwork={artwork} large={feature} />{artwork.isPremium && <span className="edition-badge premium"><LockKeyhole size={12} /> PREMIUM</span>}</Link>
+      <Link href={`/art/${artwork.slug}`} className="art-card-image"><ArtworkVisual artwork={artwork} large={feature} /></Link>
       <div className="art-card-copy">
-        <div className="art-meta"><span>{artwork.category}</span><span>{artwork.isPremium ? "Edition" : "Free use"}</span></div>
+        <div className="art-meta"><span>{artwork.category}</span><span>Free use</span></div>
         <Link href={`/art/${artwork.slug}`} className="art-title">{artwork.title}</Link>
-        <div className="art-card-actions"><span>{artwork.isPremium ? "Collector access" : "Free download"}</span>{artwork.isPremium ? <LockKeyhole size={15} /> : <Download size={16} />}</div>
+        <div className="art-card-actions"><span>Free download</span><Download size={16} /></div>
       </div>
     </article>
   );
