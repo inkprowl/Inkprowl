@@ -14,6 +14,18 @@ export type Artwork = {
 
 type MediaField = "imageUrl" | "audioUrl" | "videoUrl";
 
+export type SiteMedia = {
+  heroFilmUrl?: string;
+  defaultArtworkFilmUrl?: string;
+  soundtrackUrl?: string;
+  soundtrackTitle: string;
+};
+
+export type AdvertisingSettings = {
+  adsenseEnabled: boolean;
+  adsterraEnabled: boolean;
+};
+
 /** Only stable Cloudinary delivery URLs are permitted for permanent INKPROWL media. */
 export const isCloudinaryDeliveryUrl = (url: string) =>
   /^https:\/\/res\.cloudinary\.com\/[^/]+\/(?:image|video)\/upload\//.test(url);
@@ -27,6 +39,35 @@ export function validateArtworkMedia(artwork: Artwork) {
     }
   }
 }
+
+export function validateSiteMedia(media: SiteMedia) {
+  const mediaFields: (keyof Pick<SiteMedia, "heroFilmUrl" | "defaultArtworkFilmUrl" | "soundtrackUrl">)[] = ["heroFilmUrl", "defaultArtworkFilmUrl", "soundtrackUrl"];
+  for (const field of mediaFields) {
+    const url = media[field];
+    if (url && !isCloudinaryDeliveryUrl(url)) {
+      throw new Error(`siteMedia: ${field} must be a Cloudinary delivery URL`);
+    }
+  }
+}
+
+/** Owner-managed Cloudinary delivery settings. Leave a field empty until the matching asset is published in Cloudinary. */
+export const siteMedia: SiteMedia = {
+  heroFilmUrl: undefined,
+  defaultArtworkFilmUrl: undefined,
+  soundtrackUrl: undefined,
+  soundtrackTitle: "Curated sound",
+};
+
+/** Static advertisement placements are only activated by the owner after the relevant provider code is approved. */
+export const advertisingSettings: AdvertisingSettings = {
+  adsenseEnabled: false,
+  adsterraEnabled: false,
+};
+
+export const activeAdvertisementProviders = (settings: AdvertisingSettings = advertisingSettings) => [
+  settings.adsenseEnabled ? "Google AdSense" : undefined,
+  settings.adsterraEnabled ? "Adsterra" : undefined,
+].filter((provider): provider is string => Boolean(provider));
 
 export const categories = [
   { name: "Business Animals", icon: "♜", count: 19 },
@@ -133,6 +174,7 @@ export const artworks: Artwork[] = [
 ];
 
 artworks.forEach(validateArtworkMedia);
+validateSiteMedia(siteMedia);
 
 export const getArtwork = (slug: string) => artworks.find((artwork) => artwork.slug === slug);
 
