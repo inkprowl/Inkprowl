@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build static site
-        run: pnpm vite build
+        run: pnpm tsx scripts/generate-share-pages.ts && pnpm vite build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
