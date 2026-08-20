@@ -90,7 +90,7 @@
 - [x] Resolve the remaining dashboard compilation error and finalize the simple login, logout, and reset-request interaction states.
 - [x] Implement a memory-only GitHub repository connection that clears on INKPROWL admin logout and can safely write owner changes without raw GitHub page handoffs.
 - [ ] Wire every INKPROWL admin management panel to the GitHub-to-Cloudinary publishing workflow and validate the protected public-build update path.
-- [ ] Publish the verified INKPROWL source release using a temporary owner-supplied classic GitHub token with only `repo` and `workflow` scopes.
+- [x] Publish the verified INKPROWL source release using a temporary owner-supplied classic GitHub token with only `repo` and `workflow` scopes.
 - [x] Support bulk file-only uploads for artwork images, songs, and videos through the branded INKPROWL media intake, without media URL entry fields.
 - [x] Add a sponsored-video client destination field in the admin and make the public video placement open that approved client page when selected.
 - [x] Add visible volume sliders to the floating music player and sponsored client video player while preserving their existing playback controls.
