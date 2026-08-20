@@ -1,1 +1,1 @@
-# This directory is the GitHub owner upload queue. Keep this marker when no media is awaiting Cloudinary synchronization; repository-secret validation is ready to run.
+# This directory is the GitHub owner upload queue. Keep this marker when no media is awaiting Cloudinary synchronization; the normalized repository-secret validation is ready to run.
