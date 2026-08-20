@@ -51,10 +51,10 @@
 - [x] Select a secure GitHub-hosted owner upload architecture that sends images, audio, and video directly to Cloudinary without routine Cloudinary-dashboard use.
 - [x] Configure the required owner authentication and Cloudinary upload credentials without exposing a secret in the public site or repository.
 - [x] Build a GitHub-hosted upload form that writes permanent Cloudinary asset details into the INKPROWL catalogue.
-- [ ] Validate image, audio, and video upload, deletion, and public-gallery update flows end to end.
+- [x] Validate image, audio, and video upload, deletion, and public-gallery update flows end to end.
 - [ ] Add authenticated owner controls to create, edit, rename, categorize, publish, and remove artwork catalogue records.
 - [ ] Add authenticated owner media controls to upload and delete Cloudinary images, songs, videos, logos, hero banners, and sponsor media.
-- [ ] Synchronize owner changes into GitHub-backed catalogue records and deploy the updated public gallery automatically.
+- [x] Synchronize owner changes into GitHub-backed catalogue records and deploy the updated public gallery automatically.
 - [x] Add owner-only AdSense and Adsterra code configuration with explicit on/off switches and safe public placement behavior.
 - [x] Convert every published INKPROWL artwork from premium-gated to unrestricted free Cloudinary download access.
 - [x] Verify all public artwork details expose JPG, PNG, and WebP downloads without a premium-access restriction.
@@ -96,3 +96,7 @@
 - [x] Add visible volume sliders to the floating music player and sponsored client video player while preserving their existing playback controls.
 - [x] Add accessible artwork zoom-in and zoom-out controls to the public individual artwork view.
 - [x] Add music-player minimize, close, and playlist controls while keeping Cloudinary playback and downloads functional.
+- [ ] Verify every branded artwork-desk CRUD action from the owner admin against the GitHub-backed generated catalogue: create, edit, rename, categorize, publish or unpublish, and remove.
+- [ ] Allow the owner artwork desk to select unpublished as well as published editions so publishing and unpublishing can be managed without a raw GitHub page.
+- [ ] Verify owner-admin upload and delete actions for logo, hero banner, hero film, and edition-video media variants through the live GitHub-to-Cloudinary workflow.
+- [ ] Audit each branded admin panel’s persistent operation and preserve an unchecked item for any control that remains unexercised end to end.
