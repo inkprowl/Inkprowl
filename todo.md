@@ -68,3 +68,4 @@
 - [ ] Automatically map supported uploaded soundtrack, hero-film, and edition-video filenames to the matching Cloudinary-backed public media settings.
 - [x] Align all owner and GitHub Pages documentation with the accepted GitHub upload-queue to Cloudinary synchronization workflow and future custom-domain compatibility.
 - [x] Expand the owner upload guide with explicit protected `CLOUDINARY_URL` GitHub Actions secret setup and placeholder-rejection guidance.
+- [ ] Fix the GitHub Actions pnpm setup conflict and rerun the Cloudinary synchronization workflow successfully.
