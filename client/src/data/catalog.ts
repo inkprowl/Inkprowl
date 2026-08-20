@@ -1,3 +1,5 @@
+import generatedCatalogueJson from "./generated-catalog.json";
+
 export type DownloadFormat = "jpg" | "png" | "webp";
 
 export type Artwork = {
@@ -14,6 +16,7 @@ export type Artwork = {
   orientation: "portrait" | "landscape" | "square";
   tags: string[];
   downloadFormats?: DownloadFormat[];
+  assetKey?: string;
 };
 
 type MediaField = "imageUrl" | "audioUrl" | "videoUrl";
@@ -43,6 +46,18 @@ export type AdvertisingSettings = {
   adsenseEnabled: boolean;
   adsterraEnabled: boolean;
 };
+
+type ManagedAsset = { publicId: string; resourceType: "image" | "video"; deliveryUrl: string };
+type GeneratedCatalogue = {
+  artworks: Artwork[];
+  artworkMedia: Record<string, Partial<Pick<Artwork, "audioUrl" | "videoUrl">>>;
+  siteMedia: Partial<SiteMedia>;
+  siteBranding: Partial<SiteBranding>;
+  sponsoredCampaign: Partial<SponsoredCampaign>;
+  advertisingSettings: Partial<AdvertisingSettings>;
+  assets: Record<string, ManagedAsset>;
+};
+const generatedCatalogue = generatedCatalogueJson as GeneratedCatalogue;
 
 /** Only stable Cloudinary delivery URLs are permitted for permanent INKPROWL media. */
 export const isCloudinaryDeliveryUrl = (url: string) =>
@@ -74,6 +89,7 @@ export const siteMedia: SiteMedia = {
   defaultArtworkFilmUrl: undefined,
   soundtrackUrl: undefined,
   soundtrackTitle: "Curated sound",
+  ...generatedCatalogue.siteMedia,
 };
 
 /** Owner-managed image branding. Only Cloudinary image delivery URLs are accepted. */
@@ -82,6 +98,7 @@ export const siteBranding: SiteBranding = {
   heroBannerUrl: undefined,
   heroKicker: "HUMAN-DIRECTED / AI-CRAFTED",
   heroTitle: "Art that prowls past the ordinary.",
+  ...generatedCatalogue.siteBranding,
 };
 
 /** A direct sponsored-client video can be published after the owner has approved its Cloudinary delivery URL. */
@@ -90,12 +107,14 @@ export const sponsoredCampaign: SponsoredCampaign = {
   label: "PRESENTED IN PARTNERSHIP",
   clientName: "A considered sponsor",
   videoUrl: undefined,
+  ...generatedCatalogue.sponsoredCampaign,
 };
 
 /** Static advertisement placements are only activated by the owner after the relevant provider code is approved. */
 export const advertisingSettings: AdvertisingSettings = {
   adsenseEnabled: false,
   adsterraEnabled: false,
+  ...generatedCatalogue.advertisingSettings,
 };
 
 export const activeAdvertisementProviders = (settings: AdvertisingSettings = advertisingSettings) => [
@@ -146,7 +165,7 @@ export const categories = [
   { name: "Free Art", icon: "↓", count: 18 },
 ];
 
-export const artworks: Artwork[] = [
+const manualArtworks: Artwork[] = [
   { slug: "panther-in-pinstripe-suit", title: "Panther in Pinstripe Suit", category: "Mafia Bosses", description: "A composed panther steps out in a precisely tailored pinstripe suit, rendered as an archival cross-hatched study.", isPremium: false, accent: "coal", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787239768/inkprowl-panther-collectible-edition.png", orientation: "portrait", tags: ["panther", "tailoring", "engraving"] },
   { slug: "buffalo-tailor-shop", title: "Buffalo Tailor Shop Line Art Comic", category: "Business Animals", description: "Old workshop ritual, patient hands, and a buffalo tailor judging the fall of a new suit cloth.", isPremium: false, accent: "ochre", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241850/buffalo-tailor-shop.png", orientation: "landscape", tags: ["buffalo", "tailor", "comic"] },
   { slug: "lion-king-of-the-ledger", title: "Lion, King of the Ledger", category: "Business Animals", description: "A measured lion executive at work among ledgers, fountain pens, and the quiet confidence of a corner office.", isPremium: false, accent: "gold", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241901/lion-ledger.png", orientation: "portrait", tags: ["lion", "office", "line art"] },
@@ -155,6 +174,11 @@ export const artworks: Artwork[] = [
   { slug: "panther-in-the-prowl", title: "Panther in the Prowl", category: "Cross-Hatching", description: "A panther climbs through an old wooded estate; a pure line-art edition with an engraved paper texture.", isPremium: false, accent: "forest", imageUrl: "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787239768/inkprowl-panther-collectible-edition.png", orientation: "portrait", tags: ["panther", "forest", "cross hatching"] },
   { slug: "penguin-office-hour", title: "Penguin, Office Hour", category: "Funny Animals", description: "A quietly comic portrait of the most punctilious member of the Monday morning meeting.", isPremium: false, isPublished: false, accent: "slate", orientation: "portrait", tags: ["penguin", "office", "free art"] },
   { slug: "the-donkeys-new-vest", title: "The Donkey’s New Vest", category: "Tailored Animals", description: "A character study in fitted waistcoats, meticulous seams, and a perfectly misplaced sense of pride.", isPremium: false, isPublished: false, accent: "sand", orientation: "landscape", tags: ["donkey", "tailoring", "character"] },
+];
+
+export const artworks: Artwork[] = [
+  ...manualArtworks.map((artwork) => ({ ...artwork, ...(generatedCatalogue.artworkMedia[artwork.slug] ?? {}) })),
+  ...generatedCatalogue.artworks.map((artwork) => ({ ...artwork, ...(generatedCatalogue.artworkMedia[artwork.slug] ?? {}) })),
 ];
 
 artworks.forEach(validateArtworkMedia);
