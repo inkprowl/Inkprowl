@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { activeAdvertisementProviders, advertisingSettings, artworks, categories, getArtwork, isCloudinaryDeliveryUrl, relatedArtworks, siteMedia, validateArtworkMedia, validateSiteMedia } from "./catalog";
+import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isCloudinaryDeliveryUrl, relatedArtworks, siteMedia, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
 
 describe("INKPROWL catalog", () => {
   it("contains all requested public browsing categories", () => {
@@ -57,5 +57,16 @@ describe("INKPROWL catalog", () => {
     expect(activeAdvertisementProviders(advertisingSettings)).toEqual([]);
     expect(activeAdvertisementProviders({ adsenseEnabled: true, adsterraEnabled: false })).toEqual(["Google AdSense"]);
     expect(activeAdvertisementProviders({ adsenseEnabled: true, adsterraEnabled: true })).toEqual(["Google AdSense", "Adsterra"]);
+  });
+
+  it("creates Cloudinary attachment URLs for each approved free-download format", () => {
+    const buffalo = getArtwork("buffalo-tailor-shop")!;
+    expect(availableDownloadFormats(buffalo)).toEqual(["jpg", "png", "webp"]);
+    expect(getCloudinaryDownloadUrl(buffalo.imageUrl, buffalo.slug, "webp")).toContain("/image/upload/f_webp,fl_attachment:inkprowl-buffalo-tailor-shop-webp/");
+  });
+
+  it("uses direct static edition URLs for social previews and validates owner media settings", () => {
+    expect(getArtworkShareUrl("buffalo-tailor-shop")).toBe("https://inkprowl.github.io/inkprowl/art/buffalo-tailor-shop/");
+    expect(() => validateOwnerConfiguration()).not.toThrow();
   });
 });
