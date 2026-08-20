@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Film, Menu, Music2, Pause, Play, Search, X } from "lucide-react";
+import { Download, Film, Menu, Music2, Pause, Play, Search, X } from "lucide-react";
 import { useRef, useState, type PointerEvent } from "react";
 import { siteBranding, siteMedia } from "@/data/catalog";
 
@@ -70,6 +70,7 @@ export function FloatingPlayer() {
   const dragStart = useRef<{ x: number; y: number; offsetX: number; offsetY: number } | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const soundtrackReady = Boolean(siteMedia.soundtrackUrl);
+  const soundtrackDownloadUrl = siteMedia.soundtrackUrl?.replace("/video/upload/", "/video/upload/fl_attachment:inkprowl-soundtrack/");
   const togglePlayback = async () => {
     if (!audioRef.current || !soundtrackReady) return;
     if (audioRef.current.paused) {
@@ -97,6 +98,7 @@ export function FloatingPlayer() {
         {playing ? <Pause size={15} fill="currentColor" /> : <Play size={15} fill="currentColor" />}
       </button>
       <div className="player-copy"><span><Music2 size={12} /> AUDIO EDITION</span><strong>{playing ? siteMedia.soundtrackTitle : soundtrackReady ? siteMedia.soundtrackTitle : "Curated sound"}</strong></div>
+      {soundtrackDownloadUrl && <a className="player-download" href={soundtrackDownloadUrl} aria-label="Free soundtrack download" title="Free soundtrack download"><Download size={14} /></a>}
       <span className="player-dot" aria-hidden="true" />
     </div>
   );
