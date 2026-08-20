@@ -6,9 +6,19 @@
     "soundtrackTitle": "Curated sound"
   },
   "siteBranding": {},
-  "sponsoredCampaign": {},
+  "sponsoredCampaign": {
+    "enabled": true,
+    "clientName": "Inkprowl E2e Video Check 20260821",
+    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257160/inkprowl/sponsor-video--inkprowl-e2e-video-check-20260821_lcrcuv.mp4"
+  },
   "advertisingSettings": {},
   "categories": [],
   "categoryAliases": {},
-  "assets": {}
+  "assets": {
+    "sponsoredCampaign:video": {
+      "publicId": "inkprowl/sponsor-video--inkprowl-e2e-video-check-20260821_lcrcuv",
+      "resourceType": "video",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257160/inkprowl/sponsor-video--inkprowl-e2e-video-check-20260821_lcrcuv.mp4"
+    }
+  }
 }
