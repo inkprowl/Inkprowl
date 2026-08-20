@@ -49,7 +49,7 @@
 - [x] Expand the owner workspace with explicit filename-derived metadata, category rename/delete, provider-code handoff, and sponsored-placement guidance.
 - [x] Show branding, sponsored-campaign, and download-format configuration in the owner workspace preview.
 - [ ] Select a secure GitHub-hosted owner upload architecture that sends images, audio, and video directly to Cloudinary without routine Cloudinary-dashboard use.
-- [ ] Configure the required owner authentication and Cloudinary upload credentials without exposing a secret in the public site or repository.
+- [x] Configure the required owner authentication and Cloudinary upload credentials without exposing a secret in the public site or repository.
 - [ ] Build a GitHub-hosted upload form that writes permanent Cloudinary asset details into the INKPROWL catalogue.
 - [ ] Validate image, audio, and video upload, deletion, and public-gallery update flows end to end.
 - [ ] Add authenticated owner controls to create, edit, rename, categorize, publish, and remove artwork catalogue records.
@@ -59,6 +59,12 @@
 - [x] Convert every published INKPROWL artwork from premium-gated to unrestricted free Cloudinary download access.
 - [x] Verify all public artwork details expose JPG, PNG, and WebP downloads without a premium-access restriction.
 - [x] Keep Cloudinary-incomplete placeholder records out of public gallery, detail, and social-preview routes until their permanent media is available.
-- [ ] Clearly present the GitHub Pages-only owner workflow and the future custom-domain compatibility without misrepresenting static-site security limits.
+- [x] Clearly present the GitHub Pages-only owner workflow and the future custom-domain compatibility without misrepresenting static-site security limits.
 - [x] Replace the non-authenticating static login submission with a clear GitHub owner-access action and remove misleading password-login behavior.
-- [ ] Add a protected `CLOUDINARY_URL` GitHub Actions secret setup guide that rejects placeholder values and keeps credentials out of public source.
+- [x] Add a protected `CLOUDINARY_URL` GitHub Actions secret setup guide that rejects placeholder values and keeps credentials out of public source.
+- [x] Add a public free-download action for the Cloudinary soundtrack when the owner publishes one.
+- [ ] Add the accepted GitHub upload-queue workflow that treats GitHub as controlled ingestion and Cloudinary as the only public delivery source.
+- [ ] Automatically generate always-free public edition metadata from supported image filenames after Cloudinary ingestion.
+- [ ] Automatically map supported uploaded soundtrack, hero-film, and edition-video filenames to the matching Cloudinary-backed public media settings.
+- [x] Align all owner and GitHub Pages documentation with the accepted GitHub upload-queue to Cloudinary synchronization workflow and future custom-domain compatibility.
+- [x] Expand the owner upload guide with explicit protected `CLOUDINARY_URL` GitHub Actions secret setup and placeholder-rejection guidance.
