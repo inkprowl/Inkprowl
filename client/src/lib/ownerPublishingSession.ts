@@ -1,15 +1,17 @@
-const OWNER_PUBLISHING_SESSION_KEY = "inkprowl_owner_publishing_connection";
+let ownerCredential: string | null = null;
 
+/**
+ * Holds the publishing credential only in JavaScript memory for the open page.
+ * It is lost on refresh, tab close, logout, and browser restart.
+ */
 export function readOwnerPublishingCredential() {
-  if (typeof window === "undefined") return null;
-  const token = window.sessionStorage.getItem(OWNER_PUBLISHING_SESSION_KEY);
-  return token?.trim() || null;
+  return ownerCredential;
 }
 
 export function persistOwnerPublishingCredential(token: string) {
-  if (typeof window !== "undefined") window.sessionStorage.setItem(OWNER_PUBLISHING_SESSION_KEY, token);
+  ownerCredential = token.trim() || null;
 }
 
 export function clearOwnerPublishingCredential() {
-  if (typeof window !== "undefined") window.sessionStorage.removeItem(OWNER_PUBLISHING_SESSION_KEY);
+  ownerCredential = null;
 }

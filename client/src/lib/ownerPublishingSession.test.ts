@@ -1,10 +1,14 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { clearOwnerPublishingCredential, persistOwnerPublishingCredential, readOwnerPublishingCredential } from "./ownerPublishingSession";
 
-describe("owner publishing session", () => {
-  it("is safe to evaluate outside a browser and retains no value there", () => {
+describe("owner publishing authorization", () => {
+  afterEach(() => clearOwnerPublishingCredential());
+
+  it("retains a credential only in JavaScript memory until it is cleared", () => {
     expect(readOwnerPublishingCredential()).toBeNull();
-    expect(() => persistOwnerPublishingCredential("token")).not.toThrow();
-    expect(() => clearOwnerPublishingCredential()).not.toThrow();
+    persistOwnerPublishingCredential(" owner-token ");
+    expect(readOwnerPublishingCredential()).toBe("owner-token");
+    clearOwnerPublishingCredential();
+    expect(readOwnerPublishingCredential()).toBeNull();
   });
 });
