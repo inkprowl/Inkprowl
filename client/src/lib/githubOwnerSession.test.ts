@@ -59,6 +59,8 @@ describe("INKPROWL owner GitHub session helpers", () => {
 
     const document = await readRepositoryJson<{ assets: Record<string, never> }>("session-token", "client/src/data/generated-catalog.json");
     expect(document).toEqual({ value: { assets: {} }, sha: "catalogue-sha" });
+    const [, readInit] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(readInit.cache).toBe("no-store");
     await writeRepositoryJson("session-token", "client/src/data/generated-catalog.json", { assets: { owl: {} } }, "chore: update owner catalogue", document.sha);
 
     const [, init] = fetchMock.mock.calls[1] as [string, RequestInit];

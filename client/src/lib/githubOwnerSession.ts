@@ -50,6 +50,9 @@ const contentPath = (path: string) => path.split("/").map(encodeURIComponent).jo
 async function githubRequest<T>(token: string, path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${GITHUB_API}${path}`, {
     ...init,
+    // Each owner save retry must receive a fresh Contents API SHA. A cached read
+    // can repeatedly return the pre-save revision after a successful commit.
+    cache: init?.cache ?? "no-store",
     headers: { ...headers(token), ...(init?.headers ?? {}) },
   });
   if (response.ok) {
