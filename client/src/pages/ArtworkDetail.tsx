@@ -50,8 +50,8 @@ export default function ArtworkDetail() {
         </div>
       </div>
     </section>
-    <AdSlot label="A refined placement beside a collectible edition" />
-    <section className="detail-video section-wrap"><div><span className="eyebrow">IN MOTION</span><h2>Watch the<br /><em>edition evolve.</em></h2><p>Each artwork detail page uses the active Cloudinary edition film or the current campaign film when no dedicated edition film has been published.</p></div><CloudinaryVideoPlayer className="detail-video-frame" src={artwork.videoUrl ?? siteMedia.defaultArtworkFilmUrl ?? sponsoredCampaign.videoUrl} title={`${artwork.title} film`} clientUrl={sponsoredCampaign.clientUrl} clientName={sponsoredCampaign.clientName} /></section>
+    <AdSlot placement="social-native" label="A refined placement beside a collectible edition" />
+    <section className="detail-video section-wrap"><div className="sponsor-heading"><span className="eyebrow">IN MOTION</span><h2>Edition film.</h2><p>A full-view Cloudinary film for this edition.</p></div><CloudinaryVideoPlayer className="detail-video-frame full-video-fit" src={artwork.videoUrl ?? siteMedia.defaultArtworkFilmUrl ?? sponsoredCampaign.videoUrl} title={`${artwork.title} film`} clientUrl={sponsoredCampaign.clientUrl} clientName="sponsor site" /></section>
     {related.length > 0 && <section className="section-wrap related-section"><div className="section-heading"><div><span className="eyebrow">FROM THE SAME CASE</span><h2>Related artwork</h2></div></div><div className="related-grid">{related.map((item) => <ArtworkCard key={item.slug} artwork={item} />)}</div></section>}
   </PageFrame>;
 }

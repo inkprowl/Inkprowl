@@ -3,6 +3,7 @@ import "./inkprowlMedia.css";
 import { Download, Film, ListMusic, Menu, Minimize2, Music2, Pause, Play, Search, Volume2, X } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { siteBranding, siteMedia } from "@/data/catalog";
+import { AdSlot } from "@/components/ArtworkCard";
 import { publicNavigationItems } from "@/lib/publicNavigation";
 
 export function Mark({ compact = false }: { compact?: boolean }) {
@@ -18,7 +19,7 @@ export function Header() {
   const [location] = useLocation();
   const [open, setOpen] = useState(false);
   return (
-    <header className="site-header">
+    <><header className="site-header">
       <div className="header-inner">
         <Mark />
         <nav className={`main-nav ${open ? "is-open" : ""}`} aria-label="Primary navigation">
@@ -35,13 +36,13 @@ export function Header() {
           </button>
         </div>
       </div>
-    </header>
+    </header><AdSlot placement="header" label="Header partner placement" /></>
   );
 }
 
 export function Footer() {
   return (
-    <footer className="site-footer">
+    <><AdSlot placement="footer" label="Footer partner placement" /><footer className="site-footer">
       <div className="footer-top">
         <div>
           <Mark />
@@ -55,7 +56,7 @@ export function Footer() {
         </div>
       </div>
       <div className="footer-bottom"><span>© 2026 INKPROWL</span><span>Cloudinary-delivered editions</span></div>
-    </footer>
+    </footer></>
   );
 }
 
@@ -118,5 +119,5 @@ export function CloudinaryVideoPlayer({ src, title, className = "", clientUrl, c
 }
 
 export function PageFrame({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  return <div className={`site-shell ${dark ? "dark-surface" : ""}`}><Header /><main>{children}</main><Footer /></div>;
+  return <div className={`site-shell ${dark ? "dark-surface" : ""}`}><Header /><main>{children}</main><AdSlot placement="popunder" label="Popunder placement" /><Footer /></div>;
 }

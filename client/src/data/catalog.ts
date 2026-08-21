@@ -49,6 +49,27 @@ export type SponsoredCampaign = {
 export type AdvertisingSettings = {
   adsenseEnabled: boolean;
   adsterraEnabled: boolean;
+  adsenseCode?: string;
+  adsterraCode?: string;
+  placements?: Partial<Record<AdvertisingPlacement, boolean>>;
+  placementCodes?: Partial<Record<AdvertisingPlacement, { adsense?: string; adsterra?: string }>>;
+};
+
+export const advertisingPlacements = ["header", "social-native", "between-grid", "popunder", "footer"] as const;
+export type AdvertisingPlacement = (typeof advertisingPlacements)[number];
+export const advertisingPlacementLabels: Record<AdvertisingPlacement, string> = {
+  header: "Header banner",
+  "social-native": "Social / native banner",
+  "between-grid": "Between artwork grids",
+  popunder: "Popunder",
+  footer: "Footer banner",
+};
+const defaultAdvertisingPlacements: Record<AdvertisingPlacement, boolean> = {
+  header: false,
+  "social-native": false,
+  "between-grid": false,
+  popunder: false,
+  footer: false,
 };
 
 type ManagedAsset = { publicId: string; resourceType: "image" | "video"; deliveryUrl: string };
@@ -127,12 +148,16 @@ export const advertisingSettings: AdvertisingSettings = {
   adsenseEnabled: false,
   adsterraEnabled: false,
   ...generatedCatalogue.advertisingSettings,
+  placements: { ...defaultAdvertisingPlacements, ...(generatedCatalogue.advertisingSettings.placements ?? {}) },
 };
 
 export const activeAdvertisementProviders = (settings: AdvertisingSettings = advertisingSettings) => [
   settings.adsenseEnabled ? "Google AdSense" : undefined,
   settings.adsterraEnabled ? "Adsterra" : undefined,
 ].filter((provider): provider is string => Boolean(provider));
+
+export const isAdvertisementPlacementEnabled = (placement: AdvertisingPlacement, settings: AdvertisingSettings = advertisingSettings) =>
+  Boolean(settings.placements?.[placement]) && activeAdvertisementProviders(settings).length > 0;
 
 export const availableDownloadFormats = (artwork: Artwork): DownloadFormat[] => artwork.downloadFormats ?? ["jpg", "png", "webp"];
 

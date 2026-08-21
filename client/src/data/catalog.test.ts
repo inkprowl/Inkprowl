@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isApprovedClientDestination, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteBranding, siteMedia, sponsoredCampaign, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
+import { activeAdvertisementProviders, advertisingPlacements, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isAdvertisementPlacementEnabled, isApprovedClientDestination, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteBranding, siteMedia, sponsoredCampaign, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
 
 describe("INKPROWL catalog", () => {
   it("contains all requested public browsing categories while honouring the owner-approved category rename", () => {
@@ -77,6 +77,13 @@ describe("INKPROWL catalog", () => {
     expect(activeAdvertisementProviders(advertisingSettings)).toEqual([]);
     expect(activeAdvertisementProviders({ adsenseEnabled: true, adsterraEnabled: false })).toEqual(["Google AdSense"]);
     expect(activeAdvertisementProviders({ adsenseEnabled: true, adsterraEnabled: true })).toEqual(["Google AdSense", "Adsterra"]);
+  });
+
+  it("keeps named advertising placements hidden until both a provider and the placement are enabled", () => {
+    expect(advertisingPlacements).toEqual(["header", "social-native", "between-grid", "popunder", "footer"]);
+    expect(isAdvertisementPlacementEnabled("header", advertisingSettings)).toBe(false);
+    expect(isAdvertisementPlacementEnabled("between-grid", { adsenseEnabled: true, adsterraEnabled: false, placements: { "between-grid": true } })).toBe(true);
+    expect(isAdvertisementPlacementEnabled("footer", { adsenseEnabled: false, adsterraEnabled: false, placements: { footer: true } })).toBe(false);
   });
 
   it("creates Cloudinary attachment URLs for each approved free-download format", () => {

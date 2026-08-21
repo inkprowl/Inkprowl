@@ -177,3 +177,8 @@
 - [x] Rebalance the sponsor-video layout on mobile and individual artwork pages so the full 16:9 video is prominent and sponsor copy does not consume the artwork-first viewport.
 - [x] Add editable song title and artist name fields to the Song Upload workspace and persist both fields through the protected generated-catalogue workflow.
 - [x] Force individual artwork-page films into a dedicated 16:9 landscape crop, including portrait Cloudinary source videos, without removing player controls.
+- [x] Replace the forced 16:9 crop on homepage and individual artwork video placements with responsive full-video fit so portrait source footage remains fully visible.
+- [x] Further reduce sponsor headings and supporting copy on public video placements so the media—not filename-derived text—occupies the primary viewport.
+- [x] Increase public artwork previews and reduce surrounding editorial copy so images and video remain the principal focus on home, gallery, and individual artwork pages.
+- [x] Extend the owner Advertising workspace with independently toggled AdSense and Adsterra script-code fields for header, social/native banner, between-grid, popunder, and footer placements.
+- [x] Render enabled advertising placements in the public site without allowing third-party ad code to disrupt the image-grid or video-player layout.

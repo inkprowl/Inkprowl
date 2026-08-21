@@ -1,6 +1,8 @@
 import { Download } from "lucide-react";
 import { Link } from "wouter";
-import { activeAdvertisementProviders, advertisingSettings, type Artwork } from "@/data/catalog";
+import { useEffect, useRef } from "react";
+import { activeAdvertisementProviders, advertisingPlacementLabels, advertisingSettings, isAdvertisementPlacementEnabled, type AdvertisingPlacement, type Artwork } from "@/data/catalog";
+import "./publicAdvertising.css";
 
 export function ArtworkVisual({ artwork, large = false }: { artwork: Artwork; large?: boolean }) {
   if (artwork.imageUrl) return <img src={artwork.imageUrl} alt={artwork.title} className="art-image" />;
@@ -18,19 +20,38 @@ export function ArtworkCard({ artwork, feature = false }: { artwork: Artwork; fe
   return (
     <article className={`art-card ${feature ? "art-card-feature" : ""}`}>
       <Link href={`/art/${artwork.slug}`} className="art-card-image"><ArtworkVisual artwork={artwork} large={feature} /></Link>
-      <div className="art-card-copy">
-        <div className="art-meta"><span>{artwork.category}</span><span>Free use</span></div>
-        <Link href={`/art/${artwork.slug}`} className="art-title">{artwork.title}</Link>
-        <div className="art-card-actions"><span>Free download</span><Download size={16} /></div>
-      </div>
+      <div className="art-card-copy"><Link href={`/art/${artwork.slug}`} className="art-title">{artwork.title}</Link><div className="art-card-actions"><span>Free download</span><Download size={16} /></div></div>
     </article>
   );
 }
 
-export function AdSlot({ label = "Collectible editions deserve a generous frame" }: { label?: string }) {
+function ProviderCode({ provider, code, placement }: { provider: string; code?: string; placement: AdvertisingPlacement }) {
+  const mountRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const mount = mountRef.current;
+    if (!mount || !code?.trim()) return;
+    const template = document.createElement("template");
+    template.innerHTML = code;
+    mount.replaceChildren();
+    Array.from(template.content.childNodes).forEach((node) => {
+      if (node instanceof HTMLScriptElement) {
+        const script = document.createElement("script");
+        Array.from(node.attributes).forEach((attribute) => script.setAttribute(attribute.name, attribute.value));
+        script.textContent = node.textContent;
+        mount.appendChild(script);
+      } else mount.appendChild(node.cloneNode(true));
+    });
+    return () => mount.replaceChildren();
+  }, [code, placement, provider]);
+  return <div ref={mountRef} className="provider-ad-code" data-provider={provider} data-placement={placement} />;
+}
+
+export function AdSlot({ placement, label = "Selected partner placement" }: { placement: AdvertisingPlacement; label?: string }) {
   const providers = activeAdvertisementProviders(advertisingSettings);
-  const providerCopy = providers.length > 0
-    ? `${providers.join(" + ")} placement enabled by the owner.`
-    : "Placement held until the owner enables an approved provider in the GitHub workspace.";
-  return <aside className="ad-slot" aria-label="Advertisement placement" data-providers={providers.join(",")}><span>{providers.length > 0 ? "ADVERTISEMENT" : "PLACEMENT HELD"}</span><strong>{label}</strong><small>{providerCopy}</small></aside>;
+  if (!isAdvertisementPlacementEnabled(placement)) return null;
+  const placementCodes = advertisingSettings.placementCodes?.[placement];
+  const providerCodes: Array<{ name: string; code?: string }> = [];
+  if (advertisingSettings.adsenseEnabled) providerCodes.push({ name: "Google AdSense", code: placementCodes?.adsense ?? advertisingSettings.adsenseCode });
+  if (advertisingSettings.adsterraEnabled) providerCodes.push({ name: "Adsterra", code: placementCodes?.adsterra ?? advertisingSettings.adsterraCode });
+  return <aside className={`ad-slot ad-slot-${placement}`} aria-label={`${advertisingPlacementLabels[placement]} advertisement`} data-providers={providers.join(",")}><div className="ad-slot-label"><span>ADVERTISEMENT</span><small>{advertisingPlacementLabels[placement]}</small></div><strong>{label}</strong><div className="ad-code-stack">{providerCodes.map((provider) => <ProviderCode key={provider.name} provider={provider.name} code={provider.code} placement={placement} />)}</div></aside>;
 }
