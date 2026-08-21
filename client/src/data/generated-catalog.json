@@ -23,6 +23,54 @@
         "webp"
       ],
       "assetKey": "artwork:gorilla-in-vintage-tailored-suit-comic-art"
+    },
+    {
+      "slug": "honey-badger-gamblers-den-vintage-mafia-dealer-comic-art",
+      "title": "Honey Badger Gamblers Den Vintage Mafia Dealer Comic Art",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Honey Badger Gamblers Den Vintage Mafia Dealer Comic Art, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--honey-badger-gamblers-den-vintage-mafia-dealer-comic-art_a35yjz.jpg",
+      "orientation": "square",
+      "tags": [
+        "honey",
+        "badger",
+        "gamblers",
+        "den",
+        "vintage",
+        "mafia"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:honey-badger-gamblers-den-vintage-mafia-dealer-comic-art"
+    },
+    {
+      "slug": "hippo-premium-vintage-attire-line-art-comic-book-boss-character",
+      "title": "Hippo Premium Vintage Attire Line Art Comic Book Boss Character",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Hippo Premium Vintage Attire Line Art Comic Book Boss Character, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp.jpg",
+      "orientation": "square",
+      "tags": [
+        "hippo",
+        "premium",
+        "vintage",
+        "attire",
+        "line",
+        "art"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:hippo-premium-vintage-attire-line-art-comic-book-boss-character"
     }
   ],
   "artworkOverrides": {
@@ -76,6 +124,16 @@
       "publicId": "inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299094/inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu.jpg"
+    },
+    "artwork:honey-badger-gamblers-den-vintage-mafia-dealer-comic-art": {
+      "publicId": "inkprowl/art--business-animals--honey-badger-gamblers-den-vintage-mafia-dealer-comic-art_a35yjz",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--honey-badger-gamblers-den-vintage-mafia-dealer-comic-art_a35yjz.jpg"
+    },
+    "artwork:hippo-premium-vintage-attire-line-art-comic-book-boss-character": {
+      "publicId": "inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp.jpg"
     }
   }
 }
