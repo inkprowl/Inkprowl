@@ -95,6 +95,30 @@
         "webp"
       ],
       "assetKey": "artwork:female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer"
+    },
+    {
+      "slug": "horse-giraffe-cowboy-style-bar-stance-2d-line-art",
+      "title": "Horse Giraffe Cowboy Style Bar Stance 2D Line Art",
+      "category": "Vintage Comic Art",
+      "description": "A free INKPROWL edition of Horse Giraffe Cowboy Style Bar Stance 2D Line Art, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299211/inkprowl/art--vintage-comic-art--horse-giraffe-cowboy-style-bar-stance-2d-line-art_sfo7xw.jpg",
+      "orientation": "square",
+      "tags": [
+        "horse",
+        "giraffe",
+        "cowboy",
+        "style",
+        "bar",
+        "stance"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:horse-giraffe-cowboy-style-bar-stance-2d-line-art"
     }
   ],
   "artworkOverrides": {
@@ -163,6 +187,11 @@
       "publicId": "inkprowl/art--fashion-animals--female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer_h7gvnq",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299170/inkprowl/art--fashion-animals--female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer_h7gvnq.jpg"
+    },
+    "artwork:horse-giraffe-cowboy-style-bar-stance-2d-line-art": {
+      "publicId": "inkprowl/art--vintage-comic-art--horse-giraffe-cowboy-style-bar-stance-2d-line-art_sfo7xw",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299211/inkprowl/art--vintage-comic-art--horse-giraffe-cowboy-style-bar-stance-2d-line-art_sfo7xw.jpg"
     }
   }
 }
