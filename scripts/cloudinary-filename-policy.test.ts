@@ -17,6 +17,11 @@ describe("INKPROWL owner upload filename policy", () => {
     expect(classifyIncomingFile("edition-video--bear-bull-market.mp4")).toEqual({ kind: "edition-video", slug: "bear-bull-market" });
   });
 
+  it("maps branded logo and hero-banner image filenames to permanent branding roles", () => {
+    expect(classifyIncomingFile("logo--inkprowl-masthead.webp")).toEqual({ kind: "logo" });
+    expect(classifyIncomingFile("hero-banner--autumn-archive.avif")).toEqual({ kind: "hero-banner" });
+  });
+
   it("rejects unclear file names and unsupported upload types", () => {
     expect(() => classifyIncomingFile("unlabelled-image.png")).toThrow("Unsupported INKPROWL upload filename");
     expect(() => classifyIncomingFile("art--business-animals--lion-ledger.mp4")).toThrow("Artwork files must use an image extension");
