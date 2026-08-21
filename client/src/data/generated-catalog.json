@@ -1,6 +1,23 @@
 {
   "artworks": [],
-  "artworkOverrides": {},
+  "artworkOverrides": {
+    "art-business-animals-authorization-check": {
+      "title": "Art Business Animals Authorization Check",
+      "description": "A free INKPROWL business animals edition featuring Art Business Animals Authorization Check. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "art",
+        "business",
+        "animals",
+        "authorization",
+        "check",
+        "inkprowl",
+        "animal art"
+      ],
+      "metaTitle": "INKPROWL — Art Business Animals Authorization Check",
+      "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Authorization Check. Available in JPEG, PNG, and WebP directly from permanent Cloud"
+    }
+  },
   "artworkMedia": {},
   "siteMedia": {
     "soundtrackTitle": "Inkprowl Sample Soundtrack",
