@@ -14,7 +14,7 @@
         "inkprowl",
         "animal art"
       ],
-      "metaTitle": "INKPROWL ÃÂ¢ÃÂÃÂ Art Business Animals Authorization Check",
+      "metaTitle": "INKPROWL ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Art Business Animals Authorization Check",
       "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Authorization Check. Available in JPEG, PNG, and WebP directly from permanent Cloud",
       "isPublished": false
     },
@@ -32,9 +32,26 @@
         "inkprowl",
         "animal art"
       ],
-      "metaTitle": "INKPROWL ÃÂ¢ÃÂÃÂ Art Business Animals Delete Control Check",
+      "metaTitle": "INKPROWL ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Art Business Animals Delete Control Check",
       "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Delete Control Check. Available in JPEG, PNG, and WebP directly from permanent Clou",
       "isPublished": false
+    },
+    "art-business-animals-crud-audit-edition": {
+      "title": "Art Business Animals Crud Audit Edition",
+      "description": "A free INKPROWL business animals edition featuring Art Business Animals Crud Audit Edition. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "art",
+        "business",
+        "animals",
+        "crud",
+        "audit",
+        "edition",
+        "inkprowl",
+        "animal art"
+      ],
+      "metaTitle": "INKPROWL — Art Business Animals Crud Audit Edition",
+      "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Crud Audit Edition. Available in JPEG, PNG, and WebP directly from permanent Cloudi"
     }
   },
   "artworkMedia": {},
