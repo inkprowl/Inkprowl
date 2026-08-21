@@ -14,7 +14,7 @@
         "inkprowl",
         "animal art"
       ],
-      "metaTitle": "INKPROWL — Upload Fetch Diagnostic",
+      "metaTitle": "INKPROWL â Upload Fetch Diagnostic",
       "metaDescription": "A free INKPROWL business animals edition featuring Upload Fetch Diagnostic. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage."
     }
   },
@@ -33,7 +33,9 @@
   },
   "advertisingSettings": {},
   "categories": [],
-  "categoryAliases": {},
+  "categoryAliases": {
+    "Cross-Hatching": "BEAR & BULL MARKET"
+  },
   "assets": {
     "siteMedia:soundtrack": {
       "publicId": "inkprowl/song--inkprowl-sample-soundtrack_j8d78y",
