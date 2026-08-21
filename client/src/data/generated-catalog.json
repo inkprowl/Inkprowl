@@ -1,6 +1,20 @@
 {
   "artworks": [],
-  "artworkOverrides": {},
+  "artworkOverrides": {
+    "panther-in-pinstripe-suit": {
+      "title": "Panther in Pinstripe Suit",
+      "description": "A composed panther steps out in a precisely tailored pinstripe suit, rendered as an archival cross-hatched study.",
+      "category": "Business Animals",
+      "tags": [
+        "panther",
+        "tailoring",
+        "engraving"
+      ],
+      "metaTitle": "INKPROWL — Panther in Pinstripe Suit",
+      "metaDescription": "A composed panther steps out in a precisely tailored pinstripe suit, rendered as an archival cross-hatched study.",
+      "isPublished": true
+    }
+  },
   "artworkMedia": {},
   "siteMedia": {
     "soundtrackTitle": "Inkprowl Sample Soundtrack",
