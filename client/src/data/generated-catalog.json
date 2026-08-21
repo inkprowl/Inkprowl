@@ -75,7 +75,7 @@
     {
       "slug": "female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer",
       "title": "Female Leopard Lexi In Denim Jeans Vintage Comic Art Photographer",
-      "category": "Fashion Animals",
+      "category": "FASHION TREND ANIMAL CHARACTERS",
       "description": "A free INKPROWL edition of Female Leopard Lexi In Denim Jeans Vintage Comic Art Photographer, published from the owner upload queue and ready for direct Cloudinary download.",
       "isPremium": false,
       "accent": "gold",
@@ -336,7 +336,7 @@
     "female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer": {
       "title": "Female Leopard Lexi In Denim & Jeans Vintage Comic Art Photographer",
       "description": "A free INKPROWL fashion animals edition featuring Female Leopard Lexi In Denim & Jeans Vintage Comic Art Photographer. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
-      "category": "Fashion Animals",
+      "category": "FASHION TREND ANIMAL CHARACTERS",
       "tags": [
         "female",
         "leopard",
@@ -445,7 +445,8 @@
     "Tailored Animals": "OFFICE HUMOR ANIMAL CHARACTERS",
     "Vintage Comic Art": "PREMIUM ANIMAL CHARACTERS",
     "2D Line Art": "PREMIUM ANIMAL CHARACTERS",
-    "Animal Characters": "PREMIUM ANIMAL CHARACTERS"
+    "Animal Characters": "PREMIUM ANIMAL CHARACTERS",
+    "Fashion Animals": "FASHION TREND ANIMAL CHARACTERS"
   },
   "assets": {
     "siteMedia:soundtrack": {
