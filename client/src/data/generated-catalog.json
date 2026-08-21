@@ -1,5 +1,30 @@
 {
-  "artworks": [],
+  "artworks": [
+    {
+      "slug": "gorilla-in-vintage-tailored-suit-comic-art",
+      "title": "Gorilla In Vintage Tailored Suit Comic Art",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Gorilla In Vintage Tailored Suit Comic Art, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299094/inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu.jpg",
+      "orientation": "square",
+      "tags": [
+        "gorilla",
+        "vintage",
+        "tailored",
+        "suit",
+        "comic",
+        "art"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:gorilla-in-vintage-tailored-suit-comic-art"
+    }
+  ],
   "artworkOverrides": {
     "upload-fetch-diagnostic": {
       "title": "Upload Fetch Diagnostic",
@@ -46,6 +71,11 @@
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
       "resourceType": "video",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+    },
+    "artwork:gorilla-in-vintage-tailored-suit-comic-art": {
+      "publicId": "inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299094/inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu.jpg"
     }
   }
 }
