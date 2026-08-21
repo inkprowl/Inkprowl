@@ -10,6 +10,7 @@ type PublishState = { percent: number; tone: "idle" | "working" | "success" | "e
 type InventoryArtwork = { slug: string; title: string; description: string; category: string; tags: string[]; imageUrl: string };
 type PendingPublish = { role: PublishRole; files: File[]; title: string; category: string; description?: string; tags?: string[] };
 type PendingMutation = { message: string; success: string; mutate: (next: OwnerGeneratedCatalogue) => void };
+type PendingDeletion = { assetKey: string; artwork?: InventoryArtwork };
 
 const initialState: PublishState = { percent: 0, tone: "idle", message: "Choose a file, review its filename-derived details, then select Upload & Publish." };
 
@@ -72,6 +73,7 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
   const [status, setStatus] = useState<PublishState>(initialState);
   const [pendingPublish, setPendingPublish] = useState<PendingPublish | null>(null);
   const [pendingMutation, setPendingMutation] = useState<PendingMutation | null>(null);
+  const [pendingDeletion, setPendingDeletion] = useState<PendingDeletion | null>(null);
   const [selectedSlug, setSelectedSlug] = useState(artworks[0]?.slug ?? "");
   const artworkInventory = useMemo<InventoryArtwork[]>(() => {
     const items = new Map<string, InventoryArtwork>(artworks.map((artwork) => [artwork.slug, { slug: artwork.slug, title: artwork.title, description: artwork.description, category: artwork.category, tags: artwork.tags, imageUrl: artwork.imageUrl ?? "" }]));
@@ -119,13 +121,6 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
       .then((document) => setCatalogue(normalizeOwnerCatalogue(document.value)))
       .catch((reason) => setStatus({ percent: 0, tone: "error", message: reason instanceof Error ? reason.message : "Could not load the current owner catalogue." }));
   }, [connection]);
-
-  function requiresAuthorization() {
-    if (connection) return false;
-    setStatus({ percent: 0, tone: "idle", message: "Select Authorise this save once, then return to this visible dashboard and publish your selected files." });
-    requestAuthorization();
-    return true;
-  }
 
   async function saveCatalogueMutation({ message, success, mutate }: PendingMutation, activeConnection: OwnerConnection) {
     try {
@@ -227,6 +222,14 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     void saveCatalogueMutation(nextMutation, connection);
   }, [connection, pendingMutation]);
 
+  useEffect(() => {
+    if (!connection || !pendingDeletion) return;
+    const nextDeletion = pendingDeletion;
+    setPendingDeletion(null);
+    if (nextDeletion.artwork) void removeSelectedArtwork(nextDeletion.artwork);
+    else void removeManagedAsset(nextDeletion.assetKey);
+  }, [connection, pendingDeletion]);
+
   function chooseArtworkFiles(event: ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.target.files ?? []);
     setArtworkFiles(files);
@@ -240,7 +243,8 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
 
   async function removeManagedAsset(assetKey: string) {
     if (!connection) {
-      setStatus({ percent: 5, tone: "working", message: "Authorise permanent Cloudinary deletion once, then press Delete image again to confirm removal." });
+      setPendingDeletion({ assetKey });
+      setStatus({ percent: 5, tone: "working", message: "Authorise this deletion once. The selected Cloudinary removal will begin automatically when authorisation is confirmed." });
       requestAuthorization();
       return;
     }
@@ -253,16 +257,17 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     }
   }
 
-  async function removeSelectedArtwork() {
-    if (!selectedArtwork) return;
-    const assetKey = `artwork:${selectedArtwork.slug}`;
+  async function removeSelectedArtwork(artwork = selectedArtwork) {
+    if (!artwork) return;
+    const assetKey = `artwork:${artwork.slug}`;
     if (!connection) {
-      setStatus({ percent: 5, tone: "working", message: "Authorise this permanent image removal once, then select Delete image permanently again to confirm the Cloudinary removal." });
+      setPendingDeletion({ assetKey, artwork });
+      setStatus({ percent: 5, tone: "working", message: "Authorise this deletion once. The selected image removal will begin automatically when authorisation is confirmed." });
       requestAuthorization();
       return;
     }
     if (!catalogue?.assets[assetKey]) {
-      const asset = cloudinaryAssetFromDeliveryUrl(selectedArtwork.imageUrl);
+      const asset = cloudinaryAssetFromDeliveryUrl(artwork.imageUrl);
       if (!asset) { setStatus({ percent: 0, tone: "error", message: "This image does not have a removable Cloudinary delivery record." }); return; }
       try {
         setStatus({ percent: 18, tone: "working", message: "Preparing the permanent Cloudinary image deletion…" });
@@ -281,7 +286,7 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
 
   return <main className="owner-launch-dashboard" aria-label="INKPROWL media publishing dashboard">
     <header className="owner-launch-topbar"><div className="owner-desk-brand"><span className="brand-seal">IP</span><span>INKPROWL</span></div><span>OWNER ADMIN / CLOUDINARY DELIVERY</span><button type="button" className="owner-logout" onClick={onLogout}><LogOut size={15} /> Log out</button></header>
-    <div className="owner-launch-heading"><div><span className="eyebrow">UPLOAD & PUBLISH</span><h3>Your permanent<br /><em>media desk.</em></h3><p>Choose files from your device. File names create draft titles; you can refine artwork content before publishing.</p></div><div className="owner-publish-session"><strong>{connection ? `Publishing session ready · ${connection.identity.login}` : "Publishing session ready when you save"}</strong><small>{connection ? "Your owner connection remains available during this browser session." : "Authorisation is requested only when you select an Upload & Publish or Save button."}</small></div></div>
+    <div className="owner-launch-heading"><div><span className="eyebrow">UPLOAD & PUBLISH</span><h3>Your permanent<br /><em>media desk.</em></h3><p>Choose files from your device. File names create draft titles; you can refine artwork content before publishing.</p></div><div className="owner-publish-session"><strong>{connection ? `Publishing ready · ${connection.identity.login}` : "Ready for your first save"}</strong><small>{connection ? "Your owner connection stays ready during this browser session." : "Your selected upload, save, or deletion starts automatically after the one-time owner connection."}</small></div></div>
     <div className={`owner-publish-status ${status.tone}`} aria-live="polite"><div><span>{status.tone === "success" ? <CheckCircle2 size={17} /> : status.tone === "error" ? <XCircle size={17} /> : status.tone === "working" ? <LoaderCircle size={17} /> : <UploadCloud size={17} />}</span><p>{status.message}</p></div><progress value={status.percent} max="100" aria-label="Publishing progress" /></div>
     <div className="owner-upload-grid">
       <article className="owner-upload-card"><div className="owner-upload-icon"><ImagePlus size={22} /></div><span className="eyebrow">ARTWORK IMAGES</span><h4>Images Upload & Publish</h4><p>PNG, JPG, JPEG, WebP, or image files. Select multiple images for a batch upload.</p><label className="launch-file-picker"><input type="file" accept="image/*" multiple onChange={chooseArtworkFiles} /><span>{artworkFiles.length ? `${artworkFiles.length} image${artworkFiles.length === 1 ? "" : "s"} selected` : "Choose artwork image files"}</span></label><label>Title <input value={artworkTitle} disabled={artworkFiles.length > 1} onChange={(event) => setArtworkTitle(event.target.value)} placeholder={artworkFiles.length > 1 ? "Filename-derived for each file" : "Auto-generated from filename"} /></label><label>Category <select value={artworkCategory} onChange={(event) => { const nextCategory = event.target.value; setArtworkCategory(nextCategory); if (artworkTitle) { setArtworkDescription(descriptionFromFilename(artworkTitle, nextCategory)); setArtworkTags(tagsFromFilename(artworkTitle, nextCategory).join(", ")); } }}>{categoryNames.map((name) => <option key={name}>{name}</option>)}</select></label>{artworkFiles.length === 1 && <><label>Description <textarea rows={3} value={artworkDescription} onChange={(event) => setArtworkDescription(event.target.value)} placeholder="Auto-generated from filename" /></label><label>Tags <input value={artworkTags} onChange={(event) => setArtworkTags(event.target.value)} placeholder="Auto-generated from filename" /></label><div className="meta-preview"><strong>Automatic public metadata</strong><span>Meta title: INKPROWL — {artworkTitle}</span><span>Meta description: {(artworkDescription || descriptionFromFilename(artworkTitle, artworkCategory)).slice(0, 155)}</span></div></>}<button type="button" className="admin-primary-action" onClick={() => void publish("artwork", artworkFiles, artworkTitle)}><UploadCloud size={16} /> Upload & Publish images</button></article>
