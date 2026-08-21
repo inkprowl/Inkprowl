@@ -3,16 +3,14 @@ import { CheckCircle2, Film, ImagePlus, LoaderCircle, LogOut, Music2, Pencil, Pl
 import { artworks, categories } from "@/data/catalog";
 import { GENERATED_CATALOGUE_PATH, type ManagedCloudinaryAsset, type OwnerGeneratedCatalogue, dispatchCloudinaryDeletion, normalizeOwnerCatalogue, queueIncomingFile, readRepositoryJson, writeRepositoryJson } from "@/lib/githubOwnerSession";
 import { applyCategoryOperation, resolvedCategoryNames } from "@/lib/ownerCatalogueOps";
+import { authorizationPendingStatus, initialOwnerPublishStatus, type OwnerPublishStatus, publishFailureStatus, publishHandoffStatus, queuedForCloudinaryStatus, savingArtworkMetadataStatus, uploadToQueueStatus } from "@/lib/ownerPublishingStatus";
 
 type OwnerConnection = { token: string; identity: { login: string } };
 type PublishRole = "artwork" | "soundtrack" | "sponsor-video" | "logo" | "hero-banner";
-type PublishState = { percent: number; tone: "idle" | "working" | "success" | "error"; message: string };
 type InventoryArtwork = { slug: string; title: string; description: string; category: string; tags: string[]; imageUrl: string };
 type PendingPublish = { role: PublishRole; files: File[]; title: string; category: string; description?: string; tags?: string[] };
 type PendingMutation = { message: string; success: string; mutate: (next: OwnerGeneratedCatalogue) => void };
 type PendingDeletion = { assetKey: string; artwork?: InventoryArtwork };
-
-const initialState: PublishState = { percent: 0, tone: "idle", message: "Choose a file, review its filename-derived details, then select Upload & Publish." };
 
 function titleFromFilename(filename: string) {
   return filename.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim().replace(/\b\w/g, (letter) => letter.toUpperCase());
@@ -76,7 +74,7 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
   const [logoTitle, setLogoTitle] = useState("");
   const [heroBannerTitle, setHeroBannerTitle] = useState("");
   const [artworkCategory, setArtworkCategory] = useState(categories[0]?.name ?? "Business Animals");
-  const [status, setStatus] = useState<PublishState>(initialState);
+  const [status, setStatus] = useState<OwnerPublishStatus>(initialOwnerPublishStatus);
   const [pendingPublish, setPendingPublish] = useState<PendingPublish | null>(null);
   const [pendingMutation, setPendingMutation] = useState<PendingMutation | null>(null);
   const [pendingDeletion, setPendingDeletion] = useState<PendingDeletion | null>(null);
@@ -146,7 +144,7 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     const nextMutation = { message, success, mutate };
     if (!connection) {
       setPendingMutation(() => nextMutation);
-      setStatus({ percent: 5, tone: "working", message: "Authorise this save once. Your category or artwork change will be saved automatically when authorisation is confirmed." });
+      setStatus(authorizationPendingStatus("save"));
       requestAuthorization();
       return;
     }
@@ -162,16 +160,16 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
 
   async function queuePublish({ role, files, title, category, description, tags }: PendingPublish, activeConnection: OwnerConnection) {
     try {
-      setStatus({ percent: 8, tone: "working", message: "Preparing the secure publish handoff…" });
+      setStatus(publishHandoffStatus());
       for (let index = 0; index < files.length; index += 1) {
         const file = files[index]!;
         const derivedTitle = files.length === 1 ? title : titleFromFilename(file.name);
         const incomingFilename = filenameFor(role, file, derivedTitle, category);
-        setStatus({ percent: Math.round(15 + (index / files.length) * 65), tone: "working", message: `Uploading ${file.name} to the protected publish handoff…` });
+        setStatus(uploadToQueueStatus(file.name, index, files.length));
         await queueIncomingFile(activeConnection.token, incomingFilename, file);
       }
       if (role === "artwork") {
-        setStatus({ percent: 88, tone: "working", message: "Saving filename-derived artwork title, description, tags, and metadata…" });
+        setStatus(savingArtworkMetadataStatus());
         const document = await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(activeConnection.token, GENERATED_CATALOGUE_PATH);
         const next = normalizeOwnerCatalogue(document.value);
         for (const file of files) {
@@ -192,14 +190,14 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
         await writeRepositoryJson(activeConnection.token, GENERATED_CATALOGUE_PATH, next, "chore: save INKPROWL artwork upload metadata", document.sha);
         setCatalogue(next);
       }
-      setStatus({ percent: 100, tone: "success", message: `${files.length} ${files.length === 1 ? "file is" : "files are"} queued. The protected workflow now transfers it to permanent Cloudinary storage, writes the delivery URL to the catalogue, and rebuilds the public site.` });
+      setStatus(queuedForCloudinaryStatus(files.length));
       if (role === "artwork") { setArtworkFiles([]); setArtworkTitle(""); setArtworkDescription(""); setArtworkTags(""); }
       if (role === "soundtrack") { setSongFile(null); setSongTitle(""); }
       if (role === "sponsor-video") { setVideoFile(null); setVideoTitle(""); }
       if (role === "logo") { setLogoFile(null); setLogoTitle(""); }
       if (role === "hero-banner") { setHeroBannerFile(null); setHeroBannerTitle(""); }
     } catch (reason) {
-      setStatus({ percent: 0, tone: "error", message: reason instanceof Error ? reason.message : "The upload handoff failed. Your media was not published." });
+      setStatus(publishFailureStatus(reason instanceof Error ? reason.message : undefined));
     }
   }
 
@@ -209,7 +207,7 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     const nextPublish = { role, files, title, category: artworkCategory, description: artworkDescription, tags: artworkTags.split(",").map((tag) => tag.trim()).filter(Boolean) };
     if (!connection) {
       setPendingPublish(nextPublish);
-      setStatus({ percent: 5, tone: "working", message: "Authorise this upload once. Your selected file will start uploading automatically as soon as authorisation is confirmed." });
+      setStatus(authorizationPendingStatus("upload"));
       requestAuthorization();
       return;
     }

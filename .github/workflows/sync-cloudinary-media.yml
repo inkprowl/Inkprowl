@@ -56,4 +56,13 @@ jobs:
           git config user.email "actions@github.com"
           git add incoming client/src/data/generated-catalog.json
           git commit -m "chore: synchronize Cloudinary media catalogue"
-          git push
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt ${attempt} was superseded by a newer owner change; rebasing the generated catalogue commit."
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "Unable to publish generated Cloudinary catalogue changes after three attempts."
+          exit 1
