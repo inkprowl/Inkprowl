@@ -84,6 +84,29 @@ describe("INKPROWL owner GitHub session helpers", () => {
     expect(JSON.parse(String(retryWrite.body))).toMatchObject({ sha: "fresh-sha", message: "chore: retry catalogue save" });
   });
 
+  it("retries repeated stale revisions before saving the latest sponsor settings", async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(response({ content: "eyJzcG9uc29yZWRDYW1wYWlnbiI6e319", encoding: "base64", sha: "first-sha" }))
+      .mockResolvedValueOnce(response({ message: "client/src/data/generated-catalog.json does not match first-sha" }, 409))
+      .mockResolvedValueOnce(response({ content: "eyJzcG9uc29yZWRDYW1wYWlnbiI6e319", encoding: "base64", sha: "second-sha" }))
+      .mockResolvedValueOnce(response({ message: "client/src/data/generated-catalog.json does not match second-sha" }, 409))
+      .mockResolvedValueOnce(response({ content: "eyJzcG9uc29yZWRDYW1wYWlnbiI6e319", encoding: "base64", sha: "third-sha" }))
+      .mockResolvedValueOnce(response({ content: { sha: "saved-sha" } }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    const pending = mutateGeneratedCatalogue("session-token", "chore: update INKPROWL media settings", (next) => {
+      next.sponsoredCampaign = { label: "PRESENTED IN PARTNERSHIP", enabled: true };
+    });
+    await vi.runAllTimersAsync();
+
+    await expect(pending).resolves.toMatchObject({ sponsoredCampaign: { label: "PRESENTED IN PARTNERSHIP", enabled: true } });
+    expect(fetchMock).toHaveBeenCalledTimes(6);
+    const [, finalWrite] = fetchMock.mock.calls[5] as [string, RequestInit];
+    expect(JSON.parse(String(finalWrite.body))).toMatchObject({ sha: "third-sha", message: "chore: update INKPROWL media settings" });
+    vi.useRealTimers();
+  });
+
   it("queues binary media and dispatches the protected Cloudinary deletion workflow", async () => {
     const fetchMock = vi.fn().mockResolvedValueOnce(response({ content: { sha: "queue-sha" } })).mockResolvedValueOnce(response({}, 204));
     vi.stubGlobal("fetch", fetchMock);

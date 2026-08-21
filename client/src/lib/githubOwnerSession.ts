@@ -108,7 +108,7 @@ export async function mutateGeneratedCatalogue(
   token: string,
   message: string,
   mutate: (catalogue: OwnerGeneratedCatalogue) => void,
-  maxAttempts = 2,
+  maxAttempts = 4,
 ) {
   let lastFailure: unknown;
   for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
@@ -120,10 +120,12 @@ export async function mutateGeneratedCatalogue(
       return next;
     } catch (reason) {
       lastFailure = reason;
-      if (!isStaleRevisionError(reason) || attempt === maxAttempts - 1) throw reason;
+      if (!isStaleRevisionError(reason)) throw reason;
+      if (attempt < maxAttempts - 1) await new Promise<void>((resolve) => globalThis.setTimeout(resolve, 200 * (attempt + 1)));
     }
   }
-  throw lastFailure instanceof Error ? lastFailure : new Error("The permanent catalogue change could not be saved.");
+  const detail = lastFailure instanceof Error ? lastFailure.message : "GitHub did not provide an error message.";
+  throw new Error(`The public catalogue changed repeatedly while saving. Please save once more; no catalogue content was changed. (${detail})`);
 }
 
 export async function queueIncomingFile(token: string, filename: string, file: File) {
