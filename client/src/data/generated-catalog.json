@@ -191,6 +191,54 @@
         "webp"
       ],
       "assetKey": "artwork:lion-vintage-in-pinestripe-suit-comic-art"
+    },
+    {
+      "slug": "chimpanzee-in-2d-line-art-vintage-fun-time",
+      "title": "Chimpanzee In 2D Line Art Vintage Fun Time",
+      "category": "Funny Animals",
+      "description": "A free INKPROWL edition of Chimpanzee In 2D Line Art Vintage Fun Time, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787309995/inkprowl/art--funny-animals--chimpanzee-in-2d-line-art-vintage-fun-time_ahofsu.png",
+      "orientation": "square",
+      "tags": [
+        "chimpanzee",
+        "line",
+        "art",
+        "vintage",
+        "fun",
+        "time"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:chimpanzee-in-2d-line-art-vintage-fun-time"
+    },
+    {
+      "slug": "chimpanzee-in-suit-office-humor-noir-line-art-2d",
+      "title": "Chimpanzee In Suit Office Humor Noir Line Art 2D",
+      "category": "Funny Animals",
+      "description": "A free INKPROWL edition of Chimpanzee In Suit Office Humor Noir Line Art 2D, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787309996/inkprowl/art--funny-animals--chimpanzee-in-suit-office-humor-noir-line-art-2d_gnmdjd.png",
+      "orientation": "square",
+      "tags": [
+        "chimpanzee",
+        "suit",
+        "office",
+        "humor",
+        "noir",
+        "line"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:chimpanzee-in-suit-office-humor-noir-line-art-2d"
     }
   ],
   "artworkOverrides": {
@@ -411,6 +459,16 @@
       "publicId": "inkprowl/art--mafia-bosses--lion-vintage-in-pinestripe-suit-comic-art_j2uijw",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787309942/inkprowl/art--mafia-bosses--lion-vintage-in-pinestripe-suit-comic-art_j2uijw.png"
+    },
+    "artwork:chimpanzee-in-2d-line-art-vintage-fun-time": {
+      "publicId": "inkprowl/art--funny-animals--chimpanzee-in-2d-line-art-vintage-fun-time_ahofsu",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787309995/inkprowl/art--funny-animals--chimpanzee-in-2d-line-art-vintage-fun-time_ahofsu.png"
+    },
+    "artwork:chimpanzee-in-suit-office-humor-noir-line-art-2d": {
+      "publicId": "inkprowl/art--funny-animals--chimpanzee-in-suit-office-humor-noir-line-art-2d_gnmdjd",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787309996/inkprowl/art--funny-animals--chimpanzee-in-suit-office-humor-noir-line-art-2d_gnmdjd.png"
     }
   }
 }
