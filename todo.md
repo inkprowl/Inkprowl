@@ -151,11 +151,11 @@
 - [x] Fix repeated stale GitHub catalogue revision recovery in advanced sponsor and advertising settings saves.
 - [x] Remove deleted artwork metadata records from the generated catalogue so permanent Cloudinary deletion leaves no stale admin-inventory tombstone.
 - [x] Add explicit admin copy clarifying that the ID/password screen is a local visual gate and permanent writes require separate action-time owner authorization.
-- [ ] Prevent browser-cached GitHub catalogue reads from exhausting retry attempts after a successful owner save.
-- [ ] Complete and document a live sponsor-campaign save-and-restore audit through the branded Music & Video panel, including the GitHub catalogue write and Pages rebuild.
-- [ ] Exercise an artwork-desk category change end to end and record the persisted catalogue result.
-- [ ] Align the visible media-status messaging with the actual queue, Cloudinary synchronization, and GitHub Pages completion states, then re-audit each upload control.
+- [x] Prevent browser-cached GitHub catalogue reads from exhausting retry attempts after a successful owner save.
+- [x] Complete and document a live sponsor-campaign save-and-restore audit through the branded Music & Video panel, including the GitHub catalogue write and Pages rebuild.
+- [x] Exercise an artwork-desk category change end to end and record the persisted catalogue result.
+- [x] Align the visible media-status messaging with the actual queue, Cloudinary synchronization, and GitHub Pages completion states, then re-audit each upload control.
 - [x] Remove browser sessionStorage use for owner publishing authorization; retain Cloudinary as the sole permanent media store and require authorization per page load.
 - [x] Simplify visible owner-admin guidance to a clear login, choose-file, and Upload & Publish flow without raw GitHub or Cloudinary management steps.
 - [x] Remove the remaining framework sessionStorage fallback from the GitHub Pages client so no client-side storage is used.
-- [ ] Repair the memory-only authorization handoff so an approved pending upload or save automatically resumes without browser storage.
+- [x] Repair the memory-only authorization handoff so an approved pending upload or save automatically resumes without browser storage.
