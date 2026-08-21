@@ -114,11 +114,11 @@
 - [x] Put visible Artwork Upload & Save, Song Upload & Save, and Video Upload & Save controls on the first owner-admin screen.
 - [ ] Exercise artwork, song, and sponsor-video uploads end to end and verify visible per-file queued, progress, permanent-save, and failure feedback.
 - [x] Keep thumbnail artwork records visible beside the uploader with title, description, category, metadata, edit, and delete actions.
-- [ ] End-to-end verify category Add, Rename, and Retire/Delete controls persist to the generated catalogue and update the public gallery.
+- [x] End-to-end verify category Add, Rename, and Retire/Delete controls persist to the generated catalogue and update the public gallery.
 - [ ] Audit each visible owner-admin control individually and retain an unchecked item for any action not proven by a working permanent save, delete, or publish operation.
 - [ ] Diagnose and repair the live Upload & Publish buttons so selected files visibly request authorization when needed, queue to GitHub, and report Cloudinary publishing progress or a specific failure.
 - [x] Generate and visibly preview filename-derived artwork title, description, tags, meta title, and meta description before image upload, with editable fields.
-- [ ] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
+- [x] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
 - [x] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
 - [x] Validate category actions before requesting owner authorization so the dashboard immediately reports empty, duplicate, or invalid category changes.
 - [x] Fix category rename and deletion for owner-created categories so the live resolved category list, not only the base gallery list, is validated and persisted.
