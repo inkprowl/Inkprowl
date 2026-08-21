@@ -12,7 +12,12 @@
     "clientName": "Inkprowl Sample Sponsor Placement",
     "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
   },
-  "advertisingSettings": {},
+  "advertisingSettings": {
+    "adsenseEnabled": true,
+    "adsterraEnabled": false,
+    "adsenseCode": "",
+    "adsterraCode": ""
+  },
   "categories": [],
   "categoryAliases": {},
   "assets": {
