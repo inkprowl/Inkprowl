@@ -119,6 +119,30 @@
         "webp"
       ],
       "assetKey": "artwork:horse-giraffe-cowboy-style-bar-stance-2d-line-art"
+    },
+    {
+      "slug": "the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school",
+      "title": "The Wild Hoop Barbaer Shop 2D Line Art Comic Book Old School",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of The Wild Hoop Barbaer Shop 2D Line Art Comic Book Old School, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299242/inkprowl/art--business-animals--the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school_gfmx4t.jpg",
+      "orientation": "square",
+      "tags": [
+        "the",
+        "wild",
+        "hoop",
+        "barbaer",
+        "shop",
+        "line"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school"
     }
   ],
   "artworkOverrides": {
@@ -311,6 +335,11 @@
       "publicId": "inkprowl/art--vintage-comic-art--horse-giraffe-cowboy-style-bar-stance-2d-line-art_sfo7xw",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299211/inkprowl/art--vintage-comic-art--horse-giraffe-cowboy-style-bar-stance-2d-line-art_sfo7xw.jpg"
+    },
+    "artwork:the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school": {
+      "publicId": "inkprowl/art--business-animals--the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school_gfmx4t",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299242/inkprowl/art--business-animals--the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school_gfmx4t.jpg"
     }
   }
 }
