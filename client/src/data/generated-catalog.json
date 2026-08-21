@@ -20,8 +20,7 @@
   },
   "artworkMedia": {},
   "siteMedia": {
-    "soundtrackTitle": "Diagnostic Song",
-    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787298435/inkprowl/song--diagnostic-song_dooeqa.mp3"
+    "soundtrackTitle": "Curated sound"
   },
   "siteBranding": {},
   "sponsoredCampaign": {
@@ -37,11 +36,6 @@
     "Cross-Hatching": "BEAR & BULL MARKET"
   },
   "assets": {
-    "siteMedia:soundtrack": {
-      "publicId": "inkprowl/song--diagnostic-song_dooeqa",
-      "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787298435/inkprowl/song--diagnostic-song_dooeqa.mp3"
-    },
     "sponsoredCampaign:video": {
       "publicId": "inkprowl/sponsor-video--diagnostic-sponsor-video_x6ijof",
       "resourceType": "video",
