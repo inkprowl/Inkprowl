@@ -39,8 +39,7 @@
   },
   "artworkMedia": {},
   "siteMedia": {
-    "soundtrackTitle": "Song Audit Check",
-    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787284301/inkprowl/song--song-audit-check_abhcqd.mp3"
+    "soundtrackTitle": "Curated sound"
   },
   "siteBranding": {},
   "sponsoredCampaign": {
@@ -54,11 +53,6 @@
     "INKPROWL Audit Category": "Business Animals"
   },
   "assets": {
-    "siteMedia:soundtrack": {
-      "publicId": "inkprowl/song--song-audit-check_abhcqd",
-      "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787284301/inkprowl/song--song-audit-check_abhcqd.mp3"
-    },
     "sponsoredCampaign:video": {
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
       "resourceType": "video",
