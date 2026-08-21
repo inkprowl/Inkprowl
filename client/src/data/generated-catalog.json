@@ -24,22 +24,15 @@
   },
   "siteBranding": {},
   "sponsoredCampaign": {
-    "enabled": true,
+    "enabled": false,
     "label": "PRESENTED IN PARTNERSHIP",
     "clientName": "Diagnostic Sponsor Video",
-    "clientUrl": "https://client-site.example",
-    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787298542/inkprowl/sponsor-video--diagnostic-sponsor-video_x6ijof.mp4"
+    "clientUrl": "https://client-site.example"
   },
   "advertisingSettings": {},
   "categories": [],
   "categoryAliases": {
     "Cross-Hatching": "BEAR & BULL MARKET"
   },
-  "assets": {
-    "sponsoredCampaign:video": {
-      "publicId": "inkprowl/sponsor-video--diagnostic-sponsor-video_x6ijof",
-      "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787298542/inkprowl/sponsor-video--diagnostic-sponsor-video_x6ijof.mp4"
-    }
-  }
+  "assets": {}
 }
