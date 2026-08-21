@@ -1,35 +1,387 @@
 {
-  "artworks": [],
-  "artworkOverrides": {},
+  "artworks": [
+    {
+      "slug": "gorilla-in-vintage-tailored-suit-comic-art",
+      "title": "Gorilla In Vintage Tailored Suit Comic Art",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Gorilla In Vintage Tailored Suit Comic Art, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299094/inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu.jpg",
+      "orientation": "square",
+      "tags": [
+        "gorilla",
+        "vintage",
+        "tailored",
+        "suit",
+        "comic",
+        "art"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:gorilla-in-vintage-tailored-suit-comic-art"
+    },
+    {
+      "slug": "honey-badger-gamblers-den-vintage-mafia-dealer-comic-art",
+      "title": "Honey Badger Gamblers Den Vintage Mafia Dealer Comic Art",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Honey Badger Gamblers Den Vintage Mafia Dealer Comic Art, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--honey-badger-gamblers-den-vintage-mafia-dealer-comic-art_a35yjz.jpg",
+      "orientation": "square",
+      "tags": [
+        "honey",
+        "badger",
+        "gamblers",
+        "den",
+        "vintage",
+        "mafia"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:honey-badger-gamblers-den-vintage-mafia-dealer-comic-art"
+    },
+    {
+      "slug": "hippo-premium-vintage-attire-line-art-comic-book-boss-character",
+      "title": "Hippo Premium Vintage Attire Line Art Comic Book Boss Character",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Hippo Premium Vintage Attire Line Art Comic Book Boss Character, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp.jpg",
+      "orientation": "square",
+      "tags": [
+        "hippo",
+        "premium",
+        "vintage",
+        "attire",
+        "line",
+        "art"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:hippo-premium-vintage-attire-line-art-comic-book-boss-character"
+    },
+    {
+      "slug": "female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer",
+      "title": "Female Leopard Lexi In Denim Jeans Vintage Comic Art Photographer",
+      "category": "Fashion Animals",
+      "description": "A free INKPROWL edition of Female Leopard Lexi In Denim Jeans Vintage Comic Art Photographer, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299170/inkprowl/art--fashion-animals--female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer_h7gvnq.jpg",
+      "orientation": "square",
+      "tags": [
+        "female",
+        "leopard",
+        "lexi",
+        "denim",
+        "jeans",
+        "vintage"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer"
+    },
+    {
+      "slug": "horse-giraffe-cowboy-style-bar-stance-2d-line-art",
+      "title": "Horse Giraffe Cowboy Style Bar Stance 2D Line Art",
+      "category": "Vintage Comic Art",
+      "description": "A free INKPROWL edition of Horse Giraffe Cowboy Style Bar Stance 2D Line Art, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299211/inkprowl/art--vintage-comic-art--horse-giraffe-cowboy-style-bar-stance-2d-line-art_sfo7xw.jpg",
+      "orientation": "square",
+      "tags": [
+        "horse",
+        "giraffe",
+        "cowboy",
+        "style",
+        "bar",
+        "stance"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:horse-giraffe-cowboy-style-bar-stance-2d-line-art"
+    },
+    {
+      "slug": "the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school",
+      "title": "The Wild Hoop Barbaer Shop 2D Line Art Comic Book Old School",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of The Wild Hoop Barbaer Shop 2D Line Art Comic Book Old School, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299242/inkprowl/art--business-animals--the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school_gfmx4t.jpg",
+      "orientation": "square",
+      "tags": [
+        "the",
+        "wild",
+        "hoop",
+        "barbaer",
+        "shop",
+        "line"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school"
+    },
+    {
+      "slug": "drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk",
+      "title": "Drink Hilarious Wolf And Fox Custom Tailored Dress Up Vintage Comic Style Roadside Talk",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Drink Hilarious Wolf And Fox Custom Tailored Dress Up Vintage Comic Style Roadside Talk, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn.jpg",
+      "orientation": "square",
+      "tags": [
+        "drink",
+        "hilarious",
+        "wolf",
+        "and",
+        "fox",
+        "custom"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk"
+    }
+  ],
+  "artworkOverrides": {
+    "upload-fetch-diagnostic": {
+      "title": "Upload Fetch Diagnostic",
+      "description": "A free INKPROWL business animals edition featuring Upload Fetch Diagnostic. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "upload",
+        "fetch",
+        "diagnostic",
+        "business",
+        "animals",
+        "inkprowl",
+        "animal art"
+      ],
+      "metaTitle": "INKPROWL ÃÂ¢ÃÂÃÂ Upload Fetch Diagnostic",
+      "metaDescription": "A free INKPROWL business animals edition featuring Upload Fetch Diagnostic. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage."
+    },
+    "gorilla-in-vintage-tailored-suit-comic-art": {
+      "title": "Gorilla In Vintage Tailored Suit Comic Art",
+      "description": "A free INKPROWL business animals edition featuring Gorilla In Vintage Tailored Suit Comic Art. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "gorilla",
+        "vintage",
+        "tailored",
+        "suit",
+        "comic",
+        "art",
+        "business",
+        "animals"
+      ],
+      "metaTitle": "INKPROWL — Gorilla In Vintage Tailored Suit Comic Art",
+      "metaDescription": "A free INKPROWL business animals edition featuring Gorilla In Vintage Tailored Suit Comic Art. Available in JPEG, PNG, and WebP directly from permanent Clo"
+    },
+    "honey-badger-gamblers-den-vintage-mafia-dealer-comic-art": {
+      "title": "Honey Badger Gamblers Den Vintage Mafia Dealer Comic Art",
+      "description": "A free INKPROWL business animals edition featuring Honey Badger Gamblers Den Vintage Mafia Dealer Comic Art. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "honey",
+        "badger",
+        "gamblers",
+        "den",
+        "vintage",
+        "mafia",
+        "dealer",
+        "comic"
+      ],
+      "metaTitle": "INKPROWL — Honey Badger Gamblers Den Vintage Mafia Dealer Comic Art",
+      "metaDescription": "A free INKPROWL business animals edition featuring Honey Badger Gamblers Den Vintage Mafia Dealer Comic Art. Available in JPEG, PNG, and WebP directly from"
+    },
+    "hippo-premium-vintage-attire-line-art-comic-book-boss-character": {
+      "title": "Hippo Premium Vintage Attire Line Art Comic Book Boss Character",
+      "description": "A free INKPROWL business animals edition featuring Hippo Premium Vintage Attire Line Art Comic Book Boss Character. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "hippo",
+        "premium",
+        "vintage",
+        "attire",
+        "line",
+        "art",
+        "comic",
+        "book"
+      ],
+      "metaTitle": "INKPROWL — Hippo Premium Vintage Attire Line Art Comic Book Boss Character",
+      "metaDescription": "A free INKPROWL business animals edition featuring Hippo Premium Vintage Attire Line Art Comic Book Boss Character. Available in JPEG, PNG, and WebP direct"
+    },
+    "female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer": {
+      "title": "Female Leopard Lexi In Denim & Jeans Vintage Comic Art Photographer",
+      "description": "A free INKPROWL fashion animals edition featuring Female Leopard Lexi In Denim & Jeans Vintage Comic Art Photographer. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Fashion Animals",
+      "tags": [
+        "female",
+        "leopard",
+        "lexi",
+        "denim",
+        "jeans",
+        "vintage",
+        "comic",
+        "art"
+      ],
+      "metaTitle": "INKPROWL — Female Leopard Lexi In Denim & Jeans Vintage Comic Art Photographer",
+      "metaDescription": "A free INKPROWL fashion animals edition featuring Female Leopard Lexi In Denim & Jeans Vintage Comic Art Photographer. Available in JPEG, PNG, and WebP dir"
+    },
+    "horse-giraffe-cowboy-style-bar-stance-2d-line-art": {
+      "title": "Horse & Giraffe Cowboy Style Bar Stance 2D Line Art",
+      "description": "A free INKPROWL vintage comic art edition featuring Horse & Giraffe Cowboy Style Bar Stance 2D Line Art. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Vintage Comic Art",
+      "tags": [
+        "horse",
+        "giraffe",
+        "cowboy",
+        "style",
+        "bar",
+        "stance",
+        "line",
+        "art"
+      ],
+      "metaTitle": "INKPROWL — Horse & Giraffe Cowboy Style Bar Stance 2D Line Art",
+      "metaDescription": "A free INKPROWL vintage comic art edition featuring Horse & Giraffe Cowboy Style Bar Stance 2D Line Art. Available in JPEG, PNG, and WebP directly from per"
+    },
+    "the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school": {
+      "title": "The Wild Hoop Barbaer Shop 2D Line Art Comic Book Old School",
+      "description": "A free INKPROWL business animals edition featuring The Wild Hoop Barbaer Shop 2D Line Art Comic Book Old School. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "the",
+        "wild",
+        "hoop",
+        "barbaer",
+        "shop",
+        "line",
+        "art",
+        "comic"
+      ],
+      "metaTitle": "INKPROWL — The Wild Hoop Barbaer Shop 2D Line Art Comic Book Old School",
+      "metaDescription": "A free INKPROWL business animals edition featuring The Wild Hoop Barbaer Shop 2D Line Art Comic Book Old School. Available in JPEG, PNG, and WebP directly "
+    },
+    "drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk": {
+      "title": "Drink & Hilarious Wolf And Fox Custom Tailored Dress Up Vintage. Comic Style Roadside Talk",
+      "description": "A free INKPROWL business animals edition featuring Drink & Hilarious Wolf And Fox Custom Tailored Dress Up Vintage. Comic Style Roadside Talk. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "drink",
+        "hilarious",
+        "wolf",
+        "and",
+        "fox",
+        "custom",
+        "tailored",
+        "dress"
+      ],
+      "metaTitle": "INKPROWL — Drink & Hilarious Wolf And Fox Custom Tailored Dress Up Vintage. Comic Style Roadside Talk",
+      "metaDescription": "A free INKPROWL business animals edition featuring Drink & Hilarious Wolf And Fox Custom Tailored Dress Up Vintage. Comic Style Roadside Talk. Available in"
+    }
+  },
   "artworkMedia": {},
   "siteMedia": {
-    "soundtrackTitle": "Inkprowl Sample Soundtrack",
-    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
+    "soundtrackTitle": "New Song Inkprowl",
+    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301252/inkprowl/song--new-song-inkprowl_o6uhk0.mp3"
   },
   "siteBranding": {
-    "heroFeaturedLabel": "01 — FEATURED EDITION",
-    "heroFeaturedTitle": "Panther in Pinstripe Suit"
+    "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301013/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q.png",
+    "heroBannerUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301111/inkprowl/hero-banner--tiger-driving-a-transport-truck-vintage-comic-art_xcrgfk.png"
   },
   "sponsoredCampaign": {
     "enabled": true,
     "label": "PRESENTED IN PARTNERSHIP",
-    "clientName": "Inkprowl Sample Sponsor Placement",
+    "clientName": "Vid 20260604 Wa0295",
     "clientUrl": "https://client-site.example",
-    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301360/inkprowl/sponsor-video--vid-20260604-wa0295_wosg9b.mp4"
   },
   "advertisingSettings": {},
   "categories": [],
-  "categoryAliases": {},
+  "categoryAliases": {
+    "Cross-Hatching": "BEAR & BULL MARKET"
+  },
   "assets": {
     "siteMedia:soundtrack": {
-      "publicId": "inkprowl/song--inkprowl-sample-soundtrack_j8d78y",
+      "publicId": "inkprowl/song--new-song-inkprowl_o6uhk0",
       "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301252/inkprowl/song--new-song-inkprowl_o6uhk0.mp3"
     },
     "sponsoredCampaign:video": {
-      "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
+      "publicId": "inkprowl/sponsor-video--vid-20260604-wa0295_wosg9b",
       "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301360/inkprowl/sponsor-video--vid-20260604-wa0295_wosg9b.mp4"
+    },
+    "artwork:gorilla-in-vintage-tailored-suit-comic-art": {
+      "publicId": "inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299094/inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu.jpg"
+    },
+    "artwork:honey-badger-gamblers-den-vintage-mafia-dealer-comic-art": {
+      "publicId": "inkprowl/art--business-animals--honey-badger-gamblers-den-vintage-mafia-dealer-comic-art_a35yjz",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--honey-badger-gamblers-den-vintage-mafia-dealer-comic-art_a35yjz.jpg"
+    },
+    "artwork:hippo-premium-vintage-attire-line-art-comic-book-boss-character": {
+      "publicId": "inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp.jpg"
+    },
+    "artwork:female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer": {
+      "publicId": "inkprowl/art--fashion-animals--female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer_h7gvnq",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299170/inkprowl/art--fashion-animals--female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer_h7gvnq.jpg"
+    },
+    "artwork:horse-giraffe-cowboy-style-bar-stance-2d-line-art": {
+      "publicId": "inkprowl/art--vintage-comic-art--horse-giraffe-cowboy-style-bar-stance-2d-line-art_sfo7xw",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299211/inkprowl/art--vintage-comic-art--horse-giraffe-cowboy-style-bar-stance-2d-line-art_sfo7xw.jpg"
+    },
+    "artwork:the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school": {
+      "publicId": "inkprowl/art--business-animals--the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school_gfmx4t",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299242/inkprowl/art--business-animals--the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school_gfmx4t.jpg"
+    },
+    "siteBranding:logo": {
+      "publicId": "inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301013/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q.png"
+    },
+    "artwork:drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk": {
+      "publicId": "inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn.jpg"
+    },
+    "siteBranding:heroBanner": {
+      "publicId": "inkprowl/hero-banner--tiger-driving-a-transport-truck-vintage-comic-art_xcrgfk",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301111/inkprowl/hero-banner--tiger-driving-a-transport-truck-vintage-comic-art_xcrgfk.png"
     }
   }
 }
