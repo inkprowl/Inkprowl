@@ -121,6 +121,7 @@
 - [ ] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
 - [ ] Add an explicit Delete image action for each uploaded artwork and verify protected permanent Cloudinary removal feedback.
 - [ ] Simplify the post-login owner journey to one clear first-save authorization handoff that automatically resumes the selected action and avoids duplicate technical prompts.
+- [ ] Repair the currently inactive Image Upload, Song Upload, Video Upload, Category Add/Rename/Delete, and Delete image actions with one verified live permanent workflow.
 - [x] Repair the public artwork download panel with three separate working Cloudinary download buttons for JPEG, PNG, and WebP.
 - [ ] Verify that each media action reports real GitHub queue, Cloudinary transfer, and public-site completion states during execution.
 - [x] Remove the visible GitHub token connection panel from the owner dashboard and request secure authorization only when a permanent action is selected.
