@@ -14,7 +14,7 @@
         "inkprowl",
         "animal art"
       ],
-      "metaTitle": "INKPROWL — Art Business Animals Authorization Check",
+      "metaTitle": "INKPROWL â Art Business Animals Authorization Check",
       "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Authorization Check. Available in JPEG, PNG, and WebP directly from permanent Cloud",
       "isPublished": false
     },
@@ -32,7 +32,7 @@
         "inkprowl",
         "animal art"
       ],
-      "metaTitle": "INKPROWL — Art Business Animals Delete Control Check",
+      "metaTitle": "INKPROWL â Art Business Animals Delete Control Check",
       "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Delete Control Check. Available in JPEG, PNG, and WebP directly from permanent Clou",
       "isPublished": false
     }
@@ -49,7 +49,12 @@
     "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
   },
   "advertisingSettings": {},
-  "categories": [],
+  "categories": [
+    {
+      "name": "Advanced Audit Category",
+      "icon": "✦"
+    }
+  ],
   "categoryAliases": {
     "INKPROWL Audit Category": "Business Animals"
   },
