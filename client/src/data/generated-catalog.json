@@ -420,7 +420,7 @@
   },
   "advertisingSettings": {
     "adsenseEnabled": false,
-    "adsterraEnabled": false,
+    "adsterraEnabled": true,
     "adsenseCode": "",
     "adsterraCode": "",
     "placements": {},
