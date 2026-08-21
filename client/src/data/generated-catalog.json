@@ -308,8 +308,8 @@
   },
   "artworkMedia": {},
   "siteMedia": {
-    "soundtrackTitle": "Inkprowl Sample Soundtrack",
-    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
+    "soundtrackTitle": "New Song Inkprowl",
+    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301252/inkprowl/song--new-song-inkprowl_o6uhk0.mp3"
   },
   "siteBranding": {
     "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301013/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q.png",
@@ -329,9 +329,9 @@
   },
   "assets": {
     "siteMedia:soundtrack": {
-      "publicId": "inkprowl/song--inkprowl-sample-soundtrack_j8d78y",
+      "publicId": "inkprowl/song--new-song-inkprowl_o6uhk0",
       "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301252/inkprowl/song--new-song-inkprowl_o6uhk0.mp3"
     },
     "sponsoredCampaign:video": {
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
