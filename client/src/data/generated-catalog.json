@@ -409,7 +409,7 @@
   },
   "siteBranding": {
     "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301013/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q.png",
-    "heroBannerUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787313541/inkprowl/hero-banner--gemini-generated-image-8ro1yi8ro1yi8ro1_bskbau.png",
+    "heroBannerUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787318833/inkprowl/hero-banner--tiger-and-hyena-corporate-attire_rwz6ua.jpg",
     "heroFeaturedLabel": "LIMITED  EDITION",
     "heroFeaturedTitle": "TIGER AND HUENA CORPORATE ATTIRE"
   },
@@ -502,9 +502,9 @@
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn.jpg"
     },
     "siteBranding:heroBanner": {
-      "publicId": "inkprowl/hero-banner--gemini-generated-image-8ro1yi8ro1yi8ro1_bskbau",
+      "publicId": "inkprowl/hero-banner--tiger-and-hyena-corporate-attire_rwz6ua",
       "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787313541/inkprowl/hero-banner--gemini-generated-image-8ro1yi8ro1yi8ro1_bskbau.png"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787318833/inkprowl/hero-banner--tiger-and-hyena-corporate-attire_rwz6ua.jpg"
     },
     "artwork:lion-vintage-in-pinestripe-suit-comic-art": {
       "publicId": "inkprowl/art--mafia-bosses--lion-vintage-in-pinestripe-suit-comic-art_j2uijw",
