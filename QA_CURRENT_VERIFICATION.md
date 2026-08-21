@@ -25,3 +25,5 @@ Following the immediate-follow-up repair release, the branded owner manager succ
 After the deterministic-repair deployment, the browser retained the owner publishing-session key across the page reload; the admin’s owner-identity resume check runs asynchronously before showing its ready state.
 
 The resumed deployed owner session then showed **Publishing ready · inkprowl** and loaded the permanent sponsor label **PRESENTED IN PARTNERSHIP**, the sample sponsor client, the approved HTTPS destination, and the enabled campaign switch in the branded Music & Video manager.
+
+Release `4af75c169792adbbc7278b84a2251cce4dbcc88f` was loaded from the live GitHub Pages admin URL. The branded sign-in page visibly presents the simplified **log in → choose a file → Upload & Publish** guidance and explicitly confirms that a refresh requires a new login and authorisation, while no token or media is written to local or session storage. The configured visual owner ID and password were accepted in the live form, ready to open the upload-first dashboard.

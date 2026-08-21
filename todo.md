@@ -155,6 +155,6 @@
 - [ ] Complete and document a live sponsor-campaign save-and-restore audit through the branded Music & Video panel, including the GitHub catalogue write and Pages rebuild.
 - [ ] Exercise an artwork-desk category change end to end and record the persisted catalogue result.
 - [ ] Align the visible media-status messaging with the actual queue, Cloudinary synchronization, and GitHub Pages completion states, then re-audit each upload control.
-- [ ] Remove browser sessionStorage use for owner publishing authorization; retain Cloudinary as the sole permanent media store and require authorization per page load.
-- [ ] Simplify visible owner-admin guidance to a clear login, choose-file, and Upload & Publish flow without raw GitHub or Cloudinary management steps.
-- [ ] Remove the remaining framework sessionStorage fallback from the GitHub Pages client so no client-side storage is used.
+- [x] Remove browser sessionStorage use for owner publishing authorization; retain Cloudinary as the sole permanent media store and require authorization per page load.
+- [x] Simplify visible owner-admin guidance to a clear login, choose-file, and Upload & Publish flow without raw GitHub or Cloudinary management steps.
+- [x] Remove the remaining framework sessionStorage fallback from the GitHub Pages client so no client-side storage is used.
