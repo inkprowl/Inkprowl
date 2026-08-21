@@ -312,7 +312,7 @@
     "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
   },
   "siteBranding": {
-    "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_vri2ll.png"
+    "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301013/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q.png"
   },
   "sponsoredCampaign": {
     "enabled": true,
@@ -368,9 +368,9 @@
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299242/inkprowl/art--business-animals--the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school_gfmx4t.jpg"
     },
     "siteBranding:logo": {
-      "publicId": "inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_vri2ll",
+      "publicId": "inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q",
       "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_vri2ll.png"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301013/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q.png"
     },
     "artwork:drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk": {
       "publicId": "inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn",
