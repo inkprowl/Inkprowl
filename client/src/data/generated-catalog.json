@@ -42,9 +42,7 @@
     "soundtrackTitle": "Inkprowl Sample Soundtrack",
     "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
   },
-  "siteBranding": {
-    "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787285037/inkprowl/logo--logo-audit-check_ezqotz.png"
-  },
+  "siteBranding": {},
   "sponsoredCampaign": {
     "enabled": true,
     "clientName": "Inkprowl Sample Sponsor Placement",
@@ -65,11 +63,6 @@
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
       "resourceType": "video",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
-    },
-    "siteBranding:logo": {
-      "publicId": "inkprowl/logo--logo-audit-check_ezqotz",
-      "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787285037/inkprowl/logo--logo-audit-check_ezqotz.png"
     }
   }
 }
