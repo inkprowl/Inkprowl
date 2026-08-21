@@ -122,7 +122,7 @@
 - [x] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
 - [x] Validate category actions before requesting owner authorization so the dashboard immediately reports empty, duplicate, or invalid category changes.
 - [x] Fix category rename and deletion for owner-created categories so the live resolved category list, not only the base gallery list, is validated and persisted.
-- [ ] Add an explicit Delete image action for each uploaded artwork and verify protected permanent Cloudinary removal feedback.
+- [x] Add an explicit Delete image action for each uploaded artwork and verify protected permanent Cloudinary removal feedback.
 - [ ] Simplify the post-login owner journey to one clear first-save authorization handoff that automatically resumes the selected action and avoids duplicate technical prompts.
 - [ ] Repair the currently inactive Image Upload, Song Upload, Video Upload, Category Add/Rename/Delete, and Delete image actions with one verified live permanent workflow.
 - [x] Repair the public artwork download panel with three separate working Cloudinary download buttons for JPEG, PNG, and WebP.
@@ -140,3 +140,4 @@
 - [x] Harden the Cloudinary workflow against concurrent owner queue updates and complete the controlled valid-image upload plus cleanup audit.
 - [x] Trigger a GitHub Pages rebuild after every successful Cloudinary catalogue mutation so approved owner changes become visible on the public site.
 - [x] Trigger a GitHub Pages rebuild after every successful Cloudinary catalogue mutation so approved owner changes become visible on the public site.
+- [x] Complete a controlled live Artwork Inventory deletion: visible Delete image permanently action, Cloudinary removal workflow, generated catalogue cleanup, and public-gallery disappearance.
