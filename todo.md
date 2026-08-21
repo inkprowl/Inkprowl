@@ -132,8 +132,8 @@
 - [x] Add clearly visible file-only logo and hero-banner upload controls to the initial INKPROWL owner dashboard and verify their owner-authorization handoff.
 - [x] Publish and live-verify the visible logo and hero-banner controls on the GitHub Pages owner dashboard.
 - [x] End-to-end authorize one safe test upload and verify the GitHub queue creation plus visible queued, publishing, and success-or-failure status messaging.
-- [ ] Add automated coverage for the owner-dashboard queued, publishing, success, and failure status transitions after authorization.
+- [x] Add automated coverage for the owner-dashboard queued, publishing, success, and failure status transitions after authorization.
 - [x] Add automated coverage for the owner-dashboard queued, publishing, success, and failure status transitions after authorization.
 - [x] Harden the Cloudinary workflow against concurrent owner queue updates and complete the controlled valid-image upload plus cleanup audit.
-- [ ] Trigger a GitHub Pages rebuild after every successful Cloudinary catalogue mutation so approved owner changes become visible on the public site.
+- [x] Trigger a GitHub Pages rebuild after every successful Cloudinary catalogue mutation so approved owner changes become visible on the public site.
 - [x] Trigger a GitHub Pages rebuild after every successful Cloudinary catalogue mutation so approved owner changes become visible on the public site.
