@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { applyCategoryOperation, resolvedCategoryNames } from "./ownerCatalogueOps";
+import { applyCategoryOperation, categoryOperationValidationMessage, resolvedCategoryNames } from "./ownerCatalogueOps";
 import { emptyOwnerCatalogue } from "./githubOwnerSession";
 
 describe("owner category operations", () => {
@@ -29,5 +29,12 @@ describe("owner category operations", () => {
     applyCategoryOperation(catalogue, baseCategories, "retire", "Seasonal Animals", "Business Animals");
     expect(resolvedCategoryNames(baseCategories, catalogue)).not.toContain("Seasonal Animals");
     expect(catalogue.artworks[0]?.category).toBe("Business Animals");
+  });
+
+  it("returns an immediate validation error without mutating the current catalogue", () => {
+    const catalogue = emptyOwnerCatalogue();
+    expect(categoryOperationValidationMessage(catalogue, baseCategories, "add", "", "")).toBe("Enter a category label before saving.");
+    expect(categoryOperationValidationMessage(catalogue, baseCategories, "add", "", "Business Animals")).toBe("That category already exists.");
+    expect(catalogue.categories).toEqual([]);
   });
 });

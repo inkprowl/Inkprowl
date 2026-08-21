@@ -46,3 +46,12 @@ export function applyCategoryOperation(catalogue: OwnerGeneratedCatalogue, baseN
   }
   return target;
 }
+
+export function categoryOperationValidationMessage(catalogue: OwnerGeneratedCatalogue, baseNames: string[], operation: CategoryOperation, source: string, label: string) {
+  try {
+    applyCategoryOperation(structuredClone(catalogue), baseNames, operation, source, label);
+    return "";
+  } catch (reason) {
+    return reason instanceof Error ? reason.message : "This category change is not valid.";
+  }
+}

@@ -119,6 +119,8 @@
 - [ ] Diagnose and repair the live Upload & Publish buttons so selected files visibly request authorization when needed, queue to GitHub, and report Cloudinary publishing progress or a specific failure.
 - [x] Generate and visibly preview filename-derived artwork title, description, tags, meta title, and meta description before image upload, with editable fields.
 - [ ] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
+- [x] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
+- [x] Validate category actions before requesting owner authorization so the dashboard immediately reports empty, duplicate, or invalid category changes.
 - [ ] Add an explicit Delete image action for each uploaded artwork and verify protected permanent Cloudinary removal feedback.
 - [ ] Simplify the post-login owner journey to one clear first-save authorization handoff that automatically resumes the selected action and avoids duplicate technical prompts.
 - [ ] Repair the currently inactive Image Upload, Song Upload, Video Upload, Category Add/Rename/Delete, and Delete image actions with one verified live permanent workflow.

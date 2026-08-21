@@ -10,10 +10,52 @@ export const initialOwnerPublishStatus: OwnerPublishStatus = {
   message: "Choose a file, review its filename-derived details, then select Upload & Publish.",
 };
 
-export function authorizationPendingStatus(kind: "upload" | "save") : OwnerPublishStatus {
+export function authorizationPendingStatus(kind: "upload" | "save" | "deletion") : OwnerPublishStatus {
   return kind === "upload"
     ? { percent: 5, tone: "working", message: "Authorise this upload once. Your selected file will start uploading automatically as soon as authorisation is confirmed." }
-    : { percent: 5, tone: "working", message: "Authorise this save once. Your category or artwork change will be saved automatically when authorisation is confirmed." };
+    : kind === "save"
+      ? { percent: 5, tone: "working", message: "Authorise this save once. Your category or artwork change will be saved automatically when authorisation is confirmed." }
+      : { percent: 5, tone: "working", message: "Authorise this deletion once. The selected Cloudinary removal will begin automatically when authorisation is confirmed." };
+}
+
+export const savingCatalogueStatus = (): OwnerPublishStatus => ({
+  percent: 25,
+  tone: "working",
+  message: "Saving your permanent catalogue change…",
+});
+
+export function catalogueSavedStatus(success: string): OwnerPublishStatus {
+  return {
+    percent: 100,
+    tone: "success",
+    message: `${success} GitHub Pages will rebuild automatically from this permanent catalogue commit.`,
+  };
+}
+
+export const preparingArtworkDeletionStatus = (): OwnerPublishStatus => ({
+  percent: 18,
+  tone: "working",
+  message: "Preparing the permanent Cloudinary image deletion…",
+});
+
+export const requestingCloudinaryDeletionStatus = (): OwnerPublishStatus => ({
+  percent: 45,
+  tone: "working",
+  message: "Requesting permanent Cloudinary removal…",
+});
+
+export const cloudinaryDeletionQueuedStatus = (): OwnerPublishStatus => ({
+  percent: 100,
+  tone: "success",
+  message: "Removal requested. The protected workflow will delete the Cloudinary asset, update the catalogue, and rebuild the site.",
+});
+
+export function deletionFailureStatus(reason?: string): OwnerPublishStatus {
+  return {
+    percent: 0,
+    tone: "error",
+    message: reason || "The permanent removal request failed.",
+  };
 }
 
 export const publishHandoffStatus = (): OwnerPublishStatus => ({

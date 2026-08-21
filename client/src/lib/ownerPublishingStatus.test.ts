@@ -1,10 +1,15 @@
 import { describe, expect, it } from "vitest";
 import {
   authorizationPendingStatus,
+  catalogueSavedStatus,
+  cloudinaryDeletionQueuedStatus,
+  deletionFailureStatus,
   publishFailureStatus,
   publishHandoffStatus,
   queuedForCloudinaryStatus,
+  requestingCloudinaryDeletionStatus,
   savingArtworkMetadataStatus,
+  savingCatalogueStatus,
   uploadToQueueStatus,
 } from "./ownerPublishingStatus";
 
@@ -13,6 +18,7 @@ describe("INKPROWL owner publishing status transitions", () => {
     expect(authorizationPendingStatus("upload")).toMatchObject({ percent: 5, tone: "working" });
     expect(authorizationPendingStatus("upload").message).toContain("selected file will start uploading automatically");
     expect(authorizationPendingStatus("save").message).toContain("category or artwork change");
+    expect(authorizationPendingStatus("deletion").message).toContain("Cloudinary removal");
   });
 
   it("reports the protected queue handoff and progress for each queued file", () => {
@@ -26,5 +32,13 @@ describe("INKPROWL owner publishing status transitions", () => {
     expect(queuedForCloudinaryStatus(2).message).toContain("2 files are queued");
     expect(publishFailureStatus("GitHub queue rejected the request.")).toEqual({ percent: 0, tone: "error", message: "GitHub queue rejected the request." });
     expect(publishFailureStatus().message).toContain("not published");
+  });
+
+  it("reports category-save and permanent-deletion states without claiming completion too early", () => {
+    expect(savingCatalogueStatus()).toMatchObject({ percent: 25, tone: "working" });
+    expect(catalogueSavedStatus("Category renamed.").message).toContain("GitHub Pages will rebuild automatically");
+    expect(requestingCloudinaryDeletionStatus()).toMatchObject({ percent: 45, tone: "working" });
+    expect(cloudinaryDeletionQueuedStatus().message).toContain("protected workflow will delete");
+    expect(deletionFailureStatus().message).toContain("permanent removal request failed");
   });
 });
