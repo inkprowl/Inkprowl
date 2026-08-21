@@ -121,6 +121,7 @@
 - [ ] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
 - [x] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
 - [x] Validate category actions before requesting owner authorization so the dashboard immediately reports empty, duplicate, or invalid category changes.
+- [x] Fix category rename and deletion for owner-created categories so the live resolved category list, not only the base gallery list, is validated and persisted.
 - [ ] Add an explicit Delete image action for each uploaded artwork and verify protected permanent Cloudinary removal feedback.
 - [ ] Simplify the post-login owner journey to one clear first-save authorization handoff that automatically resumes the selected action and avoids duplicate technical prompts.
 - [ ] Repair the currently inactive Image Upload, Song Upload, Video Upload, Category Add/Rename/Delete, and Delete image actions with one verified live permanent workflow.

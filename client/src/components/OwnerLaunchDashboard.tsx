@@ -153,13 +153,15 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
 
   function saveCategoryAction() {
     const currentCatalogue = catalogue ?? normalizeOwnerCatalogue({});
-    const validation = categoryOperationValidationMessage(currentCatalogue, categories.map((category) => category.name), categoryMode, categorySource, categoryLabel);
+    const baseCategoryNames = categories.map((category) => category.name);
+    const liveCategoryNames = resolvedCategoryNames(baseCategoryNames, currentCatalogue);
+    const validation = categoryOperationValidationMessage(currentCatalogue, liveCategoryNames, categoryMode, categorySource, categoryLabel);
     if (validation) {
       setStatus(publishFailureStatus(validation));
       return;
     }
     void mutateCatalogue("chore: update INKPROWL categories", categoryMode === "add" ? "Category added." : categoryMode === "rename" ? "Category renamed." : "Category deleted and editions moved.", (next) => {
-      applyCategoryOperation(next, categories.map((category) => category.name), categoryMode, categorySource, categoryLabel);
+      applyCategoryOperation(next, liveCategoryNames, categoryMode, categorySource, categoryLabel);
     });
   }
 

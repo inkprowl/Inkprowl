@@ -31,6 +31,18 @@ describe("owner category operations", () => {
     expect(catalogue.artworks[0]?.category).toBe("Business Animals");
   });
 
+  it("permits an owner-created category to be renamed and then retired using the live resolved list", () => {
+    const catalogue = emptyOwnerCatalogue();
+    applyCategoryOperation(catalogue, baseCategories, "add", "", "INKPROWL Audit Category");
+    const liveNames = resolvedCategoryNames(baseCategories, catalogue);
+    expect(categoryOperationValidationMessage(catalogue, liveNames, "rename", "INKPROWL Audit Category", "INKPROWL Audit Category Renamed")).toBe("");
+    applyCategoryOperation(catalogue, liveNames, "rename", "INKPROWL Audit Category", "INKPROWL Audit Category Renamed");
+    const renamedLiveNames = resolvedCategoryNames(baseCategories, catalogue);
+    expect(categoryOperationValidationMessage(catalogue, renamedLiveNames, "retire", "INKPROWL Audit Category Renamed", "Business Animals")).toBe("");
+    applyCategoryOperation(catalogue, renamedLiveNames, "retire", "INKPROWL Audit Category Renamed", "Business Animals");
+    expect(resolvedCategoryNames(baseCategories, catalogue)).not.toContain("INKPROWL Audit Category Renamed");
+  });
+
   it("returns an immediate validation error without mutating the current catalogue", () => {
     const catalogue = emptyOwnerCatalogue();
     expect(categoryOperationValidationMessage(catalogue, baseCategories, "add", "", "")).toBe("Enter a category label before saving.");
