@@ -525,11 +525,6 @@
       "publicId": "inkprowl/art--vintage-comic-art--cheetah-in-line-art-ink-vintage-comic-style-with-trophy_o3uuet",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787310020/inkprowl/art--vintage-comic-art--cheetah-in-line-art-ink-vintage-comic-style-with-trophy_o3uuet.png"
-    },
-    "artwork:buffalo-tailor-shop": {
-      "publicId": "buffalo-tailor-shop",
-      "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241850/buffalo-tailor-shop.png"
     }
   }
 }
