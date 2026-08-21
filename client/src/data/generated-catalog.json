@@ -167,6 +167,30 @@
         "webp"
       ],
       "assetKey": "artwork:drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk"
+    },
+    {
+      "slug": "lion-vintage-in-pinestripe-suit-comic-art",
+      "title": "Lion Vintage In Pinestripe Suit Comic Art",
+      "category": "Mafia Bosses",
+      "description": "A free INKPROWL edition of Lion Vintage In Pinestripe Suit Comic Art, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787309942/inkprowl/art--mafia-bosses--lion-vintage-in-pinestripe-suit-comic-art_j2uijw.png",
+      "orientation": "square",
+      "tags": [
+        "lion",
+        "vintage",
+        "pinestripe",
+        "suit",
+        "comic",
+        "art"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:lion-vintage-in-pinestripe-suit-comic-art"
     }
   ],
   "artworkOverrides": {
@@ -382,6 +406,11 @@
       "publicId": "inkprowl/hero-banner--tiger-driving-a-transport-truck-vintage-comic-art_xcrgfk",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301111/inkprowl/hero-banner--tiger-driving-a-transport-truck-vintage-comic-art_xcrgfk.png"
+    },
+    "artwork:lion-vintage-in-pinestripe-suit-comic-art": {
+      "publicId": "inkprowl/art--mafia-bosses--lion-vintage-in-pinestripe-suit-comic-art_j2uijw",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787309942/inkprowl/art--mafia-bosses--lion-vintage-in-pinestripe-suit-comic-art_j2uijw.png"
     }
   }
 }
