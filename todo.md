@@ -98,7 +98,7 @@
 - [x] Add music-player minimize, close, and playlist controls while keeping Cloudinary playback and downloads functional.
 - [ ] Verify every branded artwork-desk CRUD action from the owner admin against the GitHub-backed generated catalogue: create, edit, rename, categorize, publish or unpublish, and remove.
 - [x] Allow the owner artwork desk to select unpublished as well as published editions so publishing and unpublishing can be managed without a raw GitHub page.
-- [ ] Verify owner-admin upload and delete actions for logo, hero banner, hero film, and edition-video media variants through the live GitHub-to-Cloudinary workflow.
+- [x] Verify owner-admin upload and delete actions for logo, hero banner, hero film, and edition-video media variants through the live GitHub-to-Cloudinary workflow.
 - [ ] Audit each branded admin panel’s persistent operation and preserve an unchecked item for any control that remains unexercised end to end.
 - [x] Add removable sample soundtrack and sponsor-video files through the INKPROWL GitHub-to-Cloudinary publishing workflow so the public players can be previewed live.
 - [x] Display an uploaded sponsored video on the public page before a client destination is configured, while showing the external visit action only when an approved HTTPS destination exists.
@@ -147,3 +147,4 @@
 - [x] Complete the controlled file-only sponsor-video audit: live queue, Cloudinary synchronization, protected deletion, original sample-video catalogue restoration, and GitHub Pages deployment.
 - [x] Complete the controlled file-only logo audit: live queue, Cloudinary synchronization, protected deletion, empty-branding-state restoration, and GitHub Pages deployment.
 - [x] Complete the controlled file-only hero-banner audit: live queue, Cloudinary synchronization, protected deletion, empty-branding-state restoration, and GitHub Pages deployment.
+- [ ] Repair the advanced Categories manager so owner-created categories use the same live validation and rename/delete resolution as the verified upload-first category controls.

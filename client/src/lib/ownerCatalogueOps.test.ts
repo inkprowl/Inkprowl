@@ -49,4 +49,14 @@ describe("owner category operations", () => {
     expect(categoryOperationValidationMessage(catalogue, baseCategories, "add", "", "Business Animals")).toBe("That category already exists.");
     expect(catalogue.categories).toEqual([]);
   });
+
+  it("preflights an owner-created category rename against the live list without mutating the catalogue", () => {
+    const catalogue = emptyOwnerCatalogue();
+    applyCategoryOperation(catalogue, baseCategories, "add", "", "Owner Archive");
+    const beforeValidation = structuredClone(catalogue);
+    const liveNames = resolvedCategoryNames(baseCategories, catalogue);
+
+    expect(categoryOperationValidationMessage(catalogue, liveNames, "rename", "Owner Archive", "Owner Archive Updated")).toBe("");
+    expect(catalogue).toEqual(beforeValidation);
+  });
 });
