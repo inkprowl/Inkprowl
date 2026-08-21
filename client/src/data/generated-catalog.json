@@ -171,7 +171,7 @@
     {
       "slug": "lion-vintage-in-pinestripe-suit-comic-art",
       "title": "Lion Vintage In Pinestripe Suit Comic Art",
-      "category": "Mafia Bosses",
+      "category": "MAFIA & BOSS ANIMAL CHARACTERS",
       "description": "A free INKPROWL edition of Lion Vintage In Pinestripe Suit Comic Art, published from the owner upload queue and ready for direct Cloudinary download.",
       "isPremium": false,
       "accent": "gold",
@@ -438,7 +438,8 @@
   "categories": [],
   "categoryAliases": {
     "Cross-Hatching": "BEAR & BULL MARKET",
-    "Business Animals": "BUSINESS ANIMAL CHARACTERS"
+    "Business Animals": "BUSINESS ANIMAL CHARACTERS",
+    "Mafia Bosses": "MAFIA & BOSS ANIMAL CHARACTERS"
   },
   "assets": {
     "siteMedia:soundtrack": {
