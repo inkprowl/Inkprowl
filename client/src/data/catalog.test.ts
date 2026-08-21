@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isApprovedClientDestination, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteBranding, siteMedia, sponsoredCampaign, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
 
 describe("INKPROWL catalog", () => {
-  it("contains all requested public browsing categories", () => {
+  it("contains all requested public browsing categories while honouring the owner-approved category rename", () => {
     expect(categories.map((category) => category.name)).toEqual([
       "Business Animals",
       "Mafia Bosses",
@@ -10,13 +10,14 @@ describe("INKPROWL catalog", () => {
       "Collectible Art",
       "Tailored Animals",
       "Vintage Comic Art",
-      "Cross-Hatching",
+      "BEAR & BULL MARKET",
       "2D Line Art",
       "Animal Characters",
       "Fashion Animals",
       "Premium Art",
       "Free Art",
     ]);
+    expect(categories).toHaveLength(12);
   });
 
   it("keeps a Cloudinary-backed collectible edition in the catalog", () => {

@@ -173,4 +173,4 @@
 - [x] Preserve the floating music player and active audio playback while navigating between Home, gallery, and artwork pages.
 - [x] Make the homepage hero banner a responsive 1:1 square while retaining the desktop editorial layout.
 - [x] Add editable featured label and artwork title fields to the Hero Banner admin workspace and publish them through the existing protected catalogue workflow.
-- [ ] Investigate and restore every missing Cloudinary-backed artwork, song, sponsor-video, logo, and hero-banner catalogue record after the hero-banner release; add a release safeguard so source changes cannot overwrite current generated media settings.
+- [x] Investigate and restore every missing Cloudinary-backed artwork, song, sponsor-video, logo, and hero-banner catalogue record after the hero-banner release; add a release safeguard so source changes cannot overwrite current generated media settings.

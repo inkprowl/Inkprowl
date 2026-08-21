@@ -106,7 +106,7 @@ export const siteBranding: SiteBranding = {
   heroKicker: "HUMAN-DIRECTED / AI-CRAFTED",
   heroTitle: "Art that prowls past the ordinary.",
   heroFeaturedLabel: "01 — FEATURED EDITION",
-  heroFeaturedTitle: undefined,
+  heroFeaturedTitle: "Panther in Pinstripe Suit",
   ...generatedCatalogue.siteBranding,
 };
 
