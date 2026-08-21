@@ -312,7 +312,8 @@
     "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
   },
   "siteBranding": {
-    "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301013/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q.png"
+    "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301013/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q.png",
+    "heroBannerUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301111/inkprowl/hero-banner--tiger-driving-a-transport-truck-vintage-comic-art_xcrgfk.png"
   },
   "sponsoredCampaign": {
     "enabled": true,
@@ -376,6 +377,11 @@
       "publicId": "inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn.jpg"
+    },
+    "siteBranding:heroBanner": {
+      "publicId": "inkprowl/hero-banner--tiger-driving-a-transport-truck-vintage-comic-art_xcrgfk",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301111/inkprowl/hero-banner--tiger-driving-a-transport-truck-vintage-comic-art_xcrgfk.png"
     }
   }
 }
