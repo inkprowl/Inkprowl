@@ -1,30 +1,5 @@
 {
-  "artworks": [
-    {
-      "slug": "art-business-animals-delete-control-check",
-      "title": "Art Business Animals Delete Control Check",
-      "category": "Business Animals",
-      "description": "A free INKPROWL edition of Art Business Animals Delete Control Check, published from the owner upload queue and ready for direct Cloudinary download.",
-      "isPremium": false,
-      "accent": "gold",
-      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787283219/inkprowl/art--business-animals--art-business-animals-delete-control-check_y2aicx.png",
-      "orientation": "square",
-      "tags": [
-        "art",
-        "business",
-        "animals",
-        "delete",
-        "control",
-        "check"
-      ],
-      "downloadFormats": [
-        "jpg",
-        "png",
-        "webp"
-      ],
-      "assetKey": "artwork:art-business-animals-delete-control-check"
-    }
-  ],
+  "artworks": [],
   "artworkOverrides": {
     "art-business-animals-authorization-check": {
       "title": "Art Business Animals Authorization Check",
@@ -58,7 +33,8 @@
         "animal art"
       ],
       "metaTitle": "INKPROWL — Art Business Animals Delete Control Check",
-      "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Delete Control Check. Available in JPEG, PNG, and WebP directly from permanent Clou"
+      "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Delete Control Check. Available in JPEG, PNG, and WebP directly from permanent Clou",
+      "isPublished": false
     }
   },
   "artworkMedia": {},
@@ -87,11 +63,6 @@
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
       "resourceType": "video",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
-    },
-    "artwork:art-business-animals-delete-control-check": {
-      "publicId": "inkprowl/art--business-animals--art-business-animals-delete-control-check_y2aicx",
-      "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787283219/inkprowl/art--business-animals--art-business-animals-delete-control-check_y2aicx.png"
     }
   }
 }
