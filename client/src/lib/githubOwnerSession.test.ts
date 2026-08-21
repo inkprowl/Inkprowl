@@ -142,7 +142,9 @@ describe("INKPROWL owner GitHub session helpers", () => {
     await queueIncomingFile("session-token", "art--business-animals--owl.png", file);
     await dispatchCloudinaryDeletion("session-token", "inkprowl/artworks/owl");
 
+    const [queuePath] = fetchMock.mock.calls[0] as [string, RequestInit];
     const [, queueInit] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(queuePath).toMatch(/\/incoming\/[^/]+\/art--business-animals--owl\.png$/);
     expect(JSON.parse(String(queueInit.body))).toMatchObject({ message: "chore: queue art--business-animals--owl.png for Cloudinary", content: "AAEC/w==" });
     const [dispatchPath, dispatchInit] = fetchMock.mock.calls[1] as [string, RequestInit];
     expect(dispatchPath).toContain("sync-cloudinary-media.yml/dispatches");

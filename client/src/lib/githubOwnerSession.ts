@@ -168,7 +168,8 @@ export async function mutateGeneratedCatalogue(
 
 export async function queueIncomingFile(token: string, filename: string, file: File) {
   const bytes = new Uint8Array(await file.arrayBuffer());
-  return writeRepositoryText(token, `incoming/${filename}`, toBase64(bytes), `chore: queue ${filename} for Cloudinary`, undefined, true);
+  const queueId = globalThis.crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  return writeRepositoryText(token, `incoming/${queueId}/${filename}`, toBase64(bytes), `chore: queue ${filename} for Cloudinary`, undefined, true);
 }
 
 export async function dispatchCloudinaryDeletion(token: string, assetKey: string) {

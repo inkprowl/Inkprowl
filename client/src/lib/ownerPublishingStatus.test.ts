@@ -30,6 +30,7 @@ describe("INKPROWL owner publishing status transitions", () => {
   it("reports Cloudinary queue success and a specific failure without falsely claiming publication", () => {
     expect(queuedForCloudinaryStatus(1)).toMatchObject({ percent: 100, tone: "success" });
     expect(queuedForCloudinaryStatus(2).message).toContain("2 files are queued");
+    expect(queuedForCloudinaryStatus(1, "sponsor-video").message).toContain("large films can take a few minutes");
     expect(publishFailureStatus("GitHub queue rejected the request.")).toEqual({ percent: 0, tone: "error", message: "GitHub queue rejected the request." });
     expect(publishFailureStatus().message).toContain("not published");
   });

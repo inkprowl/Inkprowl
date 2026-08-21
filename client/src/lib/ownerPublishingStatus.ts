@@ -78,11 +78,14 @@ export const savingArtworkMetadataStatus = (): OwnerPublishStatus => ({
   message: "Saving filename-derived artwork title, description, tags, and metadata…",
 });
 
-export function queuedForCloudinaryStatus(total: number): OwnerPublishStatus {
+export function queuedForCloudinaryStatus(total: number, role?: "soundtrack" | "sponsor-video" | "artwork" | "logo" | "hero-banner"): OwnerPublishStatus {
+  const videoNote = role === "sponsor-video"
+    ? " Video processing now continues in Cloudinary after this screen completes; large films can take a few minutes, so do not submit the same film again."
+    : "";
   return {
     percent: 100,
     tone: "success",
-    message: `${total} ${total === 1 ? "file is" : "files are"} queued. The protected workflow now transfers it to permanent Cloudinary storage, writes the delivery URL to the catalogue, and rebuilds the public site.`,
+    message: `${total} ${total === 1 ? "file is" : "files are"} queued. The protected workflow now transfers it to permanent Cloudinary storage, writes the delivery URL to the catalogue, and rebuilds the public site.${videoNote}`,
   };
 }
 

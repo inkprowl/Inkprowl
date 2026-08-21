@@ -17,4 +17,10 @@ describe("owner upload rules", () => {
   it("keeps the upload-size guard in the browser", () => {
     expect(validateOwnerUploadFiles("artwork", [{ name: "edition.webp", size: 85 * 1024 * 1024 + 1 }])).toContain("85 MB");
   });
+
+  it("accepts the exact song and video formats used by the protected media workflow", () => {
+    expect(validateOwnerUploadFiles("soundtrack", [{ name: "night-song.mp3", size: 1 }])).toBe("");
+    expect(validateOwnerUploadFiles("sponsor-video", [{ name: "campaign.mp4", size: 1 }])).toBe("");
+    expect(validateOwnerUploadFiles("soundtrack", [{ name: "night-song.aac", size: 1 }])).toContain("not supported");
+  });
 });
