@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { classifyIncomingFile } from "./cloudinary-filename-policy.ts";
+import { removeCatalogueAssetState } from "./cloudinary-catalogue-state.ts";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const incomingRoot = path.join(projectRoot, "incoming");
@@ -104,25 +105,7 @@ function removeAsset(catalogue, key) {
   const asset = catalogue.assets?.[key];
   if (!asset) throw new Error(`No managed Cloudinary asset uses the key ${key}. Open generated-catalog.json to copy an available asset key.`);
   return cloudinary.uploader.destroy(asset.publicId, { resource_type: asset.resourceType, invalidate: true }).then(() => {
-    if (key.startsWith("artwork:")) {
-      const slug = key.slice("artwork:".length);
-      catalogue.artworks = (catalogue.artworks ?? []).filter((artwork) => artwork.assetKey !== key);
-      catalogue.artworkOverrides ??= {};
-      catalogue.artworkOverrides[slug] = { ...(catalogue.artworkOverrides[slug] ?? {}), isPublished: false };
-    }
-    if (key.startsWith("artworkVideo:")) {
-      const slug = key.slice("artworkVideo:".length);
-      const current = catalogue.artworkMedia?.[slug] ?? {};
-      delete current.videoUrl;
-      if (Object.keys(current).length) catalogue.artworkMedia[slug] = current;
-      else delete catalogue.artworkMedia[slug];
-    }
-    if (key === "siteMedia:soundtrack") { delete catalogue.siteMedia.soundtrackUrl; catalogue.siteMedia.soundtrackTitle = "Curated sound"; }
-    if (key === "siteMedia:heroFilm") delete catalogue.siteMedia.heroFilmUrl;
-    if (key === "siteBranding:heroBanner") delete catalogue.siteBranding.heroBannerUrl;
-    if (key === "siteBranding:logo") delete catalogue.siteBranding.logoUrl;
-    if (key === "sponsoredCampaign:video") { delete catalogue.sponsoredCampaign.videoUrl; catalogue.sponsoredCampaign.enabled = false; }
-    delete catalogue.assets[key];
+    removeCatalogueAssetState(catalogue, key);
   });
 }
 

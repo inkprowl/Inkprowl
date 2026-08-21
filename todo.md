@@ -149,3 +149,4 @@
 - [x] Complete the controlled file-only hero-banner audit: live queue, Cloudinary synchronization, protected deletion, empty-branding-state restoration, and GitHub Pages deployment.
 - [x] Repair the advanced Categories manager so owner-created categories use the same live validation and rename/delete resolution as the verified upload-first category controls.
 - [ ] Add automatic retry-safe handling for stale GitHub catalogue revisions in owner metadata and visibility saves.
+- [ ] Remove deleted artwork metadata records from the generated catalogue so permanent Cloudinary deletion leaves no stale admin-inventory tombstone.

@@ -1,56 +1,6 @@
 {
   "artworks": [],
-  "artworkOverrides": {
-    "art-business-animals-authorization-check": {
-      "title": "Art Business Animals Authorization Check",
-      "description": "A free INKPROWL business animals edition featuring Art Business Animals Authorization Check. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
-      "category": "Business Animals",
-      "tags": [
-        "art",
-        "business",
-        "animals",
-        "authorization",
-        "check",
-        "inkprowl",
-        "animal art"
-      ],
-      "metaTitle": "INKPROWL ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Art Business Animals Authorization Check",
-      "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Authorization Check. Available in JPEG, PNG, and WebP directly from permanent Cloud",
-      "isPublished": false
-    },
-    "art-business-animals-delete-control-check": {
-      "title": "Art Business Animals Delete Control Check",
-      "description": "A free INKPROWL business animals edition featuring Art Business Animals Delete Control Check. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
-      "category": "Business Animals",
-      "tags": [
-        "art",
-        "business",
-        "animals",
-        "delete",
-        "control",
-        "check",
-        "inkprowl",
-        "animal art"
-      ],
-      "metaTitle": "INKPROWL ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Art Business Animals Delete Control Check",
-      "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Delete Control Check. Available in JPEG, PNG, and WebP directly from permanent Clou",
-      "isPublished": false
-    },
-    "art-business-animals-crud-audit-edition": {
-      "title": "CRUD Audit Edition Refined",
-      "description": "Controlled owner-admin metadata verification for a temporary Cloudinary artwork edition.",
-      "category": "Business Animals",
-      "tags": [
-        "crud",
-        "audit",
-        "refined",
-        "business animals"
-      ],
-      "metaTitle": "INKPROWL â CRUD Audit Edition Refined",
-      "metaDescription": "Controlled owner-admin metadata verification for a temporary Cloudinary artwork edition.",
-      "isPublished": false
-    }
-  },
+  "artworkOverrides": {},
   "artworkMedia": {},
   "siteMedia": {
     "soundtrackTitle": "Inkprowl Sample Soundtrack",
@@ -64,10 +14,7 @@
   },
   "advertisingSettings": {},
   "categories": [],
-  "categoryAliases": {
-    "INKPROWL Audit Category": "Business Animals",
-    "Advanced Audit Category": "Business Animals"
-  },
+  "categoryAliases": {},
   "assets": {
     "siteMedia:soundtrack": {
       "publicId": "inkprowl/song--inkprowl-sample-soundtrack_j8d78y",
