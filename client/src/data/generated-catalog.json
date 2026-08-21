@@ -13,7 +13,7 @@
     "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
   },
   "advertisingSettings": {
-    "adsenseEnabled": true,
+    "adsenseEnabled": false,
     "adsterraEnabled": false,
     "adsenseCode": "",
     "adsterraCode": ""
