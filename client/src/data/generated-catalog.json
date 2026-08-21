@@ -14,8 +14,23 @@
         "inkprowl",
         "animal art"
       ],
-      "metaTitle": "INKPROWL â Upload Fetch Diagnostic",
+      "metaTitle": "INKPROWL Ã¢ÂÂ Upload Fetch Diagnostic",
       "metaDescription": "A free INKPROWL business animals edition featuring Upload Fetch Diagnostic. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage."
+    },
+    "diagnostic-artwork": {
+      "title": "Diagnostic Artwork",
+      "description": "A free INKPROWL business animals edition featuring Diagnostic Artwork. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "diagnostic",
+        "artwork",
+        "business",
+        "animals",
+        "inkprowl",
+        "animal art"
+      ],
+      "metaTitle": "INKPROWL — Diagnostic Artwork",
+      "metaDescription": "A free INKPROWL business animals edition featuring Diagnostic Artwork. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage."
     }
   },
   "artworkMedia": {},
