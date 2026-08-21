@@ -1,26 +1,5 @@
 {
-  "artworks": [
-    {
-      "slug": "diagnostic-artwork",
-      "title": "Diagnostic Artwork",
-      "category": "Business Animals",
-      "description": "A free INKPROWL edition of Diagnostic Artwork, published from the owner upload queue and ready for direct Cloudinary download.",
-      "isPremium": false,
-      "accent": "gold",
-      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787298332/inkprowl/art--business-animals--diagnostic-artwork_tyqwv6.png",
-      "orientation": "square",
-      "tags": [
-        "diagnostic",
-        "artwork"
-      ],
-      "downloadFormats": [
-        "jpg",
-        "png",
-        "webp"
-      ],
-      "assetKey": "artwork:diagnostic-artwork"
-    }
-  ],
+  "artworks": [],
   "artworkOverrides": {
     "upload-fetch-diagnostic": {
       "title": "Upload Fetch Diagnostic",
@@ -37,21 +16,6 @@
       ],
       "metaTitle": "INKPROWL Ã¢ÂÂ Upload Fetch Diagnostic",
       "metaDescription": "A free INKPROWL business animals edition featuring Upload Fetch Diagnostic. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage."
-    },
-    "diagnostic-artwork": {
-      "title": "Diagnostic Artwork",
-      "description": "A free INKPROWL business animals edition featuring Diagnostic Artwork. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
-      "category": "Business Animals",
-      "tags": [
-        "diagnostic",
-        "artwork",
-        "business",
-        "animals",
-        "inkprowl",
-        "animal art"
-      ],
-      "metaTitle": "INKPROWL — Diagnostic Artwork",
-      "metaDescription": "A free INKPROWL business animals edition featuring Diagnostic Artwork. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage."
     }
   },
   "artworkMedia": {},
@@ -82,11 +46,6 @@
       "publicId": "inkprowl/sponsor-video--diagnostic-sponsor-video_x6ijof",
       "resourceType": "video",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787298542/inkprowl/sponsor-video--diagnostic-sponsor-video_x6ijof.mp4"
-    },
-    "artwork:diagnostic-artwork": {
-      "publicId": "inkprowl/art--business-animals--diagnostic-artwork_tyqwv6",
-      "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787298332/inkprowl/art--business-animals--diagnostic-artwork_tyqwv6.png"
     }
   }
 }
