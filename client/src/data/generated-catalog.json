@@ -195,7 +195,7 @@
     {
       "slug": "chimpanzee-in-2d-line-art-vintage-fun-time",
       "title": "Chimpanzee In 2D Line Art Vintage Fun Time",
-      "category": "Funny Animals",
+      "category": "FUNNY ANIMLA CHARACTERS",
       "description": "A free INKPROWL edition of Chimpanzee In 2D Line Art Vintage Fun Time, published from the owner upload queue and ready for direct Cloudinary download.",
       "isPremium": false,
       "accent": "gold",
@@ -219,7 +219,7 @@
     {
       "slug": "chimpanzee-in-suit-office-humor-noir-line-art-2d",
       "title": "Chimpanzee In Suit Office Humor Noir Line Art 2D",
-      "category": "Funny Animals",
+      "category": "FUNNY ANIMLA CHARACTERS",
       "description": "A free INKPROWL edition of Chimpanzee In Suit Office Humor Noir Line Art 2D, published from the owner upload queue and ready for direct Cloudinary download.",
       "isPremium": false,
       "accent": "gold",
@@ -439,7 +439,8 @@
   "categoryAliases": {
     "Cross-Hatching": "BEAR & BULL MARKET",
     "Business Animals": "BUSINESS ANIMAL CHARACTERS",
-    "Mafia Bosses": "MAFIA & BOSS ANIMAL CHARACTERS"
+    "Mafia Bosses": "MAFIA & BOSS ANIMAL CHARACTERS",
+    "Funny Animals": "FUNNY ANIMLA CHARACTERS"
   },
   "assets": {
     "siteMedia:soundtrack": {
