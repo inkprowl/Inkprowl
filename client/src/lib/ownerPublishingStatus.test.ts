@@ -27,10 +27,11 @@ describe("INKPROWL owner publishing status transitions", () => {
     expect(savingArtworkMetadataStatus()).toMatchObject({ percent: 88, tone: "working" });
   });
 
-  it("reports Cloudinary queue success and a specific failure without falsely claiming publication", () => {
+  it("reports concise publishing feedback without falsely claiming that a queued item is already live", () => {
     expect(queuedForCloudinaryStatus(1)).toMatchObject({ percent: 100, tone: "success" });
-    expect(queuedForCloudinaryStatus(2).message).toContain("2 files are queued");
-    expect(queuedForCloudinaryStatus(1, "sponsor-video").message).toContain("large films can take a few minutes");
+    expect(queuedForCloudinaryStatus(2).message).toContain("2 uploads saved");
+    expect(queuedForCloudinaryStatus(1).message).toContain("Publishing to your site now");
+    expect(queuedForCloudinaryStatus(1, "sponsor-video").message).toContain("Cloudinary is preparing the video");
     expect(publishFailureStatus("GitHub queue rejected the request.")).toEqual({ percent: 0, tone: "error", message: "GitHub queue rejected the request." });
     expect(publishFailureStatus().message).toContain("not published");
   });

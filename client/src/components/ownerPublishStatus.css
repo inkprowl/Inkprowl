@@ -1,0 +1,27 @@
+.owner-publish-status.success {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 11px 13px;
+  margin-bottom: 14px;
+}
+
+.owner-publish-status.success > div {
+  align-items: center;
+}
+
+.owner-publish-status.success p {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.owner-publish-status.success progress {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .owner-publish-status.success {
+    min-height: 48px;
+    padding: 10px 11px;
+  }
+}

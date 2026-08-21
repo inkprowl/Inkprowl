@@ -80,12 +80,12 @@ export const savingArtworkMetadataStatus = (): OwnerPublishStatus => ({
 
 export function queuedForCloudinaryStatus(total: number, role?: "soundtrack" | "sponsor-video" | "artwork" | "logo" | "hero-banner"): OwnerPublishStatus {
   const videoNote = role === "sponsor-video"
-    ? " Video processing now continues in Cloudinary after this screen completes; large films can take a few minutes, so do not submit the same film again."
+    ? " Cloudinary is preparing the video now. It will appear on the site when publishing finishes—do not upload it again."
     : "";
   return {
     percent: 100,
     tone: "success",
-    message: `${total} ${total === 1 ? "file is" : "files are"} queued. The protected workflow now transfers it to permanent Cloudinary storage, writes the delivery URL to the catalogue, and rebuilds the public site.${videoNote}`,
+    message: `${total === 1 ? "Upload saved" : `${total} uploads saved`}. Publishing to your site now.${videoNote}`,
   };
 }
 

@@ -163,5 +163,9 @@
 - [x] Show every selected artwork in an editable mobile-first metadata list before publishing, with per-file title, category, description, tags, meta title, and meta description.
 - [x] Simplify the owner authorization dialog so it plainly explains that a GitHub Classic Personal Access Token is required only to authorize a permanent GitHub Pages save.
 - [x] Diagnose and repair the live image-upload fetch failure without changing existing permanent Cloudinary artwork.
-- [ ] Split the long owner-admin screen into clickable dedicated workspaces for artwork, songs, videos, branding, inventory, categories, and advertising.
-- [ ] Diagnose and repair the reported image-upload fetch failure, song filename rejection, and slow video upload processing while preserving Cloudinary-only media storage.
+- [x] Split the long owner-admin screen into clickable dedicated workspaces for artwork, songs, videos, branding, inventory, categories, and advertising.
+- [x] Diagnose and repair the reported image-upload fetch failure, song filename rejection, and slow video upload processing while preserving Cloudinary-only media storage.
+- [x] Diagnose and repair the reported live owner-admin login route 404 issue, while keeping the public home route available.
+- [x] Replace the technical green upload-queue notice with concise owner-friendly publication status feedback.
+- [x] Reduce avoidable delay between a completed Cloudinary sync and the public GitHub Pages catalogue update.
+- [x] Enforce a fixed 16:9 landscape sponsor-video stage on mobile, including portrait source videos.
