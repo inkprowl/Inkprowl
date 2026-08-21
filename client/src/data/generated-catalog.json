@@ -409,7 +409,7 @@
   },
   "siteBranding": {
     "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787301013/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_rpzd6q.png",
-    "heroBannerUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787318833/inkprowl/hero-banner--tiger-and-hyena-corporate-attire_rwz6ua.jpg",
+    "heroBannerUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787319410/inkprowl/hero-banner--img-20260604-wa0199_h3areh.jpg",
     "heroFeaturedLabel": "LIMITED  EDITION",
     "heroFeaturedTitle": "TIGER AND HYENA CORPORATE ATTIRE"
   },
@@ -502,9 +502,9 @@
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn.jpg"
     },
     "siteBranding:heroBanner": {
-      "publicId": "inkprowl/hero-banner--tiger-and-hyena-corporate-attire_rwz6ua",
+      "publicId": "inkprowl/hero-banner--img-20260604-wa0199_h3areh",
       "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787318833/inkprowl/hero-banner--tiger-and-hyena-corporate-attire_rwz6ua.jpg"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787319410/inkprowl/hero-banner--img-20260604-wa0199_h3areh.jpg"
     },
     "artwork:lion-vintage-in-pinestripe-suit-comic-art": {
       "publicId": "inkprowl/art--mafia-bosses--lion-vintage-in-pinestripe-suit-comic-art_j2uijw",
