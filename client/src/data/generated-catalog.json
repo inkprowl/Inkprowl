@@ -9,8 +9,10 @@
   "siteBranding": {},
   "sponsoredCampaign": {
     "enabled": true,
-    "clientName": "Inkprowl Sample Sponsor Placement",
-    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+    "clientName": "Temporary Sponsor Audit",
+    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4",
+    "label": "INKPROWL CAMPAIGN AUDIT",
+    "clientUrl": "https://example.com/inkprowl-sponsor-audit"
   },
   "advertisingSettings": {
     "adsenseEnabled": false,
