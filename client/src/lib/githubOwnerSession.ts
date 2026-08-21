@@ -74,7 +74,10 @@ export async function verifyGitHubOwnerSession(token: string) {
 }
 
 export async function readRepositoryJson<T>(token: string, path: string): Promise<RepositoryDocument<T>> {
-  const file = await githubRequest<{ content: string; encoding: string; sha: string }>(token, `/repos/${REPOSITORY}/contents/${contentPath(path)}?ref=main`);
+  // GitHub's Contents endpoint can briefly continue returning the previous SHA
+  // immediately after a commit. A unique query parameter avoids a CDN/browser
+  // cache replay while cache:no-store prevents a local response replay.
+  const file = await githubRequest<{ content: string; encoding: string; sha: string }>(token, `/repos/${REPOSITORY}/contents/${contentPath(path)}?ref=main&cache_bust=${Date.now()}`);
   if (file.encoding !== "base64") throw new Error("GitHub returned an unsupported document encoding.");
   const text = atob(file.content.replace(/\n/g, ""));
   return { value: JSON.parse(text) as T, sha: file.sha };
@@ -111,7 +114,7 @@ export async function mutateGeneratedCatalogue(
   token: string,
   message: string,
   mutate: (catalogue: OwnerGeneratedCatalogue) => void,
-  maxAttempts = 4,
+  maxAttempts = 6,
 ) {
   let lastFailure: unknown;
   for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
@@ -124,7 +127,9 @@ export async function mutateGeneratedCatalogue(
     } catch (reason) {
       lastFailure = reason;
       if (!isStaleRevisionError(reason)) throw reason;
-      if (attempt < maxAttempts - 1) await new Promise<void>((resolve) => globalThis.setTimeout(resolve, 200 * (attempt + 1)));
+      // Allow GitHub's distributed Contents view to converge after a competing
+      // commit. The total wait is capped below 20 seconds across six attempts.
+      if (attempt < maxAttempts - 1) await new Promise<void>((resolve) => globalThis.setTimeout(resolve, 500 * 2 ** attempt));
     }
   }
   const detail = lastFailure instanceof Error ? lastFailure.message : "GitHub did not provide an error message.";
