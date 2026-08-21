@@ -14,7 +14,7 @@
         "inkprowl",
         "animal art"
       ],
-      "metaTitle": "INKPROWL â Art Business Animals Authorization Check",
+      "metaTitle": "INKPROWL Ã¢ÂÂ Art Business Animals Authorization Check",
       "metaDescription": "A free INKPROWL business animals edition featuring Art Business Animals Authorization Check. Available in JPEG, PNG, and WebP directly from permanent Cloud",
       "isPublished": false
     }
@@ -34,10 +34,12 @@
   "categories": [
     {
       "name": "INKPROWL Audit Category",
-      "icon": "✦"
+      "icon": "â¦"
     }
   ],
-  "categoryAliases": {},
+  "categoryAliases": {
+    "INKPROWL Audit Category": "INKPROWL Audit Category Renamed"
+  },
   "assets": {
     "siteMedia:soundtrack": {
       "publicId": "inkprowl/song--inkprowl-sample-soundtrack_j8d78y",
