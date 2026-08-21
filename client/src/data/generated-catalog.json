@@ -71,6 +71,30 @@
         "webp"
       ],
       "assetKey": "artwork:hippo-premium-vintage-attire-line-art-comic-book-boss-character"
+    },
+    {
+      "slug": "female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer",
+      "title": "Female Leopard Lexi In Denim Jeans Vintage Comic Art Photographer",
+      "category": "Fashion Animals",
+      "description": "A free INKPROWL edition of Female Leopard Lexi In Denim Jeans Vintage Comic Art Photographer, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299170/inkprowl/art--fashion-animals--female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer_h7gvnq.jpg",
+      "orientation": "square",
+      "tags": [
+        "female",
+        "leopard",
+        "lexi",
+        "denim",
+        "jeans",
+        "vintage"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer"
     }
   ],
   "artworkOverrides": {
@@ -134,6 +158,11 @@
       "publicId": "inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp.jpg"
+    },
+    "artwork:female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer": {
+      "publicId": "inkprowl/art--fashion-animals--female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer_h7gvnq",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299170/inkprowl/art--fashion-animals--female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer_h7gvnq.jpg"
     }
   }
 }
