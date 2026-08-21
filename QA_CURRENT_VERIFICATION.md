@@ -19,3 +19,5 @@ The repaired manager reported **“Media settings saved. GitHub Pages will rebui
 After the follow-up hardening release, the live owner manager was reloaded with permanent values present. The controlled label **PRESENTED IN PARTNERSHIP — FINAL AUDIT** was submitted through the freshly deployed cache-safe build; its completion is pending confirmation before the final restoration.
 
 The final audit save completed successfully in the repaired live manager with **“Media settings saved. GitHub Pages will rebuild automatically from this commit.”** The permanent label **PRESENTED IN PARTNERSHIP** was then restored and submitted through that same successful build.
+
+Following the immediate-follow-up repair release, the branded owner manager successfully saved the controlled label **PRESENTED IN PARTNERSHIP — IMMEDIATE SAVE**. Its immediate restoration exposed that the browser could still reuse a response-derived stale blob revision. The permanent values are preserved in the source catalogue and will be restored atomically with the deterministic Git-blob revision repair before a final live verification.

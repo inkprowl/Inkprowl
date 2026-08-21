@@ -104,6 +104,17 @@ export async function writeRepositoryJson(token: string, path: string, value: un
   return writeRepositoryText(token, path, `${JSON.stringify(value, null, 2)}\n`, message, sha);
 }
 
+async function gitBlobSha(text: string) {
+  const encoder = new TextEncoder();
+  const body = encoder.encode(text);
+  const header = encoder.encode(`blob ${body.byteLength}\0`);
+  const payload = new Uint8Array(header.byteLength + body.byteLength);
+  payload.set(header);
+  payload.set(body, header.byteLength);
+  const digest = await globalThis.crypto.subtle.digest("SHA-1", payload);
+  return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
 function isStaleRevisionError(reason: unknown) {
   const message = reason instanceof Error ? reason.message.toLowerCase() : "";
   return message.includes("does not match") || message.includes("stale") || message.includes("conflict");
@@ -132,8 +143,13 @@ export async function mutateGeneratedCatalogue(
     const next = normalizeOwnerCatalogue(document.value);
     mutate(next);
     try {
-      const response = await writeRepositoryJson(token, GENERATED_CATALOGUE_PATH, next, message, document.sha) as { content?: { sha?: string } };
-      const nextSha = response?.content?.sha;
+      const serializedNext = `${JSON.stringify(next, null, 2)}\n`;
+      const response = await writeRepositoryText(token, GENERATED_CATALOGUE_PATH, serializedNext, message, document.sha) as { content?: { sha?: string } };
+      // The Contents response can be served from a stale browser/CDN cache even
+      // though the write has succeeded. Git blob IDs are a deterministic SHA-1
+      // of the exact serialized bytes, so derive the new revision locally for a
+      // following save in this same owner action session.
+      const nextSha = await gitBlobSha(serializedNext).catch(() => response?.content?.sha);
       if (nextSha) recentCatalogueSnapshots.set(snapshotKey, { value: next, sha: nextSha });
       else recentCatalogueSnapshots.delete(snapshotKey);
       return next;

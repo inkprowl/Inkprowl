@@ -110,7 +110,7 @@ describe("INKPROWL owner GitHub session helpers", () => {
     vi.useRealTimers();
   });
 
-  it("reuses the successful write SHA for an immediate follow-up sponsor save", async () => {
+  it("derives a fresh Git blob SHA for an immediate follow-up sponsor save", async () => {
     const fetchMock = vi.fn()
       .mockResolvedValueOnce(response({ content: "eyJzcG9uc29yZWRDYW1wYWlnbiI6e319", encoding: "base64", sha: "initial-catalogue-sha" }))
       .mockResolvedValueOnce(response({ content: { sha: "after-first-save-sha" } }))
@@ -129,7 +129,9 @@ describe("INKPROWL owner GitHub session helpers", () => {
     const [, firstWrite] = calls[1] as [string, RequestInit];
     const [, secondWrite] = calls[2] as [string, RequestInit];
     expect(JSON.parse(String(firstWrite.body))).toMatchObject({ sha: "initial-catalogue-sha" });
-    expect(JSON.parse(String(secondWrite.body))).toMatchObject({ sha: "after-first-save-sha" });
+    const secondBody = JSON.parse(String(secondWrite.body));
+    expect(secondBody.sha).toMatch(/^[a-f0-9]{40}$/);
+    expect(secondBody.sha).not.toBe("initial-catalogue-sha");
   });
 
   it("queues binary media and dispatches the protected Cloudinary deletion workflow", async () => {
