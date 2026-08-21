@@ -1,7 +1,7 @@
 import { type ChangeEvent, useEffect, useMemo, useState } from "react";
 import { CheckCircle2, Film, ImagePlus, LoaderCircle, LogOut, Music2, Pencil, Plus, Save, Tags, Trash2, UploadCloud, XCircle } from "lucide-react";
 import { artworks, categories } from "@/data/catalog";
-import { GENERATED_CATALOGUE_PATH, type ManagedCloudinaryAsset, type OwnerGeneratedCatalogue, dispatchCloudinaryDeletion, normalizeOwnerCatalogue, queueIncomingFile, readRepositoryJson, writeRepositoryJson } from "@/lib/githubOwnerSession";
+import { GENERATED_CATALOGUE_PATH, type ManagedCloudinaryAsset, type OwnerGeneratedCatalogue, dispatchCloudinaryDeletion, mutateGeneratedCatalogue, normalizeOwnerCatalogue, queueIncomingFile, readRepositoryJson } from "@/lib/githubOwnerSession";
 import { applyCategoryOperation, categoryOperationValidationMessage, resolvedCategoryNames } from "@/lib/ownerCatalogueOps";
 import { authorizationPendingStatus, catalogueSavedStatus, cloudinaryDeletionQueuedStatus, deletionFailureStatus, initialOwnerPublishStatus, type OwnerPublishStatus, preparingArtworkDeletionStatus, publishFailureStatus, publishHandoffStatus, queuedForCloudinaryStatus, requestingCloudinaryDeletionStatus, savingArtworkMetadataStatus, savingCatalogueStatus, uploadToQueueStatus } from "@/lib/ownerPublishingStatus";
 
@@ -129,10 +129,7 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
   async function saveCatalogueMutation({ message, success, mutate }: PendingMutation, activeConnection: OwnerConnection) {
     try {
       setStatus(savingCatalogueStatus());
-      const document = await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(activeConnection.token, GENERATED_CATALOGUE_PATH);
-      const next = normalizeOwnerCatalogue(document.value);
-      mutate(next);
-      await writeRepositoryJson(activeConnection.token, GENERATED_CATALOGUE_PATH, next, message, document.sha);
+      const next = await mutateGeneratedCatalogue(activeConnection.token, message, mutate);
       setCatalogue(next);
       setStatus(catalogueSavedStatus(success));
     } catch (reason) {
@@ -184,24 +181,23 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
       }
       if (role === "artwork") {
         setStatus(savingArtworkMetadataStatus());
-        const document = await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(activeConnection.token, GENERATED_CATALOGUE_PATH);
-        const next = normalizeOwnerCatalogue(document.value);
-        for (const file of files) {
-          const derivedTitle = files.length === 1 ? title : titleFromFilename(file.name);
-          const derivedDescription = files.length === 1 ? description || descriptionFromFilename(derivedTitle, category) : descriptionFromFilename(derivedTitle, category);
-          const derivedTags = files.length === 1 && tags?.length ? tags : tagsFromFilename(derivedTitle, category);
-          const artworkSlug = slug(derivedTitle);
-          next.artworkOverrides[artworkSlug] = {
-            ...(next.artworkOverrides[artworkSlug] ?? {}),
-            title: derivedTitle,
-            description: derivedDescription,
-            category,
-            tags: derivedTags,
-            metaTitle: `INKPROWL — ${derivedTitle}`,
-            metaDescription: derivedDescription.slice(0, 155),
-          };
-        }
-        await writeRepositoryJson(activeConnection.token, GENERATED_CATALOGUE_PATH, next, "chore: save INKPROWL artwork upload metadata", document.sha);
+        const next = await mutateGeneratedCatalogue(activeConnection.token, "chore: save INKPROWL artwork upload metadata", (catalogue) => {
+          for (const file of files) {
+            const derivedTitle = files.length === 1 ? title : titleFromFilename(file.name);
+            const derivedDescription = files.length === 1 ? description || descriptionFromFilename(derivedTitle, category) : descriptionFromFilename(derivedTitle, category);
+            const derivedTags = files.length === 1 && tags?.length ? tags : tagsFromFilename(derivedTitle, category);
+            const artworkSlug = slug(derivedTitle);
+            catalogue.artworkOverrides[artworkSlug] = {
+              ...(catalogue.artworkOverrides[artworkSlug] ?? {}),
+              title: derivedTitle,
+              description: derivedDescription,
+              category,
+              tags: derivedTags,
+              metaTitle: `INKPROWL — ${derivedTitle}`,
+              metaDescription: derivedDescription.slice(0, 155),
+            };
+          }
+        });
         setCatalogue(next);
       }
       setStatus(queuedForCloudinaryStatus(files.length));
@@ -291,10 +287,9 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
       if (!asset) { setStatus({ percent: 0, tone: "error", message: "This image does not have a removable Cloudinary delivery record." }); return; }
       try {
         setStatus(preparingArtworkDeletionStatus());
-        const document = await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(connection.token, GENERATED_CATALOGUE_PATH);
-        const next = normalizeOwnerCatalogue(document.value);
-        next.assets[assetKey] = asset;
-        await writeRepositoryJson(connection.token, GENERATED_CATALOGUE_PATH, next, "chore: register INKPROWL artwork for Cloudinary removal", document.sha);
+        const next = await mutateGeneratedCatalogue(connection.token, "chore: register INKPROWL artwork for Cloudinary removal", (catalogue) => {
+          catalogue.assets[assetKey] = asset;
+        });
         setCatalogue(next);
       } catch (reason) {
         setStatus(deletionFailureStatus(reason instanceof Error ? reason.message : "The image could not be prepared for Cloudinary deletion."));

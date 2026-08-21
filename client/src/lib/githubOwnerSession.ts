@@ -95,6 +95,37 @@ export async function writeRepositoryJson(token: string, path: string, value: un
   return writeRepositoryText(token, path, `${JSON.stringify(value, null, 2)}\n`, message, sha);
 }
 
+function isStaleRevisionError(reason: unknown) {
+  const message = reason instanceof Error ? reason.message.toLowerCase() : "";
+  return message.includes("does not match") || message.includes("stale") || message.includes("conflict");
+}
+
+/**
+ * Re-reads the generated catalogue after a rejected stale-SHA write and reapplies
+ * an idempotent owner mutation. GitHub Contents commits are otherwise atomic.
+ */
+export async function mutateGeneratedCatalogue(
+  token: string,
+  message: string,
+  mutate: (catalogue: OwnerGeneratedCatalogue) => void,
+  maxAttempts = 2,
+) {
+  let lastFailure: unknown;
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+    const document = await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(token, GENERATED_CATALOGUE_PATH);
+    const next = normalizeOwnerCatalogue(document.value);
+    mutate(next);
+    try {
+      await writeRepositoryJson(token, GENERATED_CATALOGUE_PATH, next, message, document.sha);
+      return next;
+    } catch (reason) {
+      lastFailure = reason;
+      if (!isStaleRevisionError(reason) || attempt === maxAttempts - 1) throw reason;
+    }
+  }
+  throw lastFailure instanceof Error ? lastFailure : new Error("The permanent catalogue change could not be saved.");
+}
+
 export async function queueIncomingFile(token: string, filename: string, file: File) {
   const bytes = new Uint8Array(await file.arrayBuffer());
   return writeRepositoryText(token, `incoming/${filename}`, toBase64(bytes), `chore: queue ${filename} for Cloudinary`, undefined, true);

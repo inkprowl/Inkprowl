@@ -147,4 +147,5 @@
 - [x] Complete the controlled file-only sponsor-video audit: live queue, Cloudinary synchronization, protected deletion, original sample-video catalogue restoration, and GitHub Pages deployment.
 - [x] Complete the controlled file-only logo audit: live queue, Cloudinary synchronization, protected deletion, empty-branding-state restoration, and GitHub Pages deployment.
 - [x] Complete the controlled file-only hero-banner audit: live queue, Cloudinary synchronization, protected deletion, empty-branding-state restoration, and GitHub Pages deployment.
-- [ ] Repair the advanced Categories manager so owner-created categories use the same live validation and rename/delete resolution as the verified upload-first category controls.
+- [x] Repair the advanced Categories manager so owner-created categories use the same live validation and rename/delete resolution as the verified upload-first category controls.
+- [ ] Add automatic retry-safe handling for stale GitHub catalogue revisions in owner metadata and visibility saves.

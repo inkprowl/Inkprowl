@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { dispatchCloudinaryDeletion, emptyOwnerCatalogue, normalizeOwnerCatalogue, queueIncomingFile, readRepositoryJson, toBase64, verifyGitHubOwnerSession, writeRepositoryJson } from "./githubOwnerSession";
+import { dispatchCloudinaryDeletion, emptyOwnerCatalogue, mutateGeneratedCatalogue, normalizeOwnerCatalogue, queueIncomingFile, readRepositoryJson, toBase64, verifyGitHubOwnerSession, writeRepositoryJson } from "./githubOwnerSession";
 
 const response = (body: unknown, status = 200) => new Response(status === 204 ? null : JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
 
@@ -64,6 +64,24 @@ describe("INKPROWL owner GitHub session helpers", () => {
     const [, init] = fetchMock.mock.calls[1] as [string, RequestInit];
     expect(init.method).toBe("PUT");
     expect(JSON.parse(String(init.body))).toMatchObject({ branch: "main", sha: "catalogue-sha", message: "chore: update owner catalogue" });
+  });
+
+  it("retries an idempotent generated-catalogue mutation after a stale revision conflict", async () => {
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(response({ content: "eyJhcnR3b3JrT3ZlcnJpZGVzIjp7fX0=", encoding: "base64", sha: "stale-sha" }))
+      .mockResolvedValueOnce(response({ message: "client/src/data/generated-catalog.json does not match stale-sha" }, 409))
+      .mockResolvedValueOnce(response({ content: "eyJhcnR3b3JrT3ZlcnJpZGVzIjp7fX0=", encoding: "base64", sha: "fresh-sha" }))
+      .mockResolvedValueOnce(response({ content: { sha: "saved-sha" } }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    const catalogue = await mutateGeneratedCatalogue("session-token", "chore: retry catalogue save", (next) => {
+      next.artworkOverrides.owl = { title: "Owl" };
+    });
+
+    expect(catalogue.artworkOverrides.owl).toEqual({ title: "Owl" });
+    expect(fetchMock).toHaveBeenCalledTimes(4);
+    const [, retryWrite] = fetchMock.mock.calls[3] as [string, RequestInit];
+    expect(JSON.parse(String(retryWrite.body))).toMatchObject({ sha: "fresh-sha", message: "chore: retry catalogue save" });
   });
 
   it("queues binary media and dispatches the protected Cloudinary deletion workflow", async () => {
