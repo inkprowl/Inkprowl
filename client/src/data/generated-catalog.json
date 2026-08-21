@@ -1,5 +1,29 @@
 {
-  "artworks": [],
+  "artworks": [
+    {
+      "slug": "art-business-animals-authorization-check",
+      "title": "Art Business Animals Authorization Check",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Art Business Animals Authorization Check, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787281365/inkprowl/art--business-animals--art-business-animals-authorization-check_b9e86c.png",
+      "orientation": "square",
+      "tags": [
+        "art",
+        "business",
+        "animals",
+        "authorization",
+        "check"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:art-business-animals-authorization-check"
+    }
+  ],
   "artworkOverrides": {
     "art-business-animals-authorization-check": {
       "title": "Art Business Animals Authorization Check",
@@ -42,6 +66,11 @@
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
       "resourceType": "video",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+    },
+    "artwork:art-business-animals-authorization-check": {
+      "publicId": "inkprowl/art--business-animals--art-business-animals-authorization-check_b9e86c",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787281365/inkprowl/art--business-animals--art-business-animals-authorization-check_b9e86c.png"
     }
   }
 }
