@@ -37,7 +37,11 @@
       "isPublished": false
     }
   },
-  "artworkMedia": {},
+  "artworkMedia": {
+    "panther-in-pinstripe-suit": {
+      "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787286273/inkprowl/edition-video--panther-in-pinstripe-suit_xya7jk.mp4"
+    }
+  },
   "siteMedia": {
     "soundtrackTitle": "Inkprowl Sample Soundtrack",
     "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
@@ -63,6 +67,11 @@
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
       "resourceType": "video",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+    },
+    "artworkVideo:panther-in-pinstripe-suit": {
+      "publicId": "inkprowl/edition-video--panther-in-pinstripe-suit_xya7jk",
+      "resourceType": "video",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787286273/inkprowl/edition-video--panther-in-pinstripe-suit_xya7jk.mp4"
     }
   }
 }
