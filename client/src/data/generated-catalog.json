@@ -416,9 +416,9 @@
   "sponsoredCampaign": {
     "enabled": true,
     "label": "PRESENTED IN PARTNERSHIP",
-    "clientName": "Vid 20260604 Wa0295",
+    "clientName": "The School Room",
     "clientUrl": "https://client-site.example",
-    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301360/inkprowl/sponsor-video--vid-20260604-wa0295_wosg9b.mp4"
+    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787314685/inkprowl/sponsor-video--the-school-room_hfuydt.mp4"
   },
   "advertisingSettings": {
     "adsenseEnabled": false,
@@ -446,9 +446,9 @@
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301252/inkprowl/song--new-song-inkprowl_o6uhk0.mp3"
     },
     "sponsoredCampaign:video": {
-      "publicId": "inkprowl/sponsor-video--vid-20260604-wa0295_wosg9b",
+      "publicId": "inkprowl/sponsor-video--the-school-room_hfuydt",
       "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301360/inkprowl/sponsor-video--vid-20260604-wa0295_wosg9b.mp4"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787314685/inkprowl/sponsor-video--the-school-room_hfuydt.mp4"
     },
     "artwork:gorilla-in-vintage-tailored-suit-comic-art": {
       "publicId": "inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu",
