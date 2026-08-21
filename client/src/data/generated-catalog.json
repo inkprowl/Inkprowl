@@ -99,7 +99,7 @@
     {
       "slug": "horse-giraffe-cowboy-style-bar-stance-2d-line-art",
       "title": "Horse Giraffe Cowboy Style Bar Stance 2D Line Art",
-      "category": "Vintage Comic Art",
+      "category": "PREMIUM ANIMAL CHARACTERS",
       "description": "A free INKPROWL edition of Horse Giraffe Cowboy Style Bar Stance 2D Line Art, published from the owner upload queue and ready for direct Cloudinary download.",
       "isPremium": false,
       "accent": "gold",
@@ -243,7 +243,7 @@
     {
       "slug": "cheetah-in-line-art-ink-vintage-comic-style-with-trophy",
       "title": "Cheetah In Line Art Ink Vintage Comic Style With Trophy",
-      "category": "Vintage Comic Art",
+      "category": "PREMIUM ANIMAL CHARACTERS",
       "description": "A free INKPROWL edition of Cheetah In Line Art Ink Vintage Comic Style With Trophy, published from the owner upload queue and ready for direct Cloudinary download.",
       "isPremium": false,
       "accent": "gold",
@@ -353,7 +353,7 @@
     "horse-giraffe-cowboy-style-bar-stance-2d-line-art": {
       "title": "Horse & Giraffe Cowboy Style Bar Stance 2D Line Art",
       "description": "A free INKPROWL vintage comic art edition featuring Horse & Giraffe Cowboy Style Bar Stance 2D Line Art. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
-      "category": "Vintage Comic Art",
+      "category": "PREMIUM ANIMAL CHARACTERS",
       "tags": [
         "horse",
         "giraffe",
@@ -442,7 +442,8 @@
     "Mafia Bosses": "MAFIA & BOSS ANIMAL CHARACTERS",
     "Funny Animals": "FUNNY ANIMLA CHARACTERS",
     "Collectible Art": "OFFICE HUMOR ANIMAL CHARACTERS",
-    "Tailored Animals": "OFFICE HUMOR ANIMAL CHARACTERS"
+    "Tailored Animals": "OFFICE HUMOR ANIMAL CHARACTERS",
+    "Vintage Comic Art": "PREMIUM ANIMAL CHARACTERS"
   },
   "assets": {
     "siteMedia:soundtrack": {
