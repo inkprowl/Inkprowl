@@ -239,6 +239,30 @@
         "webp"
       ],
       "assetKey": "artwork:chimpanzee-in-suit-office-humor-noir-line-art-2d"
+    },
+    {
+      "slug": "cheetah-in-line-art-ink-vintage-comic-style-with-trophy",
+      "title": "Cheetah In Line Art Ink Vintage Comic Style With Trophy",
+      "category": "Vintage Comic Art",
+      "description": "A free INKPROWL edition of Cheetah In Line Art Ink Vintage Comic Style With Trophy, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787310020/inkprowl/art--vintage-comic-art--cheetah-in-line-art-ink-vintage-comic-style-with-trophy_o3uuet.png",
+      "orientation": "square",
+      "tags": [
+        "cheetah",
+        "line",
+        "art",
+        "ink",
+        "vintage",
+        "comic"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:cheetah-in-line-art-ink-vintage-comic-style-with-trophy"
     }
   ],
   "artworkOverrides": {
@@ -469,6 +493,11 @@
       "publicId": "inkprowl/art--funny-animals--chimpanzee-in-suit-office-humor-noir-line-art-2d_gnmdjd",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787309996/inkprowl/art--funny-animals--chimpanzee-in-suit-office-humor-noir-line-art-2d_gnmdjd.png"
+    },
+    "artwork:cheetah-in-line-art-ink-vintage-comic-style-with-trophy": {
+      "publicId": "inkprowl/art--vintage-comic-art--cheetah-in-line-art-ink-vintage-comic-style-with-trophy_o3uuet",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787310020/inkprowl/art--vintage-comic-art--cheetah-in-line-art-ink-vintage-comic-style-with-trophy_o3uuet.png"
     }
   }
 }
