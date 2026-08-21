@@ -143,6 +143,30 @@
         "webp"
       ],
       "assetKey": "artwork:the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school"
+    },
+    {
+      "slug": "drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk",
+      "title": "Drink Hilarious Wolf And Fox Custom Tailored Dress Up Vintage Comic Style Roadside Talk",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Drink Hilarious Wolf And Fox Custom Tailored Dress Up Vintage Comic Style Roadside Talk, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn.jpg",
+      "orientation": "square",
+      "tags": [
+        "drink",
+        "hilarious",
+        "wolf",
+        "and",
+        "fox",
+        "custom"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk"
     }
   ],
   "artworkOverrides": {
@@ -287,7 +311,9 @@
     "soundtrackTitle": "Inkprowl Sample Soundtrack",
     "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
   },
-  "siteBranding": {},
+  "siteBranding": {
+    "logoUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_vri2ll.png"
+  },
   "sponsoredCampaign": {
     "enabled": true,
     "label": "PRESENTED IN PARTNERSHIP",
@@ -340,6 +366,16 @@
       "publicId": "inkprowl/art--business-animals--the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school_gfmx4t",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299242/inkprowl/art--business-animals--the-wild-hoop-barbaer-shop-2d-line-art-comic-book-old-school_gfmx4t.jpg"
+    },
+    "siteBranding:logo": {
+      "publicId": "inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_vri2ll",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/logo--gemini-generated-image-y81rlby81rlby81r_vri2ll.png"
+    },
+    "artwork:drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk": {
+      "publicId": "inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787300797/inkprowl/art--business-animals--drink-hilarious-wolf-and-fox-custom-tailored-dress-up-vintage-comic-style-roadside-talk_w3gpjn.jpg"
     }
   }
 }
