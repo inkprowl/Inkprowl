@@ -161,4 +161,4 @@
 - [x] Remove the remaining framework sessionStorage fallback from the GitHub Pages client so no client-side storage is used.
 - [x] Repair the memory-only authorization handoff so an approved pending upload or save automatically resumes without browser storage.
 - [x] Show every selected artwork in an editable mobile-first metadata list before publishing, with per-file title, category, description, tags, meta title, and meta description.
-- [ ] Simplify the owner authorization dialog so it plainly explains that a GitHub Classic Personal Access Token is required only to authorize a permanent GitHub Pages save.
+- [x] Simplify the owner authorization dialog so it plainly explains that a GitHub Classic Personal Access Token is required only to authorize a permanent GitHub Pages save.
