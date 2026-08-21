@@ -158,3 +158,4 @@
 - [x] Remove browser sessionStorage use for owner publishing authorization; retain Cloudinary as the sole permanent media store and require authorization per page load.
 - [x] Simplify visible owner-admin guidance to a clear login, choose-file, and Upload & Publish flow without raw GitHub or Cloudinary management steps.
 - [x] Remove the remaining framework sessionStorage fallback from the GitHub Pages client so no client-side storage is used.
+- [ ] Repair the memory-only authorization handoff so an approved pending upload or save automatically resumes without browser storage.
