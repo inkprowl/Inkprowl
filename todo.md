@@ -52,8 +52,8 @@
 - [x] Configure the required owner authentication and Cloudinary upload credentials without exposing a secret in the public site or repository.
 - [x] Build a GitHub-hosted upload form that writes permanent Cloudinary asset details into the INKPROWL catalogue.
 - [x] Validate image, audio, and video upload, deletion, and public-gallery update flows end to end.
-- [ ] Add authenticated owner controls to create, edit, rename, categorize, publish, and remove artwork catalogue records.
-- [ ] Add authenticated owner media controls to upload and delete Cloudinary images, songs, videos, logos, hero banners, and sponsor media.
+- [x] Add authenticated owner controls to create, edit, rename, categorize, publish, and remove artwork catalogue records.
+- [x] Add authenticated owner media controls to upload and delete Cloudinary images, songs, videos, logos, hero banners, and sponsor media.
 - [x] Synchronize owner changes into GitHub-backed catalogue records and deploy the updated public gallery automatically.
 - [x] Add owner-only AdSense and Adsterra code configuration with explicit on/off switches and safe public placement behavior.
 - [x] Convert every published INKPROWL artwork from premium-gated to unrestricted free Cloudinary download access.
@@ -72,7 +72,7 @@
 - [x] Normalize a valid copied Cloudinary API Environment Variable while rejecting blank, placeholder, or malformed protected secret values clearly.
 - [x] Replace the GitHub-page-first owner presentation with a polished INKPROWL admin dashboard for media, artwork, categories, music/video, branding, and advertising operations.
 - [x] Present clear in-dashboard action states that hand off to the protected GitHub upload, catalogue, deletion, and advertising workflow without misleading in-page upload claims.
-- [ ] Keep the static visual owner gate accurately described as a visual entry layer and establish the owner-approved secure action-time connection for permanent changes.
+- [x] Keep the static visual owner gate accurately described as a visual entry layer and establish the owner-approved secure action-time connection for permanent changes.
 - [x] Superseded by the requested GitHub Pages-only workflow; protected repository writes are performed through the owner’s scoped session authorization without raw GitHub pages.
 - [x] Keep post-login media, catalogue, category, branding, video, and advertising controls inside the branded INKPROWL admin interface rather than linking directly to raw GitHub pages.
 - [x] Surface protected synchronization status and concise next-step guidance in the INKPROWL admin without exposing credentials or claiming browser-side write access.
@@ -84,22 +84,22 @@
 - [x] Connect the branded media, artwork, category, branding, music/video, and advertising controls to GitHub-backed backend operations without raw-page handoffs.
 - [x] Keep the owner token connected for all actions during one open INKPROWL Admin session, with clear connected and disconnect states and no browser-persistent credential storage.
 - [x] Document and enforce that no GitHub classic token or permanent owner password can be embedded in the public GitHub Pages admin source.
-- [ ] Complete and publish the branded local login and in-admin management release with public-source token safety, while accurately describing the visual gate and session authorization limitations.
+- [x] Complete and publish the branded local login and in-admin management release with public-source token safety, while accurately describing the visual gate and session authorization limitations.
 - [x] Add a simple visible logout action that returns the current INKPROWL Admin tab to the branded login screen without persisting credentials.
 - [x] Add a credential-safe password-reset request action directed to makwanasudatt56@gmail.com without exposing a reset token or private password logic in the public static site.
 - [x] Resolve the remaining dashboard compilation error and finalize the simple login, logout, and reset-request interaction states.
 - [x] Implement a memory-only GitHub repository connection that clears on INKPROWL admin logout and can safely write owner changes without raw GitHub page handoffs.
-- [ ] Wire every INKPROWL admin management panel to the GitHub-to-Cloudinary publishing workflow and validate the protected public-build update path.
+- [x] Wire every INKPROWL admin management panel to the GitHub-to-Cloudinary publishing workflow and validate the protected public-build update path.
 - [x] Publish the verified INKPROWL source release using a temporary owner-supplied classic GitHub token with only `repo` and `workflow` scopes.
 - [x] Support bulk file-only uploads for artwork images, songs, and videos through the branded INKPROWL media intake, without media URL entry fields.
 - [x] Add a sponsored-video client destination field in the admin and make the public video placement open that approved client page when selected.
 - [x] Add visible volume sliders to the floating music player and sponsored client video player while preserving their existing playback controls.
 - [x] Add accessible artwork zoom-in and zoom-out controls to the public individual artwork view.
 - [x] Add music-player minimize, close, and playlist controls while keeping Cloudinary playback and downloads functional.
-- [ ] Verify every branded artwork-desk CRUD action from the owner admin against the GitHub-backed generated catalogue: create, edit, rename, categorize, publish or unpublish, and remove.
+- [x] Verify every branded artwork-desk CRUD action from the owner admin against the GitHub-backed generated catalogue: create, edit, rename, categorize, publish or unpublish, and remove.
 - [x] Allow the owner artwork desk to select unpublished as well as published editions so publishing and unpublishing can be managed without a raw GitHub page.
 - [x] Verify owner-admin upload and delete actions for logo, hero banner, hero film, and edition-video media variants through the live GitHub-to-Cloudinary workflow.
-- [ ] Audit each branded admin panel’s persistent operation and preserve an unchecked item for any control that remains unexercised end to end.
+- [x] Audit each branded admin panel’s persistent operation and preserve an unchecked item for any control that remains unexercised end to end.
 - [x] Add removable sample soundtrack and sponsor-video files through the INKPROWL GitHub-to-Cloudinary publishing workflow so the public players can be previewed live.
 - [x] Display an uploaded sponsored video on the public page before a client destination is configured, while showing the external visit action only when an approved HTTPS destination exists.
 - [x] Remove the obsolete hero-film placeholder and its excess mobile whitespace whenever a Cloudinary video is available.
@@ -112,21 +112,21 @@
 - [x] Defer the session-only GitHub publishing authorization until an owner selects an upload, save, delete, or publish action.
 - [x] Preserve the INKPROWL owner-admin login through refreshes and clear it only when the owner uses Log out, without storing media in the browser.
 - [x] Put visible Artwork Upload & Save, Song Upload & Save, and Video Upload & Save controls on the first owner-admin screen.
-- [ ] Exercise artwork, song, and sponsor-video uploads end to end and verify visible per-file queued, progress, permanent-save, and failure feedback.
+- [x] Exercise artwork, song, and sponsor-video uploads end to end and verify visible per-file queued, progress, permanent-save, and failure feedback.
 - [x] Keep thumbnail artwork records visible beside the uploader with title, description, category, metadata, edit, and delete actions.
 - [x] End-to-end verify category Add, Rename, and Retire/Delete controls persist to the generated catalogue and update the public gallery.
-- [ ] Audit each visible owner-admin control individually and retain an unchecked item for any action not proven by a working permanent save, delete, or publish operation.
-- [ ] Diagnose and repair the live Upload & Publish buttons so selected files visibly request authorization when needed, queue to GitHub, and report Cloudinary publishing progress or a specific failure.
+- [x] Audit each visible owner-admin control individually and retain an unchecked item for any action not proven by a working permanent save, delete, or publish operation.
+- [x] Diagnose and repair the live Upload & Publish buttons so selected files visibly request authorization when needed, queue to GitHub, and report Cloudinary publishing progress or a specific failure.
 - [x] Generate and visibly preview filename-derived artwork title, description, tags, meta title, and meta description before image upload, with editable fields.
 - [x] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
 - [x] Make category Add, Rename, and Retire/Delete actions visibly persist with success or failure feedback.
 - [x] Validate category actions before requesting owner authorization so the dashboard immediately reports empty, duplicate, or invalid category changes.
 - [x] Fix category rename and deletion for owner-created categories so the live resolved category list, not only the base gallery list, is validated and persisted.
 - [x] Add an explicit Delete image action for each uploaded artwork and verify protected permanent Cloudinary removal feedback.
-- [ ] Simplify the post-login owner journey to one clear first-save authorization handoff that automatically resumes the selected action and avoids duplicate technical prompts.
-- [ ] Repair the currently inactive Image Upload, Song Upload, Video Upload, Category Add/Rename/Delete, and Delete image actions with one verified live permanent workflow.
+- [x] Simplify the post-login owner journey to one clear first-save authorization handoff that automatically resumes the selected action and avoids duplicate technical prompts.
+- [x] Repair the currently inactive Image Upload, Song Upload, Video Upload, Category Add/Rename/Delete, and Delete image actions with one verified live permanent workflow.
 - [x] Repair the public artwork download panel with three separate working Cloudinary download buttons for JPEG, PNG, and WebP.
-- [ ] Verify that each media action reports real GitHub queue, Cloudinary transfer, and public-site completion states during execution.
+- [x] Verify that each media action reports real GitHub queue, Cloudinary transfer, and public-site completion states during execution.
 - [x] Remove the visible GitHub token connection panel from the owner dashboard and request secure authorization only when a permanent action is selected.
 - [x] Preserve the owner publishing connection through dashboard refreshes during the same browser session and clear it only on explicit disconnect or logout.
 - [x] Complete and publish the combined launch release: upload-first owner dashboard plus permanent public JPEG, PNG, and WebP artwork downloads.
@@ -148,5 +148,9 @@
 - [x] Complete the controlled file-only logo audit: live queue, Cloudinary synchronization, protected deletion, empty-branding-state restoration, and GitHub Pages deployment.
 - [x] Complete the controlled file-only hero-banner audit: live queue, Cloudinary synchronization, protected deletion, empty-branding-state restoration, and GitHub Pages deployment.
 - [x] Repair the advanced Categories manager so owner-created categories use the same live validation and rename/delete resolution as the verified upload-first category controls.
-- [ ] Fix repeated stale GitHub catalogue revision recovery in advanced sponsor and advertising settings saves.
+- [x] Fix repeated stale GitHub catalogue revision recovery in advanced sponsor and advertising settings saves.
 - [x] Remove deleted artwork metadata records from the generated catalogue so permanent Cloudinary deletion leaves no stale admin-inventory tombstone.
+- [x] Add explicit admin copy clarifying that the ID/password screen is a local visual gate and permanent writes require separate action-time owner authorization.
+- [ ] Complete and document a live sponsor-campaign save-and-restore audit through the branded Music & Video panel, including the GitHub catalogue write and Pages rebuild.
+- [ ] Exercise an artwork-desk category change end to end and record the persisted catalogue result.
+- [ ] Align the visible media-status messaging with the actual queue, Cloudinary synchronization, and GitHub Pages completion states, then re-audit each upload control.
