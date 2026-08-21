@@ -162,3 +162,4 @@
 - [x] Repair the memory-only authorization handoff so an approved pending upload or save automatically resumes without browser storage.
 - [x] Show every selected artwork in an editable mobile-first metadata list before publishing, with per-file title, category, description, tags, meta title, and meta description.
 - [x] Simplify the owner authorization dialog so it plainly explains that a GitHub Classic Personal Access Token is required only to authorize a permanent GitHub Pages save.
+- [x] Diagnose and repair the live image-upload fetch failure without changing existing permanent Cloudinary artwork.
