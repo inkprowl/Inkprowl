@@ -1,6 +1,23 @@
 {
   "artworks": [],
-  "artworkOverrides": {},
+  "artworkOverrides": {
+    "upload-fetch-diagnostic": {
+      "title": "Upload Fetch Diagnostic",
+      "description": "A free INKPROWL business animals edition featuring Upload Fetch Diagnostic. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.",
+      "category": "Business Animals",
+      "tags": [
+        "upload",
+        "fetch",
+        "diagnostic",
+        "business",
+        "animals",
+        "inkprowl",
+        "animal art"
+      ],
+      "metaTitle": "INKPROWL — Upload Fetch Diagnostic",
+      "metaDescription": "A free INKPROWL business animals edition featuring Upload Fetch Diagnostic. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage."
+    }
+  },
   "artworkMedia": {},
   "siteMedia": {
     "soundtrackTitle": "Inkprowl Sample Soundtrack",
