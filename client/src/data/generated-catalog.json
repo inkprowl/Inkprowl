@@ -535,6 +535,11 @@
       "publicId": "lion-ledger",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241901/lion-ledger.png"
+    },
+    "artwork:fox-after-hours-courier": {
+      "publicId": "fox-courier",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241886/fox-courier.png"
     }
   }
 }
