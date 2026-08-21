@@ -141,3 +141,9 @@
 - [x] Trigger a GitHub Pages rebuild after every successful Cloudinary catalogue mutation so approved owner changes become visible on the public site.
 - [x] Trigger a GitHub Pages rebuild after every successful Cloudinary catalogue mutation so approved owner changes become visible on the public site.
 - [x] Complete a controlled live Artwork Inventory deletion: visible Delete image permanently action, Cloudinary removal workflow, generated catalogue cleanup, and public-gallery disappearance.
+- [x] Complete the controlled file-only soundtrack audit: live queue, Cloudinary synchronization, protected deletion, original sample-soundtrack catalogue restoration, and GitHub Pages deployment.
+- [ ] Complete and clean up controlled sponsor-video, logo, and hero-banner media audits through the live owner dashboard.
+- [x] Complete and clean up controlled sponsor-video, logo, and hero-banner media audits through the live owner dashboard.
+- [x] Complete the controlled file-only sponsor-video audit: live queue, Cloudinary synchronization, protected deletion, original sample-video catalogue restoration, and GitHub Pages deployment.
+- [x] Complete the controlled file-only logo audit: live queue, Cloudinary synchronization, protected deletion, empty-branding-state restoration, and GitHub Pages deployment.
+- [x] Complete the controlled file-only hero-banner audit: live queue, Cloudinary synchronization, protected deletion, empty-branding-state restoration, and GitHub Pages deployment.
