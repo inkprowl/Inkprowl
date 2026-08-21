@@ -15,3 +15,7 @@ The manager confirmed that the audit save completed successfully with the messag
 The restore initially exposed a browser-side stale-revision failure. The production repair now requires cache-bypassing GitHub API reads for every owner write retry. The repair was validated by type checking, all 43 automated tests, and a production build; release `5f9acd033ce5c458c0d050d60068b18e303d0b78` deployed successfully through GitHub Pages. After reloading the live admin, the restored permanent values were visible and the controlled label **PRESENTED IN PARTNERSHIP — RETRY VERIFIED** was submitted through the repaired manager for final confirmation before restoration.
 
 The repaired manager reported **“Media settings saved. GitHub Pages will rebuild automatically from this commit.”** for the retry-verification label. The permanent label **PRESENTED IN PARTNERSHIP** was immediately restored and submitted for final confirmation.
+
+After the follow-up hardening release, the live owner manager was reloaded with permanent values present. The controlled label **PRESENTED IN PARTNERSHIP — FINAL AUDIT** was submitted through the freshly deployed cache-safe build; its completion is pending confirmation before the final restoration.
+
+The final audit save completed successfully in the repaired live manager with **“Media settings saved. GitHub Pages will rebuild automatically from this commit.”** The permanent label **PRESENTED IN PARTNERSHIP** was then restored and submitted through that same successful build.

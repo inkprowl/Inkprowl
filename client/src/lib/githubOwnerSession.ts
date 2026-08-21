@@ -3,6 +3,9 @@ const REPOSITORY = "inkprowl/inkprowl";
 
 export const GENERATED_CATALOGUE_PATH = "client/src/data/generated-catalog.json";
 
+type RecentCatalogueSnapshot = { value: OwnerGeneratedCatalogue; sha: string };
+const recentCatalogueSnapshots = new Map<string, RecentCatalogueSnapshot>();
+
 export type GitHubIdentity = {
   login: string;
   avatar_url?: string;
@@ -117,16 +120,27 @@ export async function mutateGeneratedCatalogue(
   maxAttempts = 6,
 ) {
   let lastFailure: unknown;
+  const snapshotKey = `${token}\u0000${GENERATED_CATALOGUE_PATH}\u0000${message}`;
   for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
-    const document = await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(token, GENERATED_CATALOGUE_PATH);
+    // The GitHub write response contains the next definitive blob SHA. Reuse it
+    // for an immediate follow-up save instead of asking the eventually
+    // consistent Contents endpoint for a revision that may still be stale.
+    const recent = attempt === 0 ? recentCatalogueSnapshots.get(snapshotKey) : undefined;
+    const document = recent
+      ? { value: recent.value, sha: recent.sha }
+      : await readRepositoryJson<Partial<OwnerGeneratedCatalogue>>(token, GENERATED_CATALOGUE_PATH);
     const next = normalizeOwnerCatalogue(document.value);
     mutate(next);
     try {
-      await writeRepositoryJson(token, GENERATED_CATALOGUE_PATH, next, message, document.sha);
+      const response = await writeRepositoryJson(token, GENERATED_CATALOGUE_PATH, next, message, document.sha) as { content?: { sha?: string } };
+      const nextSha = response?.content?.sha;
+      if (nextSha) recentCatalogueSnapshots.set(snapshotKey, { value: next, sha: nextSha });
+      else recentCatalogueSnapshots.delete(snapshotKey);
       return next;
     } catch (reason) {
       lastFailure = reason;
       if (!isStaleRevisionError(reason)) throw reason;
+      recentCatalogueSnapshots.delete(snapshotKey);
       // Allow GitHub's distributed Contents view to converge after a competing
       // commit. The total wait is capped below 20 seconds across six attempts.
       if (attempt < maxAttempts - 1) await new Promise<void>((resolve) => globalThis.setTimeout(resolve, 500 * 2 ** attempt));

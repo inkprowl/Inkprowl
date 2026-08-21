@@ -110,6 +110,28 @@ describe("INKPROWL owner GitHub session helpers", () => {
     vi.useRealTimers();
   });
 
+  it("reuses the successful write SHA for an immediate follow-up sponsor save", async () => {
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(response({ content: "eyJzcG9uc29yZWRDYW1wYWlnbiI6e319", encoding: "base64", sha: "initial-catalogue-sha" }))
+      .mockResolvedValueOnce(response({ content: { sha: "after-first-save-sha" } }))
+      .mockResolvedValueOnce(response({ content: { sha: "after-second-save-sha" } }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    await mutateGeneratedCatalogue("session-token", "chore: update immediate sponsor settings", (next) => {
+      next.sponsoredCampaign.label = "First";
+    });
+    await mutateGeneratedCatalogue("session-token", "chore: update immediate sponsor settings", (next) => {
+      next.sponsoredCampaign.label = "Second";
+    });
+
+    const calls = fetchMock.mock.calls as Array<[string, RequestInit]>;
+    expect(calls).toHaveLength(3);
+    const [, firstWrite] = calls[1] as [string, RequestInit];
+    const [, secondWrite] = calls[2] as [string, RequestInit];
+    expect(JSON.parse(String(firstWrite.body))).toMatchObject({ sha: "initial-catalogue-sha" });
+    expect(JSON.parse(String(secondWrite.body))).toMatchObject({ sha: "after-first-save-sha" });
+  });
+
   it("queues binary media and dispatches the protected Cloudinary deletion workflow", async () => {
     const fetchMock = vi.fn().mockResolvedValueOnce(response({ content: { sha: "queue-sha" } })).mockResolvedValueOnce(response({}, 204));
     vi.stubGlobal("fetch", fetchMock);
