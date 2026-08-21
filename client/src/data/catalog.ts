@@ -26,6 +26,7 @@ export type SiteMedia = {
   defaultArtworkFilmUrl?: string;
   soundtrackUrl?: string;
   soundtrackTitle: string;
+  soundtrackArtist?: string;
 };
 
 export type SiteBranding = {
@@ -96,6 +97,7 @@ export const siteMedia: SiteMedia = {
   defaultArtworkFilmUrl: undefined,
   soundtrackUrl: undefined,
   soundtrackTitle: "Curated sound",
+  soundtrackArtist: "INKPROWL",
   ...generatedCatalogue.siteMedia,
 };
 

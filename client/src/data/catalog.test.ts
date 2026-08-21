@@ -61,6 +61,7 @@ describe("INKPROWL catalog", () => {
   it("keeps optional site-wide soundtrack and film settings Cloudinary-only", () => {
     expect(() => validateSiteMedia(siteMedia)).not.toThrow();
     expect(() => validateSiteMedia({ ...siteMedia, soundtrackUrl: "https://example.com/score.mp3" })).toThrow(/Cloudinary delivery URL/);
+    expect(siteMedia.soundtrackArtist).toBeTruthy();
   });
 
   it("provides owner-editable defaults for the homepage featured-banner caption", () => {

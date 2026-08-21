@@ -29,4 +29,16 @@ describe("removeCatalogueAssetState", () => {
     expect(catalogue.assets).not.toHaveProperty("artworkVideo:panther");
     expect(catalogue.artworkMedia.panther).toEqual({ caption: "Film" });
   });
+
+  it("clears soundtrack title, URL, and artist data when the managed song is deleted", () => {
+    const catalogue = {
+      assets: { "siteMedia:soundtrack": { publicId: "inkprowl/song" } },
+      siteMedia: { soundtrackUrl: "https://res.cloudinary.com/y1pc8ocl/video/upload/song.mp3", soundtrackTitle: "Night Prowl", soundtrackArtist: "INKPROWL Ensemble" },
+    };
+
+    removeCatalogueAssetState(catalogue, "siteMedia:soundtrack");
+
+    expect(catalogue.assets).not.toHaveProperty("siteMedia:soundtrack");
+    expect(catalogue.siteMedia).toEqual({ soundtrackTitle: "Curated sound" });
+  });
 });

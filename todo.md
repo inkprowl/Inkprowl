@@ -174,3 +174,6 @@
 - [x] Make the homepage hero banner a responsive 1:1 square while retaining the desktop editorial layout.
 - [x] Add editable featured label and artwork title fields to the Hero Banner admin workspace and publish them through the existing protected catalogue workflow.
 - [x] Investigate and restore every missing Cloudinary-backed artwork, song, sponsor-video, logo, and hero-banner catalogue record after the hero-banner release; add a release safeguard so source changes cannot overwrite current generated media settings.
+- [x] Rebalance the sponsor-video layout on mobile and individual artwork pages so the full 16:9 video is prominent and sponsor copy does not consume the artwork-first viewport.
+- [x] Add editable song title and artist name fields to the Song Upload workspace and persist both fields through the protected generated-catalogue workflow.
+- [x] Force individual artwork-page films into a dedicated 16:9 landscape crop, including portrait Cloudinary source videos, without removing player controls.

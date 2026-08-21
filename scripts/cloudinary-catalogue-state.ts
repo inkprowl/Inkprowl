@@ -23,7 +23,10 @@ export function removeCatalogueAssetState(catalogue: GeneratedCatalogueState, ke
 
   if (key === "siteMedia:soundtrack") {
     delete catalogue.siteMedia?.soundtrackUrl;
-    if (catalogue.siteMedia) catalogue.siteMedia.soundtrackTitle = "Curated sound";
+    if (catalogue.siteMedia) {
+      catalogue.siteMedia.soundtrackTitle = "Curated sound";
+      delete catalogue.siteMedia.soundtrackArtist;
+    }
   }
   if (key === "siteMedia:heroFilm") delete catalogue.siteMedia?.heroFilmUrl;
   if (key === "siteBranding:heroBanner") delete catalogue.siteBranding?.heroBannerUrl;
