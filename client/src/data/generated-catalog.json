@@ -56,8 +56,8 @@
   },
   "artworkMedia": {},
   "siteMedia": {
-    "soundtrackTitle": "Inkprowl Sample Soundtrack",
-    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
+    "soundtrackTitle": "Diagnostic Song",
+    "soundtrackUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787298435/inkprowl/song--diagnostic-song_dooeqa.mp3"
   },
   "siteBranding": {},
   "sponsoredCampaign": {
@@ -74,9 +74,9 @@
   },
   "assets": {
     "siteMedia:soundtrack": {
-      "publicId": "inkprowl/song--inkprowl-sample-soundtrack_j8d78y",
+      "publicId": "inkprowl/song--diagnostic-song_dooeqa",
       "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787298435/inkprowl/song--diagnostic-song_dooeqa.mp3"
     },
     "sponsoredCampaign:video": {
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
