@@ -33,6 +33,8 @@ export type SiteBranding = {
   heroBannerUrl?: string;
   heroTitle: string;
   heroKicker: string;
+  heroFeaturedLabel?: string;
+  heroFeaturedTitle?: string;
 };
 
 export type SponsoredCampaign = {
@@ -103,6 +105,8 @@ export const siteBranding: SiteBranding = {
   heroBannerUrl: undefined,
   heroKicker: "HUMAN-DIRECTED / AI-CRAFTED",
   heroTitle: "Art that prowls past the ordinary.",
+  heroFeaturedLabel: "01 — FEATURED EDITION",
+  heroFeaturedTitle: undefined,
   ...generatedCatalogue.siteBranding,
 };
 

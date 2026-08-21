@@ -3,13 +3,7 @@ import "./inkprowlMedia.css";
 import { Download, Film, ListMusic, Menu, Minimize2, Music2, Pause, Play, Search, Volume2, X } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { siteBranding, siteMedia } from "@/data/catalog";
-
-const navItems = [
-  { label: "Gallery", href: "/gallery" },
-  { label: "Categories", href: "/categories" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
+import { publicNavigationItems } from "@/lib/publicNavigation";
 
 export function Mark({ compact = false }: { compact?: boolean }) {
   return (
@@ -28,7 +22,7 @@ export function Header() {
       <div className="header-inner">
         <Mark />
         <nav className={`main-nav ${open ? "is-open" : ""}`} aria-label="Primary navigation">
-          {navItems.map((item) => (
+          {publicNavigationItems.map((item) => (
             <Link key={item.href} href={item.href} className={location === item.href ? "active" : ""} onClick={() => setOpen(false)}>
               {item.label}
             </Link>
@@ -124,5 +118,5 @@ export function CloudinaryVideoPlayer({ src, title, className = "", clientUrl, c
 }
 
 export function PageFrame({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  return <div className={`site-shell ${dark ? "dark-surface" : ""}`}><Header /><main>{children}</main><Footer /><FloatingPlayer /></div>;
+  return <div className={`site-shell ${dark ? "dark-surface" : ""}`}><Header /><main>{children}</main><Footer /></div>;
 }

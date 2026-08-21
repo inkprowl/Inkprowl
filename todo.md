@@ -169,3 +169,7 @@
 - [x] Replace the technical green upload-queue notice with concise owner-friendly publication status feedback.
 - [x] Reduce avoidable delay between a completed Cloudinary sync and the public GitHub Pages catalogue update.
 - [x] Enforce a fixed 16:9 landscape sponsor-video stage on mobile, including portrait source videos.
+- [x] Add a clear Home control on individual artwork pages and reinforce Home navigation in the public experience.
+- [x] Preserve the floating music player and active audio playback while navigating between Home, gallery, and artwork pages.
+- [x] Make the homepage hero banner a responsive 1:1 square while retaining the desktop editorial layout.
+- [x] Add editable featured label and artwork title fields to the Hero Banner admin workspace and publish them through the existing protected catalogue workflow.

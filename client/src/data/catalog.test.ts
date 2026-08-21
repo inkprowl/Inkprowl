@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isApprovedClientDestination, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteMedia, sponsoredCampaign, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
+import { activeAdvertisementProviders, advertisingSettings, artworks, availableDownloadFormats, categories, getArtwork, getArtworkShareUrl, getCloudinaryDownloadUrl, isApprovedClientDestination, isCloudinaryDeliveryUrl, publishedArtworks, relatedArtworks, siteBranding, siteMedia, sponsoredCampaign, validateArtworkMedia, validateOwnerConfiguration, validateSiteMedia } from "./catalog";
 
 describe("INKPROWL catalog", () => {
   it("contains all requested public browsing categories", () => {
@@ -60,6 +60,11 @@ describe("INKPROWL catalog", () => {
   it("keeps optional site-wide soundtrack and film settings Cloudinary-only", () => {
     expect(() => validateSiteMedia(siteMedia)).not.toThrow();
     expect(() => validateSiteMedia({ ...siteMedia, soundtrackUrl: "https://example.com/score.mp3" })).toThrow(/Cloudinary delivery URL/);
+  });
+
+  it("provides owner-editable defaults for the homepage featured-banner caption", () => {
+    expect(siteBranding.heroFeaturedLabel).toBe("01 — FEATURED EDITION");
+    expect(siteBranding.heroFeaturedTitle).toBe("Panther in Pinstripe Suit");
   });
 
   it("provides the active campaign Cloudinary film for individual artwork-player fallback", () => {

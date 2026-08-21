@@ -1,4 +1,4 @@
-import { ArrowLeft, Download, RotateCcw, Share2, Tag, ZoomIn, ZoomOut } from "lucide-react";
+import { ArrowLeft, Download, House, RotateCcw, Share2, Tag, ZoomIn, ZoomOut } from "lucide-react";
 import { useState } from "react";
 import { Link, useRoute } from "wouter";
 import { ArtworkCard, ArtworkVisual, AdSlot } from "@/components/ArtworkCard";
@@ -11,7 +11,7 @@ export default function ArtworkDetail() {
   const [shareStatus, setShareStatus] = useState("");
   const [zoom, setZoom] = useState(1);
 
-  if (!artwork) return <PageFrame><div className="not-found-copy"><h1>This edition has left the archive.</h1><Link href="/gallery" className="button-dark">Return to gallery</Link></div></PageFrame>;
+  if (!artwork) return <PageFrame><div className="not-found-copy"><h1>This edition has left the archive.</h1><div className="detail-page-nav"><Link href="/" className="button-outline"><House size={16} /> Home</Link><Link href="/gallery" className="button-dark">Return to gallery</Link></div></div></PageFrame>;
 
   const related = relatedArtworks(artwork);
   const formats = availableDownloadFormats(artwork);
@@ -36,7 +36,7 @@ export default function ArtworkDetail() {
 
   return <PageFrame>
     <section className="detail-wrap">
-      <Link href="/gallery" className="back-link"><ArrowLeft size={16} /> Back to gallery</Link>
+      <nav className="detail-page-nav" aria-label="Artwork page navigation"><Link href="/" className="back-link"><House size={16} /> Home</Link><Link href="/gallery" className="back-link"><ArrowLeft size={16} /> Back to gallery</Link></nav>
       <div className="detail-grid">
         <div className="detail-art artwork-zoom-region"><div className="artwork-zoom-toolbar" role="group" aria-label="Artwork zoom controls"><button type="button" onClick={() => setZoom((current) => Math.max(1, Number((current - 0.2).toFixed(1))))} disabled={zoom <= 1} aria-label="Zoom out"><ZoomOut size={16} /></button><span aria-live="polite">{Math.round(zoom * 100)}%</span><button type="button" onClick={() => setZoom((current) => Math.min(2.4, Number((current + 0.2).toFixed(1))))} disabled={zoom >= 2.4} aria-label="Zoom in"><ZoomIn size={16} /></button>{zoom > 1 && <button type="button" onClick={() => setZoom(1)} aria-label="Reset artwork zoom"><RotateCcw size={15} /></button>}</div><div className="artwork-zoom-stage"><div className="artwork-zoom-content" style={{ transform: `scale(${zoom})` }}><ArtworkVisual artwork={artwork} large /></div></div><p className="artwork-zoom-note">Use zoom controls to inspect the edition detail. Download files remain unchanged.</p></div>
         <div className="detail-copy">

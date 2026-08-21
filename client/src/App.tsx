@@ -13,11 +13,17 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { Privacy, Terms } from "./pages/Legal";
 import Admin from "./pages/Admin";
+import { FloatingPlayer } from "./components/InkprowlChrome";
+import { shouldShowFloatingPlayer } from "./lib/publicNavigation";
 
 export const INKPROWL_PATHS = ["/", "/gallery", "/categories", "/art/:slug", "/about", "/contact", "/terms", "/privacy", "/admin", "/404"] as const;
 
+function PersistentPublicPlayer() {
+  const [location] = useHashLocation();
+  return shouldShowFloatingPlayer(location) ? <FloatingPlayer /> : null;
+}
+
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <WouterRouter hook={useHashLocation}>
       <Switch>
@@ -33,6 +39,7 @@ function Router() {
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>
+      <PersistentPublicPlayer />
     </WouterRouter>
   );
 }
