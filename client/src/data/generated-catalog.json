@@ -45,8 +45,8 @@
   "siteBranding": {},
   "sponsoredCampaign": {
     "enabled": true,
-    "clientName": "Inkprowl Sample Sponsor Placement",
-    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+    "clientName": "Sponsor Video Audit Check",
+    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787284715/inkprowl/sponsor-video--sponsor-video-audit-check_hvuunx.mp4"
   },
   "advertisingSettings": {},
   "categories": [],
@@ -60,9 +60,9 @@
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257806/inkprowl/song--inkprowl-sample-soundtrack_j8d78y.mp3"
     },
     "sponsoredCampaign:video": {
-      "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
+      "publicId": "inkprowl/sponsor-video--sponsor-video-audit-check_hvuunx",
       "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787284715/inkprowl/sponsor-video--sponsor-video-audit-check_hvuunx.mp4"
     }
   }
 }
