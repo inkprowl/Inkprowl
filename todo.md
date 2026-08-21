@@ -130,4 +130,4 @@
 - [x] Replace individual artwork “awaiting film release” placeholders with the active full-frame 16:9 Cloudinary video player whenever a site video is available.
 - [x] Perform the ordered final audit: individual video player, homepage player, downloads, owner dashboard, then public release verification.
 - [x] Add clearly visible file-only logo and hero-banner upload controls to the initial INKPROWL owner dashboard and verify their owner-authorization handoff.
-- [ ] Publish and live-verify the visible logo and hero-banner controls on the GitHub Pages owner dashboard.
+- [x] Publish and live-verify the visible logo and hero-banner controls on the GitHub Pages owner dashboard.
