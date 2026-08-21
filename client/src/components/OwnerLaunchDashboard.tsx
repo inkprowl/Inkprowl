@@ -2,26 +2,28 @@ import { type ChangeEvent, useEffect, useMemo, useState } from "react";
 import { CheckCircle2, Film, ImagePlus, LoaderCircle, LogOut, Music2, Pencil, Plus, Save, Tags, Trash2, UploadCloud, XCircle } from "lucide-react";
 import { artworks, categories } from "@/data/catalog";
 import { GENERATED_CATALOGUE_PATH, type ManagedCloudinaryAsset, type OwnerGeneratedCatalogue, dispatchCloudinaryDeletion, mutateGeneratedCatalogue, normalizeOwnerCatalogue, queueIncomingFile, readRepositoryJson } from "@/lib/githubOwnerSession";
+import { artworkDescription, artworkTags, createArtworkUploadDraft, type ArtworkUploadDraft, titleFromArtworkFilename, updateArtworkUploadDraft } from "@/lib/artworkUploadDrafts";
 import { applyCategoryOperation, categoryOperationValidationMessage, resolvedCategoryNames } from "@/lib/ownerCatalogueOps";
 import { authorizationPendingStatus, catalogueSavedStatus, cloudinaryDeletionQueuedStatus, deletionFailureStatus, initialOwnerPublishStatus, type OwnerPublishStatus, preparingArtworkDeletionStatus, publishFailureStatus, publishHandoffStatus, queuedForCloudinaryStatus, requestingCloudinaryDeletionStatus, savingArtworkMetadataStatus, savingCatalogueStatus, uploadToQueueStatus } from "@/lib/ownerPublishingStatus";
 
 type OwnerConnection = { token: string; identity: { login: string } };
 type PublishRole = "artwork" | "soundtrack" | "sponsor-video" | "logo" | "hero-banner";
 type InventoryArtwork = { slug: string; title: string; description: string; category: string; tags: string[]; imageUrl: string };
-type PendingPublish = { role: PublishRole; files: File[]; title: string; category: string; description?: string; tags?: string[] };
+type ArtworkFileDraft = ArtworkUploadDraft & { file: File };
+type PendingPublish = { role: PublishRole; files: File[]; title: string; category: string; description?: string; tags?: string[]; artworkDrafts?: ArtworkFileDraft[] };
 type PendingMutation = { message: string; success: string; mutate: (next: OwnerGeneratedCatalogue) => void };
 type PendingDeletion = { assetKey: string; artwork?: InventoryArtwork };
 
 function titleFromFilename(filename: string) {
-  return filename.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim().replace(/\b\w/g, (letter) => letter.toUpperCase());
+  return titleFromArtworkFilename(filename);
 }
 
 function descriptionFromFilename(title: string, category: string) {
-  return `A free INKPROWL ${category.toLowerCase()} edition featuring ${title}. Available in JPEG, PNG, and WebP directly from permanent Cloudinary storage.`;
+  return artworkDescription(title, category);
 }
 
 function tagsFromFilename(title: string, category: string) {
-  return Array.from(new Set([...title.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 2), ...category.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 2), "inkprowl", "animal art"])).slice(0, 8);
+  return artworkTags(title, category).split(", ").filter(Boolean);
 }
 
 function cloudinaryAssetFromDeliveryUrl(url: string): ManagedCloudinaryAsset | null {
@@ -62,6 +64,7 @@ function filenameFor(role: PublishRole, file: File, title: string, category: str
 export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogout }: { connection: OwnerConnection | null; requestAuthorization: () => void; onLogout: () => void }) {
   const [catalogue, setCatalogue] = useState<OwnerGeneratedCatalogue | null>(null);
   const [artworkFiles, setArtworkFiles] = useState<File[]>([]);
+  const [artworkDrafts, setArtworkDrafts] = useState<ArtworkFileDraft[]>([]);
   const [songFile, setSongFile] = useState<File | null>(null);
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [logoFile, setLogoFile] = useState<File | null>(null);
@@ -169,39 +172,44 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     return invalid ? `${invalid.name} has the wrong file type or exceeds the 85 MB upload limit.` : "";
   }
 
-  async function queuePublish({ role, files, title, category, description, tags }: PendingPublish, activeConnection: OwnerConnection) {
+  async function queuePublish(payload: PendingPublish, activeConnection: OwnerConnection) {
+    const { role, files, title, category, description, tags, artworkDrafts } = payload;
     try {
       setStatus(publishHandoffStatus());
       for (let index = 0; index < files.length; index += 1) {
         const file = files[index]!;
-        const derivedTitle = files.length === 1 ? title : titleFromFilename(file.name);
-        const incomingFilename = filenameFor(role, file, derivedTitle, category);
+        const draft = role === "artwork" ? artworkDrafts?.[index] : undefined;
+        const derivedTitle = draft?.title || (files.length === 1 ? title : titleFromFilename(file.name));
+        const fileCategory = draft?.category || category;
+        const incomingFilename = filenameFor(role, file, derivedTitle, fileCategory);
         setStatus(uploadToQueueStatus(file.name, index, files.length));
         await queueIncomingFile(activeConnection.token, incomingFilename, file);
       }
       if (role === "artwork") {
         setStatus(savingArtworkMetadataStatus());
         const next = await mutateGeneratedCatalogue(activeConnection.token, "chore: save INKPROWL artwork upload metadata", (catalogue) => {
-          for (const file of files) {
-            const derivedTitle = files.length === 1 ? title : titleFromFilename(file.name);
-            const derivedDescription = files.length === 1 ? description || descriptionFromFilename(derivedTitle, category) : descriptionFromFilename(derivedTitle, category);
-            const derivedTags = files.length === 1 && tags?.length ? tags : tagsFromFilename(derivedTitle, category);
+          for (let index = 0; index < files.length; index += 1) {
+            const file = files[index]!;
+            const draft = artworkDrafts?.[index];
+            const derivedTitle = draft?.title || (files.length === 1 ? title : titleFromFilename(file.name));
+            const derivedDescription = draft?.description || (files.length === 1 ? description || descriptionFromFilename(derivedTitle, category) : descriptionFromFilename(derivedTitle, category));
+            const derivedTags = draft ? draft.tags.split(",").map((tag: string) => tag.trim()).filter(Boolean) : (files.length === 1 && tags?.length ? tags : tagsFromFilename(derivedTitle, category));
             const artworkSlug = slug(derivedTitle);
             catalogue.artworkOverrides[artworkSlug] = {
               ...(catalogue.artworkOverrides[artworkSlug] ?? {}),
               title: derivedTitle,
               description: derivedDescription,
-              category,
+              category: draft?.category || category,
               tags: derivedTags,
-              metaTitle: `INKPROWL — ${derivedTitle}`,
-              metaDescription: derivedDescription.slice(0, 155),
+              metaTitle: draft?.metaTitle || `INKPROWL — ${derivedTitle}`,
+              metaDescription: draft?.metaDescription || derivedDescription.slice(0, 155),
             };
           }
         });
         setCatalogue(next);
       }
       setStatus(queuedForCloudinaryStatus(files.length));
-      if (role === "artwork") { setArtworkFiles([]); setArtworkTitle(""); setArtworkDescription(""); setArtworkTags(""); }
+      if (role === "artwork") { setArtworkFiles([]); setArtworkDrafts([]); setArtworkTitle(""); setArtworkDescription(""); setArtworkTags(""); }
       if (role === "soundtrack") { setSongFile(null); setSongTitle(""); }
       if (role === "sponsor-video") { setVideoFile(null); setVideoTitle(""); }
       if (role === "logo") { setLogoFile(null); setLogoTitle(""); }
@@ -215,6 +223,19 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     const message = publishValidationMessage(role, files);
     if (message) { setStatus({ percent: 0, tone: "error", message }); return; }
     const nextPublish = { role, files, title, category: artworkCategory, description: artworkDescription, tags: artworkTags.split(",").map((tag) => tag.trim()).filter(Boolean) };
+    if (!connection) {
+      setPendingPublish(nextPublish);
+      setStatus(authorizationPendingStatus("upload"));
+      requestAuthorization();
+      return;
+    }
+    await queuePublish(nextPublish, connection);
+  }
+
+  async function publishArtworkDrafts() {
+    const message = publishValidationMessage("artwork", artworkFiles);
+    if (message) { setStatus({ percent: 0, tone: "error", message }); return; }
+    const nextPublish: PendingPublish = { role: "artwork", files: artworkFiles, title: artworkDrafts[0]?.title ?? "", category: artworkDrafts[0]?.category ?? artworkCategory, artworkDrafts };
     if (!connection) {
       setPendingPublish(nextPublish);
       setStatus(authorizationPendingStatus("upload"));
@@ -249,6 +270,7 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
   function chooseArtworkFiles(event: ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.target.files ?? []);
     setArtworkFiles(files);
+    setArtworkDrafts(files.map((file) => ({ ...createArtworkUploadDraft(file.name, artworkCategory), file })));
     if (files.length === 1) {
       const nextTitle = titleFromFilename(files[0]!.name);
       setArtworkTitle(nextTitle);
@@ -304,7 +326,7 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
     <div className="owner-launch-heading"><div><span className="eyebrow">UPLOAD & PUBLISH</span><h3>Your permanent<br /><em>media desk.</em></h3><p>Choose files from your device. File names create draft titles; you can refine artwork content before publishing.</p></div><div className="owner-publish-session"><strong>{connection ? `Publishing ready · ${connection.identity.login}` : "Ready for your first save"}</strong><small>{connection ? "Authorised for this open page only. Refresh to sign in and authorise again." : "Choose a file, then authorise the upload when prompted."}</small></div></div>
     <div className={`owner-publish-status ${status.tone}`} aria-live="polite"><div><span>{status.tone === "success" ? <CheckCircle2 size={17} /> : status.tone === "error" ? <XCircle size={17} /> : status.tone === "working" ? <LoaderCircle size={17} /> : <UploadCloud size={17} />}</span><p>{status.message}</p></div><progress value={status.percent} max="100" aria-label="Publishing progress" /></div>
     <div className="owner-upload-grid">
-      <article className="owner-upload-card"><div className="owner-upload-icon"><ImagePlus size={22} /></div><span className="eyebrow">ARTWORK IMAGES</span><h4>Images Upload & Publish</h4><p>PNG, JPG, JPEG, WebP, or image files. Select multiple images for a batch upload.</p><label className="launch-file-picker"><input type="file" accept="image/*" multiple onChange={chooseArtworkFiles} /><span>{artworkFiles.length ? `${artworkFiles.length} image${artworkFiles.length === 1 ? "" : "s"} selected` : "Choose artwork image files"}</span></label><label>Title <input value={artworkTitle} disabled={artworkFiles.length > 1} onChange={(event) => setArtworkTitle(event.target.value)} placeholder={artworkFiles.length > 1 ? "Filename-derived for each file" : "Auto-generated from filename"} /></label><label>Category <select value={artworkCategory} onChange={(event) => { const nextCategory = event.target.value; setArtworkCategory(nextCategory); if (artworkTitle) { setArtworkDescription(descriptionFromFilename(artworkTitle, nextCategory)); setArtworkTags(tagsFromFilename(artworkTitle, nextCategory).join(", ")); } }}>{categoryNames.map((name) => <option key={name}>{name}</option>)}</select></label>{artworkFiles.length === 1 && <><label>Description <textarea rows={3} value={artworkDescription} onChange={(event) => setArtworkDescription(event.target.value)} placeholder="Auto-generated from filename" /></label><label>Tags <input value={artworkTags} onChange={(event) => setArtworkTags(event.target.value)} placeholder="Auto-generated from filename" /></label><div className="meta-preview"><strong>Automatic public metadata</strong><span>Meta title: INKPROWL — {artworkTitle}</span><span>Meta description: {(artworkDescription || descriptionFromFilename(artworkTitle, artworkCategory)).slice(0, 155)}</span></div></>}<button type="button" className="admin-primary-action" onClick={() => void publish("artwork", artworkFiles, artworkTitle)}><UploadCloud size={16} /> Upload & Publish images</button></article>
+      <article className="owner-upload-card owner-artwork-upload-card"><div className="owner-upload-icon"><ImagePlus size={22} /></div><span className="eyebrow">ARTWORK IMAGES</span><h4>Images Upload & Publish</h4><p>Choose one or more images. Every file receives its own editable title, category, description, tags, and search metadata before publishing.</p><label className="launch-file-picker"><input type="file" accept="image/*" multiple onChange={chooseArtworkFiles} /><span>{artworkFiles.length ? `${artworkFiles.length} image${artworkFiles.length === 1 ? "" : "s"} selected — edit each below` : "Choose artwork image files"}</span></label>{artworkDrafts.length > 0 && <div className="artwork-draft-list" aria-label="Selected artwork metadata"><div className="artwork-draft-list-head"><strong>{artworkDrafts.length} selected edition{artworkDrafts.length === 1 ? "" : "s"}</strong><span>Each entry publishes separately</span></div>{artworkDrafts.map((draft, index) => <section className="artwork-draft-card" key={`${draft.file.name}-${draft.file.lastModified}-${index}`}><div className="artwork-draft-name"><span>{index + 1}</span><strong>{draft.file.name}</strong></div><label>Title <input value={draft.title} onChange={(event) => setArtworkDrafts((current) => current.map((item, itemIndex) => itemIndex === index ? { ...item, ...updateArtworkUploadDraft(item, { title: event.target.value }) } : item))} /></label><label>Category <select value={draft.category} onChange={(event) => setArtworkDrafts((current) => current.map((item, itemIndex) => itemIndex === index ? { ...item, ...updateArtworkUploadDraft(item, { category: event.target.value }) } : item))}>{categoryNames.map((name) => <option key={name}>{name}</option>)}</select></label><label>Description <textarea rows={3} value={draft.description} onChange={(event) => setArtworkDrafts((current) => current.map((item, itemIndex) => itemIndex === index ? { ...item, ...updateArtworkUploadDraft(item, { description: event.target.value }) } : item))} /></label><label>Tags <input value={draft.tags} onChange={(event) => setArtworkDrafts((current) => current.map((item, itemIndex) => itemIndex === index ? { ...item, ...updateArtworkUploadDraft(item, { tags: event.target.value }) } : item))} placeholder="vintage, animal, editorial" /></label><label>Meta title <input value={draft.metaTitle} onChange={(event) => setArtworkDrafts((current) => current.map((item, itemIndex) => itemIndex === index ? { ...item, ...updateArtworkUploadDraft(item, { metaTitle: event.target.value }) } : item))} /></label><label>Meta description <textarea rows={2} value={draft.metaDescription} onChange={(event) => setArtworkDrafts((current) => current.map((item, itemIndex) => itemIndex === index ? { ...item, ...updateArtworkUploadDraft(item, { metaDescription: event.target.value.slice(0, 155) }) } : item))} /></label></section>)}</div>}<button type="button" className="admin-primary-action" onClick={() => void publishArtworkDrafts()}><UploadCloud size={16} /> Upload & Publish images</button></article>
       <article className="owner-upload-card"><div className="owner-upload-icon"><Music2 size={22} /></div><span className="eyebrow">FLOATING MUSIC PLAYER</span><h4>Song Upload & Publish</h4><p>Upload one MP3, WAV, M4A, or audio file for the public movable music player.</p><label className="launch-file-picker"><input type="file" accept="audio/*" onChange={(event) => { const file = event.target.files?.[0] ?? null; setSongFile(file); if (file) setSongTitle(titleFromFilename(file.name)); }} /><span>{songFile?.name ?? "Choose your song file"}</span></label><label>Song title <input value={songTitle} onChange={(event) => setSongTitle(event.target.value)} placeholder="Auto-generated from filename" /></label><div className="launch-spacer" /><button type="button" className="admin-primary-action" onClick={() => void publish("soundtrack", songFile ? [songFile] : [], songTitle)}><Music2 size={16} /> Upload & Publish song</button></article>
       <article className="owner-upload-card"><div className="owner-upload-icon"><Film size={22} /></div><span className="eyebrow">SPONSORED VIDEO PLAYER</span><h4>Video Upload & Publish</h4><p>Upload one landscape video file for the public sponsor stage and individual artwork film fallback.</p><label className="launch-file-picker"><input type="file" accept="video/*" onChange={(event) => { const file = event.target.files?.[0] ?? null; setVideoFile(file); if (file) setVideoTitle(titleFromFilename(file.name)); }} /><span>{videoFile?.name ?? "Choose sponsor video file"}</span></label><label>Campaign title <input value={videoTitle} onChange={(event) => setVideoTitle(event.target.value)} placeholder="Auto-generated from filename" /></label><div className="launch-spacer" /><button type="button" className="admin-primary-action" onClick={() => void publish("sponsor-video", videoFile ? [videoFile] : [], videoTitle)}><Film size={16} /> Upload & Publish video</button></article>
       <article className="owner-upload-card owner-brand-upload-card"><div className="owner-upload-icon"><ImagePlus size={22} /></div><span className="eyebrow">BRAND STUDIO</span><h4>Logo Upload & Publish</h4><p>Choose the INKPROWL logo from your device. PNG, JPG, WebP, or AVIF is queued directly for permanent Cloudinary delivery.</p><label className="launch-file-picker"><input type="file" accept="image/png,image/jpeg,image/webp,image/avif" onChange={(event) => { const file = event.target.files?.[0] ?? null; setLogoFile(file); if (file) setLogoTitle(titleFromFilename(file.name)); }} /><span>{logoFile?.name ?? "Choose INKPROWL logo file"}</span></label><label>Logo label <input value={logoTitle} onChange={(event) => setLogoTitle(event.target.value)} placeholder="Auto-generated from filename" /></label><div className="launch-spacer" /><button type="button" className="admin-primary-action" onClick={() => void publish("logo", logoFile ? [logoFile] : [], logoTitle)}><UploadCloud size={16} /> Upload & Publish logo</button></article>
