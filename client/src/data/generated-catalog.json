@@ -1,5 +1,26 @@
 {
-  "artworks": [],
+  "artworks": [
+    {
+      "slug": "diagnostic-artwork",
+      "title": "Diagnostic Artwork",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of Diagnostic Artwork, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787298332/inkprowl/art--business-animals--diagnostic-artwork_tyqwv6.png",
+      "orientation": "square",
+      "tags": [
+        "diagnostic",
+        "artwork"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:diagnostic-artwork"
+    }
+  ],
   "artworkOverrides": {
     "upload-fetch-diagnostic": {
       "title": "Upload Fetch Diagnostic",
@@ -61,6 +82,11 @@
       "publicId": "inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone",
       "resourceType": "video",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787257807/inkprowl/sponsor-video--inkprowl-sample-sponsor-placement_jzuone.mp4"
+    },
+    "artwork:diagnostic-artwork": {
+      "publicId": "inkprowl/art--business-animals--diagnostic-artwork_tyqwv6",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787298332/inkprowl/art--business-animals--diagnostic-artwork_tyqwv6.png"
     }
   }
 }
