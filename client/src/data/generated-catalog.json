@@ -540,6 +540,11 @@
       "publicId": "fox-courier",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241886/fox-courier.png"
+    },
+    "artwork:bear-bull-market": {
+      "publicId": "bear-market",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241921/bear-market.png"
     }
   }
 }
