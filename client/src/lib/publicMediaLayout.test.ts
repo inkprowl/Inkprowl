@@ -25,11 +25,13 @@ describe("public media layout contracts", () => {
     expect(subjectSafeCss).toContain("object-fit: contain !important");
     expect(subjectSafeCss).toContain("object-position: center center !important");
     expect(subjectSafeCss).toContain(".cloudinary-video.full-video-fit.is-portrait-source");
-    expect(subjectSafeCss).toContain("height: auto !important");
+    expect(subjectSafeCss).toContain("height: 100% !important");
     const chrome = source("client/src/components/InkprowlChrome.tsx");
-    expect(chrome).toContain("setPortraitAspectRatio(isPortrait && videoWidth && videoHeight");
-    expect(chrome).toContain('style={portraitAspectRatio ? { aspectRatio: portraitAspectRatio } : undefined}');
+    expect(chrome).toContain('className="video-ambient-backdrop"');
+    expect(chrome).toContain('portraitSource && <video');
     expect(subjectSafeCss).toContain("position: relative !important");
+    expect(subjectSafeCss).toContain("filter: blur(18px) brightness(.5) saturate(.78) !important");
+    expect(subjectSafeCss).toContain("aspect-ratio: 16 / 9 !important");
   });
 
   it("hides unrelated owner workspaces after the owner chooses a focused task", () => {

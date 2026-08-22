@@ -7,30 +7,45 @@
   background: #110d0b;
 }
 
-/* A portrait upload cannot be both complete and edge-to-edge within 16:9. Once
-   metadata confirms that source orientation, use its native presentation rather
-   than showing enormous empty side bars or cutting the subject. */
+/* A portrait upload cannot be both complete and edge-to-edge within 16:9.
+   Keep the full foreground visible, and use a muted blurred copy as an ambient
+   backdrop so the wide stage never devolves into black side bars. */
 .cloudinary-video.full-video-fit.is-portrait-source,
 .cloudinary-video.sponsor-video.is-portrait-source,
 .cloudinary-video.detail-video-frame.is-portrait-source {
-  width: min(100%, 420px) !important;
+  width: 100% !important;
   min-height: 0 !important;
-  aspect-ratio: auto !important;
+  aspect-ratio: 16 / 9 !important;
   margin-inline: auto !important;
-  overflow: visible !important;
-  background: transparent !important;
+  overflow: hidden !important;
+  background: #110d0b !important;
 }
 
 .cloudinary-video.full-video-fit.is-portrait-source > .video-ratio-frame,
 .cloudinary-video.sponsor-video.is-portrait-source > .video-ratio-frame,
 .cloudinary-video.detail-video-frame.is-portrait-source > .video-ratio-frame {
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
   min-height: 0 !important;
-  aspect-ratio: auto !important;
-  overflow: visible !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden !important;
   border: 1px solid rgba(247, 240, 228, .78);
-  background: transparent !important;
+  background: #110d0b !important;
+}
+
+.cloudinary-video.is-portrait-source .video-ambient-backdrop {
+  position: absolute !important;
+  inset: -8% !important;
+  z-index: 0 !important;
+  display: block !important;
+  width: 116% !important;
+  height: 116% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  filter: blur(18px) brightness(.5) saturate(.78) !important;
+  opacity: .78 !important;
+  pointer-events: none !important;
 }
 
 .cloudinary-video.full-video-fit.is-portrait-source > .video-ratio-frame > video,
@@ -38,11 +53,13 @@
 .cloudinary-video.detail-video-frame.is-portrait-source > .video-ratio-frame > video {
   display: block;
   position: relative !important;
+  z-index: 1 !important;
+  display: block !important;
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
   min-height: 0 !important;
   max-width: 100% !important;
-  max-height: none !important;
+  max-height: 100% !important;
   aspect-ratio: auto !important;
   object-fit: contain !important;
   background: transparent !important;

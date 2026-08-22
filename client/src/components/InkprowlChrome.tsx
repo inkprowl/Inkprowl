@@ -113,7 +113,6 @@ export function CloudinaryVideoPlayer({ src, title, className = "", clientUrl, c
   const videoRef = useRef<HTMLVideoElement>(null);
   const [volume, setVolume] = useState(0.8);
   const [portraitSource, setPortraitSource] = useState(false);
-  const [portraitAspectRatio, setPortraitAspectRatio] = useState<string | undefined>();
   useEffect(() => { if (videoRef.current) videoRef.current.volume = volume; }, [volume]);
   if (!src) {
     return <div className={`cloudinary-video empty-video ${className}`}><div className="video-ratio-frame"><div className="empty-video-copy"><Film size={25} /><strong>Film awaiting release</strong><span>{title} will play here once its owner adds a Cloudinary video URL.</span></div></div></div>;
@@ -122,9 +121,9 @@ export function CloudinaryVideoPlayer({ src, title, className = "", clientUrl, c
     const { videoHeight, videoWidth } = event.currentTarget;
     const isPortrait = videoHeight > videoWidth;
     setPortraitSource(isPortrait);
-    setPortraitAspectRatio(isPortrait && videoWidth && videoHeight ? `${videoWidth} / ${videoHeight}` : undefined);
+    void videoWidth;
   };
-  return <div className={`cloudinary-video ${className} ${portraitSource ? "is-portrait-source" : ""}`}><div className="video-ratio-frame" style={portraitAspectRatio ? { aspectRatio: portraitAspectRatio } : undefined}><video ref={videoRef} controls preload="metadata" playsInline aria-label={title} onLoadedMetadata={handleLoadedMetadata}><source src={src} />Your browser does not support HTML5 video.</video></div><div className="video-controls-bar"><label><Volume2 size={15} /><span className="sr-only">Video volume</span><input type="range" min="0" max="1" step="0.05" value={volume} onChange={(event) => setVolume(Number(event.target.value))} aria-label="Video volume" /></label>{clientUrl && <a href={clientUrl} target="_blank" rel="noreferrer sponsored" className="sponsor-visit-link">Visit {clientName || "client site"}</a>}</div></div>;
+  return <div className={`cloudinary-video ${className} ${portraitSource ? "is-portrait-source" : ""}`}><div className="video-ratio-frame">{portraitSource && <video className="video-ambient-backdrop" src={src} muted autoPlay loop playsInline aria-hidden="true" tabIndex={-1} />}<video ref={videoRef} controls preload="metadata" playsInline aria-label={title} onLoadedMetadata={handleLoadedMetadata}><source src={src} />Your browser does not support HTML5 video.</video></div><div className="video-controls-bar"><label><Volume2 size={15} /><span className="sr-only">Video volume</span><input type="range" min="0" max="1" step="0.05" value={volume} onChange={(event) => setVolume(Number(event.target.value))} aria-label="Video volume" /></label>{clientUrl && <a href={clientUrl} target="_blank" rel="noreferrer sponsored" className="sponsor-visit-link">Visit {clientName || "client site"}</a>}</div></div>;
 }
 
 export function PageFrame({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
