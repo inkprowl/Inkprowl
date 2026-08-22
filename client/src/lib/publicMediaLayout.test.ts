@@ -15,7 +15,7 @@ describe("public media layout contracts", () => {
     expect(css).toContain(".hero-art-stage>.hero-banner");
   });
 
-  it("keeps sponsor and artwork films in a subject-safe 16:9 landscape frame", () => {
+  it("keeps sponsor and artwork films in a clean native-control 16:9 landscape frame", () => {
     const css = source("client/src/index.css");
     const subjectSafeCss = source("client/src/components/subjectSafeVideo.css");
     expect(css).toContain(".cloudinary-video.full-video-fit{display:block;min-height:0;aspect-ratio:16/9");
@@ -24,14 +24,11 @@ describe("public media layout contracts", () => {
     expect(css).toContain("object-fit:contain;object-position:center;background:#110d0b");
     expect(subjectSafeCss).toContain("object-fit: contain !important");
     expect(subjectSafeCss).toContain("object-position: center center !important");
-    expect(subjectSafeCss).toContain(".cloudinary-video.full-video-fit.is-portrait-source");
-    expect(subjectSafeCss).toContain("height: 100% !important");
     const chrome = source("client/src/components/InkprowlChrome.tsx");
-    expect(chrome).toContain('className="video-ambient-backdrop"');
-    expect(chrome).toContain('portraitSource && <video');
-    expect(subjectSafeCss).toContain("position: relative !important");
-    expect(subjectSafeCss).toContain("filter: blur(18px) brightness(.5) saturate(.78) !important");
-    expect(subjectSafeCss).toContain("aspect-ratio: 16 / 9 !important");
+    expect(chrome).toContain("<video controls preload=\"metadata\" playsInline");
+    expect(chrome).not.toContain("video-ambient-backdrop");
+    expect(chrome).not.toContain("portraitSource");
+    expect(chrome).not.toContain('aria-label="Video volume"');
   });
 
   it("hides unrelated owner workspaces after the owner chooses a focused task", () => {

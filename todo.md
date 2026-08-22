@@ -205,3 +205,4 @@
 - [x] Hide public artwork cards immediately when their Cloudinary image delivery fails, so manually removed assets cannot remain visibly stale after cache expiry.
 - [x] Replace the large black side bars on portrait sponsor footage with a subject-complete, mobile-friendly presentation that does not crop the video.
 - [x] Correct the ambient portrait-video layer selectors so the foreground source remains visibly centered over the muted blurred backdrop.
+- [x] Replace the rejected portrait-video treatment with the owner’s new 16:9 sponsor upload and a clean single-player landscape layout without a blurred duplicate or custom playback chrome.
