@@ -1,0 +1,8 @@
+.cloudinary-video.full-video-fit > .video-ratio-frame > video,
+.cloudinary-video.hero-video > .video-ratio-frame > video,
+.cloudinary-video.sponsor-video > .video-ratio-frame > video,
+.cloudinary-video.detail-video-frame > .video-ratio-frame > video {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #110d0b;
+}

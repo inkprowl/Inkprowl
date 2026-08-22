@@ -17,10 +17,13 @@ describe("public media layout contracts", () => {
 
   it("keeps sponsor and artwork films in a subject-safe 16:9 landscape frame", () => {
     const css = source("client/src/index.css");
+    const subjectSafeCss = source("client/src/components/subjectSafeVideo.css");
     expect(css).toContain(".cloudinary-video.full-video-fit{display:block;min-height:0;aspect-ratio:16/9");
     expect(css).toContain(".cloudinary-video.full-video-fit>.video-ratio-frame>video");
     expect(css).toContain(".cloudinary-video.full-video-fit>.video-ratio-frame>video,\n.cloudinary-video.hero-video>.video-ratio-frame>video");
     expect(css).toContain("object-fit:contain;object-position:center;background:#110d0b");
+    expect(subjectSafeCss).toContain("object-fit: contain !important");
+    expect(subjectSafeCss).toContain("object-position: center center !important");
   });
 
   it("hides unrelated owner workspaces after the owner chooses a focused task", () => {
