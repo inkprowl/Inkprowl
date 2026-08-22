@@ -823,9 +823,9 @@
   "sponsoredCampaign": {
     "enabled": true,
     "label": "PRESENTED IN PARTNERSHIP",
-    "clientName": "Chip Munks",
+    "clientName": "Class Room",
     "clientUrl": "https://client-site.example",
-    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787428227/inkprowl/92b47639-a2c8-4334-a2ba-991a4e82d045/sponsor-video.mp4"
+    "videoUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787428458/inkprowl/a0d383a5-6d13-4c2d-822b-6e1001f3835d/sponsor-video.mp4"
   },
   "advertisingSettings": {
     "adsenseEnabled": false,
@@ -864,9 +864,9 @@
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787301252/inkprowl/song--new-song-inkprowl_o6uhk0.mp3"
     },
     "sponsoredCampaign:video": {
-      "publicId": "inkprowl/92b47639-a2c8-4334-a2ba-991a4e82d045/sponsor-video",
+      "publicId": "inkprowl/a0d383a5-6d13-4c2d-822b-6e1001f3835d/sponsor-video",
       "resourceType": "video",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787428227/inkprowl/92b47639-a2c8-4334-a2ba-991a4e82d045/sponsor-video.mp4"
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/video/upload/v1787428458/inkprowl/a0d383a5-6d13-4c2d-822b-6e1001f3835d/sponsor-video.mp4"
     },
     "artwork:gorilla-in-vintage-tailored-suit-comic-art": {
       "publicId": "inkprowl/art--business-animals--gorilla-in-vintage-tailored-suit-comic-art_awdndu",
