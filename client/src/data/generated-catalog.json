@@ -683,11 +683,6 @@
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787310020/inkprowl/art--vintage-comic-art--cheetah-in-line-art-ink-vintage-comic-style-with-trophy_o3uuet.png"
     },
-    "artwork:panther-in-pinstripe-suit": {
-      "publicId": "inkprowl-panther-collectible-edition",
-      "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787239768/inkprowl-panther-collectible-edition.png"
-    },
     "artwork:lion-king-of-the-ledger": {
       "publicId": "lion-ledger",
       "resourceType": "image",
