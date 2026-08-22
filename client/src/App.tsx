@@ -1,20 +1,23 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
+import { lazy, Suspense } from "react";
 import { Route, Router as WouterRouter, Switch } from "wouter";
 import { useHashLocation } from "wouter/use-hash-location";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-import Gallery from "./pages/Gallery";
-import Categories from "./pages/Categories";
-import ArtworkDetail from "./pages/ArtworkDetail";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import { Privacy, Terms } from "./pages/Legal";
-import Admin from "./pages/Admin";
 import { FloatingPlayer } from "./components/InkprowlChrome";
 import { shouldShowFloatingPlayer } from "./lib/publicNavigation";
+
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Categories = lazy(() => import("./pages/Categories"));
+const ArtworkDetail = lazy(() => import("./pages/ArtworkDetail"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Admin = lazy(() => import("./pages/Admin"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Privacy = lazy(async () => ({ default: (await import("./pages/Legal")).Privacy }));
+const Terms = lazy(async () => ({ default: (await import("./pages/Legal")).Terms }));
 
 export const INKPROWL_PATHS = ["/", "/gallery", "/categories", "/art/:slug", "/about", "/contact", "/terms", "/privacy", "/admin", "/404"] as const;
 
@@ -26,19 +29,21 @@ function PersistentPublicPlayer() {
 function Router() {
   return (
     <WouterRouter hook={useHashLocation}>
-      <Switch>
-        <Route path={"/"} component={Home} />
-        <Route path={"/gallery"} component={Gallery} />
-        <Route path={"/categories"} component={Categories} />
-        <Route path={"/art/:slug"} component={ArtworkDetail} />
-        <Route path={"/about"} component={About} />
-        <Route path={"/contact"} component={Contact} />
-        <Route path={"/terms"} component={Terms} />
-        <Route path={"/privacy"} component={Privacy} />
-        <Route path={"/admin"} component={Admin} />
-        <Route path={"/404"} component={NotFound} />
-        <Route component={NotFound} />
-      </Switch>
+      <Suspense fallback={<div className="route-loading" role="status">Loading edition…</div>}>
+        <Switch>
+          <Route path={"/"} component={Home} />
+          <Route path={"/gallery"} component={Gallery} />
+          <Route path={"/categories"} component={Categories} />
+          <Route path={"/art/:slug"} component={ArtworkDetail} />
+          <Route path={"/about"} component={About} />
+          <Route path={"/contact"} component={Contact} />
+          <Route path={"/terms"} component={Terms} />
+          <Route path={"/privacy"} component={Privacy} />
+          <Route path={"/admin"} component={Admin} />
+          <Route path={"/404"} component={NotFound} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
       <PersistentPublicPlayer />
     </WouterRouter>
   );

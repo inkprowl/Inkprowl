@@ -15,11 +15,12 @@ describe("public media layout contracts", () => {
     expect(css).toContain(".hero-art-stage>.hero-banner");
   });
 
-  it("keeps sponsor and artwork films in a crop-safe 16:9 landscape frame", () => {
+  it("keeps sponsor and artwork films in a subject-safe 16:9 landscape frame", () => {
     const css = source("client/src/index.css");
     expect(css).toContain(".cloudinary-video.full-video-fit{display:block;min-height:0;aspect-ratio:16/9");
     expect(css).toContain(".cloudinary-video.full-video-fit>.video-ratio-frame>video");
-    expect(css).toContain("object-fit:cover;object-position:center center");
+    expect(css).toContain(".cloudinary-video.full-video-fit>.video-ratio-frame>video,\n.cloudinary-video.hero-video>.video-ratio-frame>video");
+    expect(css).toContain("object-fit:contain;object-position:center;background:#110d0b");
   });
 
   it("hides unrelated owner workspaces after the owner chooses a focused task", () => {
@@ -27,5 +28,13 @@ describe("public media layout contracts", () => {
     expect(css).toContain('.owner-launch-dashboard[data-workspace="home"] .owner-upload-grid');
     expect(css).toContain('.owner-launch-dashboard[data-workspace="inventory"] .owner-upload-grid');
     expect(css).toContain('.owner-launch-dashboard[data-workspace="categories"] .workspace-inventory');
+  });
+
+  it("keeps mobile hero copy compact and starts the soundtrack control minimized on small screens", () => {
+    const css = source("client/src/index.css");
+    const chrome = source("client/src/components/InkprowlChrome.tsx");
+    expect(css).toContain(".hero-copy p{display:none}");
+    expect(css).toContain("-webkit-line-clamp:3");
+    expect(chrome).toContain('window.matchMedia("(max-width: 800px)").matches');
   });
 });

@@ -64,7 +64,7 @@ export function FloatingPlayer() {
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [volume, setVolume] = useState(0.8);
-  const [minimized, setMinimized] = useState(false);
+  const [minimized, setMinimized] = useState(() => typeof window !== "undefined" && window.matchMedia("(max-width: 800px)").matches);
   const [dismissed, setDismissed] = useState(false);
   const [playlistOpen, setPlaylistOpen] = useState(false);
   const dragStart = useRef<{ x: number; y: number; offsetX: number; offsetY: number } | null>(null);

@@ -189,3 +189,8 @@
 - [x] Compact individual artwork titles, descriptions, and metadata on mobile so the artwork image, landscape sponsor video, and enabled advertising appear before lengthy copy.
 - [x] Repair the homepage hero rendering path so newly published, valid Cloudinary hero-banner uploads consistently display instead of a blank stage.
 - [x] Simplify the owner dashboard into a clearer upload-first workflow with advanced controls visually separated from everyday artwork, logo, hero, song, video, and ad actions.
+- [x] Prevent subject faces from being cut off in the mobile landscape sponsor and artwork video frame while retaining a wide player.
+- [x] Reduce mobile artwork-page title, description, metadata, and floating-player obstruction so media appears before supporting text.
+- [x] Identify and remove or permanently hide the stale sample artwork records still exposed in the live public catalogue.
+- [ ] Reduce avoidable GitHub Pages and Cloudinary publish delay with accurate owner feedback while preserving reliable permanent storage.
+- [x] Document and apply the strongest permitted open-tab login reuse without persisting owner credentials across refresh in the static GitHub Pages architecture.

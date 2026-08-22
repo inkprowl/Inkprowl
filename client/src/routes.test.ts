@@ -23,4 +23,11 @@ describe("INKPROWL GitHub Pages routes", () => {
     expect(publicPaths).not.toContain("/admin");
     expect(INKPROWL_PATHS).toContain("/admin");
   });
+
+  it("keeps the public home route available while the heavier secondary pages load on demand", async () => {
+    const source = await import("node:fs/promises").then((fs) => fs.readFile(new URL("./App.tsx", import.meta.url), "utf8"));
+    expect(source).toContain('const Admin = lazy(() => import("./pages/Admin"))');
+    expect(source).toContain('const ArtworkDetail = lazy(() => import("./pages/ArtworkDetail"))');
+    expect(source).toContain('<Route path={"/"} component={Home} />');
+  });
 });
