@@ -43,4 +43,7 @@
   .cloudinary-video.hero-video > .video-ratio-frame, .cloudinary-video.sponsor-video > .video-ratio-frame, .cloudinary-video.detail-video-frame > .video-ratio-frame { aspect-ratio: 16 / 9; }
   .sponsor-film-section { padding-top: 55px; padding-bottom: 60px; }
   .artwork-zoom-toolbar { justify-content: flex-start; }
+  .detail-grid > .detail-video { padding: 14px 0 0 !important; background: transparent !important; }
+  .detail-grid > .detail-video .sponsor-heading { padding-inline: 18px; }
+  .detail-grid > .detail-video .cloudinary-video.detail-video-frame { width: 100%; border: 0; box-shadow: none; }
 }

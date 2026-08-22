@@ -18,6 +18,7 @@ describe("public media layout contracts", () => {
   it("keeps sponsor and artwork films in a clean native-control 16:9 landscape frame", () => {
     const css = source("client/src/index.css");
     const subjectSafeCss = source("client/src/components/subjectSafeVideo.css");
+    const mediaCss = source("client/src/components/inkprowlMedia.css");
     expect(css).toContain(".cloudinary-video.full-video-fit{display:block;min-height:0;aspect-ratio:16/9");
     expect(css).toContain(".cloudinary-video.full-video-fit>.video-ratio-frame>video");
     expect(css).toContain(".cloudinary-video.full-video-fit>.video-ratio-frame>video,\n.cloudinary-video.hero-video>.video-ratio-frame>video");
@@ -29,6 +30,8 @@ describe("public media layout contracts", () => {
     expect(chrome).not.toContain("video-ambient-backdrop");
     expect(chrome).not.toContain("portraitSource");
     expect(chrome).not.toContain('aria-label="Video volume"');
+    expect(mediaCss).toContain(".detail-grid > .detail-video { padding: 14px 0 0 !important; background: transparent !important; }");
+    expect(mediaCss).toContain(".detail-grid > .detail-video .cloudinary-video.detail-video-frame { width: 100%; border: 0; box-shadow: none; }");
   });
 
   it("hides unrelated owner workspaces after the owner chooses a focused task", () => {
