@@ -24,6 +24,9 @@ describe("public media layout contracts", () => {
     expect(css).toContain("object-fit:contain;object-position:center;background:#110d0b");
     expect(subjectSafeCss).toContain("object-fit: contain !important");
     expect(subjectSafeCss).toContain("object-position: center center !important");
+    expect(subjectSafeCss).toContain(".cloudinary-video.full-video-fit.is-portrait-source");
+    expect(subjectSafeCss).toContain("height: auto !important");
+    expect(source("client/src/components/InkprowlChrome.tsx")).toContain('setPortraitSource(event.currentTarget.videoHeight > event.currentTarget.videoWidth)');
   });
 
   it("hides unrelated owner workspaces after the owner chooses a focused task", () => {

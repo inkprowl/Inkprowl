@@ -203,3 +203,4 @@
 - [x] Prevent the owner dashboard from reporting a file as published before Cloudinary upload and public catalogue confirmation are complete.
 - [x] Persist the owner’s approved GitHub authorization through browser refresh in session storage only, clear it on logout/tab close, and never publish it in source.
 - [x] Hide public artwork cards immediately when their Cloudinary image delivery fails, so manually removed assets cannot remain visibly stale after cache expiry.
+- [ ] Replace the large black side bars on portrait sponsor footage with a subject-complete, mobile-friendly presentation that does not crop the video.

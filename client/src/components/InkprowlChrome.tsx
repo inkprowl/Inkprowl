@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
 import "./inkprowlMedia.css";
+import "./subjectSafeVideo.css";
 import { Download, Film, ListMusic, Menu, Minimize2, Music2, Pause, Play, Search, Volume2, X } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { siteBranding, siteMedia } from "@/data/catalog";
@@ -111,11 +112,12 @@ export function FloatingPlayer() {
 export function CloudinaryVideoPlayer({ src, title, className = "", clientUrl, clientName }: { src?: string; title: string; className?: string; clientUrl?: string; clientName?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [volume, setVolume] = useState(0.8);
+  const [portraitSource, setPortraitSource] = useState(false);
   useEffect(() => { if (videoRef.current) videoRef.current.volume = volume; }, [volume]);
   if (!src) {
     return <div className={`cloudinary-video empty-video ${className}`}><div className="video-ratio-frame"><div className="empty-video-copy"><Film size={25} /><strong>Film awaiting release</strong><span>{title} will play here once its owner adds a Cloudinary video URL.</span></div></div></div>;
   }
-  return <div className={`cloudinary-video ${className}`}><div className="video-ratio-frame"><video ref={videoRef} controls preload="metadata" playsInline aria-label={title}><source src={src} />Your browser does not support HTML5 video.</video></div><div className="video-controls-bar"><label><Volume2 size={15} /><span className="sr-only">Video volume</span><input type="range" min="0" max="1" step="0.05" value={volume} onChange={(event) => setVolume(Number(event.target.value))} aria-label="Video volume" /></label>{clientUrl && <a href={clientUrl} target="_blank" rel="noreferrer sponsored" className="sponsor-visit-link">Visit {clientName || "client site"}</a>}</div></div>;
+  return <div className={`cloudinary-video ${className} ${portraitSource ? "is-portrait-source" : ""}`}><div className="video-ratio-frame"><video ref={videoRef} controls preload="metadata" playsInline aria-label={title} onLoadedMetadata={(event) => setPortraitSource(event.currentTarget.videoHeight > event.currentTarget.videoWidth)}><source src={src} />Your browser does not support HTML5 video.</video></div><div className="video-controls-bar"><label><Volume2 size={15} /><span className="sr-only">Video volume</span><input type="range" min="0" max="1" step="0.05" value={volume} onChange={(event) => setVolume(Number(event.target.value))} aria-label="Video volume" /></label>{clientUrl && <a href={clientUrl} target="_blank" rel="noreferrer sponsored" className="sponsor-visit-link">Visit {clientName || "client site"}</a>}</div></div>;
 }
 
 export function PageFrame({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
