@@ -1,6 +1,251 @@
 {
   "artworks": [
     {
+      "slug": "new-4",
+      "title": "New 4",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of New 4, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426206/inkprowl/f68dd37d-c0b5-49bf-b2f5-04018b359327/new-4.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-4",
+      "publishedAt": "2026-08-22T19:16:47.477Z"
+    },
+    {
+      "slug": "new-6",
+      "title": "New 6",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of New 6, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426205/inkprowl/ec4bf3c8-7557-4f83-8e9b-21d53c22f895/new-6.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-6",
+      "publishedAt": "2026-08-22T19:16:46.299Z"
+    },
+    {
+      "slug": "billy-the-bear-anger-expression-vintage-comic-art-illustration",
+      "title": "Billy The Bear Anger Expression Vintage Comic Art Illustration",
+      "category": "BEAR & BULL MARKET",
+      "description": "A free INKPROWL edition of Billy The Bear Anger Expression Vintage Comic Art Illustration, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426205/inkprowl/d7937089-f5ae-49e7-b9c9-ce0e49560705/billy-the-bear-anger-expression-vintage-comic-art-illustration.jpg",
+      "orientation": "square",
+      "tags": [
+        "billy",
+        "the",
+        "bear",
+        "anger",
+        "expression",
+        "vintage"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:billy-the-bear-anger-expression-vintage-comic-art-illustration",
+      "publishedAt": "2026-08-22T19:16:45.481Z"
+    },
+    {
+      "slug": "new-8",
+      "title": "New 8",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of New 8, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426204/inkprowl/d7200960-1792-4bbb-addc-0a35492b1bac/new-8.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-8",
+      "publishedAt": "2026-08-22T19:16:44.620Z"
+    },
+    {
+      "slug": "new-2",
+      "title": "New 2",
+      "category": "Premium Art",
+      "description": "A free INKPROWL edition of New 2, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426203/inkprowl/c9b8018f-0875-4ac2-97cf-41f377bce8a7/new-2.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-2",
+      "publishedAt": "2026-08-22T19:16:43.745Z"
+    },
+    {
+      "slug": "new-9",
+      "title": "New 9",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of New 9, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426202/inkprowl/9242bc5c-2232-4400-affa-c5e51c339b7c/new-9.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-9",
+      "publishedAt": "2026-08-22T19:16:42.922Z"
+    },
+    {
+      "slug": "new-1",
+      "title": "New 1",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of New 1, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426201/inkprowl/8857cd12-9ce7-4b71-8069-00f463987c16/new-1.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-1",
+      "publishedAt": "2026-08-22T19:16:42.101Z"
+    },
+    {
+      "slug": "new",
+      "title": "New",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of New, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426200/inkprowl/817b84bb-be20-40e4-b052-4606f5866161/new.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new",
+      "publishedAt": "2026-08-22T19:16:41.210Z"
+    },
+    {
+      "slug": "new-5",
+      "title": "New 5",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of New 5, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426199/inkprowl/6077a30e-8dc6-4b0c-bc5f-da45ebd55493/new-5.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-5",
+      "publishedAt": "2026-08-22T19:16:40.391Z"
+    },
+    {
+      "slug": "new-10",
+      "title": "New 10",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of New 10, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426198/inkprowl/29c73287-5571-4f03-ac7d-4a19c48fb078/new-10.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-10",
+      "publishedAt": "2026-08-22T19:16:39.384Z"
+    },
+    {
+      "slug": "new-7",
+      "title": "New 7",
+      "category": "Business Animals",
+      "description": "A free INKPROWL edition of New 7, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426198/inkprowl/194556e2-161d-4c1e-ab24-2a6e7664f2f4/new-7.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-7",
+      "publishedAt": "2026-08-22T19:16:38.489Z"
+    },
+    {
+      "slug": "new-3",
+      "title": "New 3",
+      "category": "Funny Animals",
+      "description": "A free INKPROWL edition of New 3, published from the owner upload queue and ready for direct Cloudinary download.",
+      "isPremium": false,
+      "accent": "gold",
+      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426197/inkprowl/0900b415-e64e-4ed8-b599-bbfb2a216073/new-3.jpg",
+      "orientation": "square",
+      "tags": [
+        "new"
+      ],
+      "downloadFormats": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "assetKey": "artwork:new-3",
+      "publishedAt": "2026-08-22T19:16:37.704Z"
+    },
+    {
       "slug": "gorilla-in-vintage-tailored-suit-comic-art",
       "title": "Gorilla In Vintage Tailored Suit Comic Art",
       "category": "BUSINESS ANIMAL CHARACTERS",
@@ -697,6 +942,66 @@
       "publicId": "bear-market",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787241921/bear-market.png"
+    },
+    "artwork:new-3": {
+      "publicId": "inkprowl/0900b415-e64e-4ed8-b599-bbfb2a216073/new-3",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426197/inkprowl/0900b415-e64e-4ed8-b599-bbfb2a216073/new-3.jpg"
+    },
+    "artwork:new-7": {
+      "publicId": "inkprowl/194556e2-161d-4c1e-ab24-2a6e7664f2f4/new-7",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426198/inkprowl/194556e2-161d-4c1e-ab24-2a6e7664f2f4/new-7.jpg"
+    },
+    "artwork:new-10": {
+      "publicId": "inkprowl/29c73287-5571-4f03-ac7d-4a19c48fb078/new-10",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426198/inkprowl/29c73287-5571-4f03-ac7d-4a19c48fb078/new-10.jpg"
+    },
+    "artwork:new-5": {
+      "publicId": "inkprowl/6077a30e-8dc6-4b0c-bc5f-da45ebd55493/new-5",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426199/inkprowl/6077a30e-8dc6-4b0c-bc5f-da45ebd55493/new-5.jpg"
+    },
+    "artwork:new": {
+      "publicId": "inkprowl/817b84bb-be20-40e4-b052-4606f5866161/new",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426200/inkprowl/817b84bb-be20-40e4-b052-4606f5866161/new.jpg"
+    },
+    "artwork:new-1": {
+      "publicId": "inkprowl/8857cd12-9ce7-4b71-8069-00f463987c16/new-1",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426201/inkprowl/8857cd12-9ce7-4b71-8069-00f463987c16/new-1.jpg"
+    },
+    "artwork:new-9": {
+      "publicId": "inkprowl/9242bc5c-2232-4400-affa-c5e51c339b7c/new-9",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426202/inkprowl/9242bc5c-2232-4400-affa-c5e51c339b7c/new-9.jpg"
+    },
+    "artwork:new-2": {
+      "publicId": "inkprowl/c9b8018f-0875-4ac2-97cf-41f377bce8a7/new-2",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426203/inkprowl/c9b8018f-0875-4ac2-97cf-41f377bce8a7/new-2.jpg"
+    },
+    "artwork:new-8": {
+      "publicId": "inkprowl/d7200960-1792-4bbb-addc-0a35492b1bac/new-8",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426204/inkprowl/d7200960-1792-4bbb-addc-0a35492b1bac/new-8.jpg"
+    },
+    "artwork:billy-the-bear-anger-expression-vintage-comic-art-illustration": {
+      "publicId": "inkprowl/d7937089-f5ae-49e7-b9c9-ce0e49560705/billy-the-bear-anger-expression-vintage-comic-art-illustration",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426205/inkprowl/d7937089-f5ae-49e7-b9c9-ce0e49560705/billy-the-bear-anger-expression-vintage-comic-art-illustration.jpg"
+    },
+    "artwork:new-6": {
+      "publicId": "inkprowl/ec4bf3c8-7557-4f83-8e9b-21d53c22f895/new-6",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426205/inkprowl/ec4bf3c8-7557-4f83-8e9b-21d53c22f895/new-6.jpg"
+    },
+    "artwork:new-4": {
+      "publicId": "inkprowl/f68dd37d-c0b5-49bf-b2f5-04018b359327/new-4",
+      "resourceType": "image",
+      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787426206/inkprowl/f68dd37d-c0b5-49bf-b2f5-04018b359327/new-4.jpg"
     }
   }
 }
