@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { clearOwnerPublishingCredential, persistOwnerPublishingCredential, readOwnerPublishingCredential } from "./ownerPublishingSession";
+import { clearOwnerPublishingCredential, persistOwnerPublishingConnection, persistOwnerPublishingCredential, readOwnerAdminSession, readOwnerPublishingConnection, readOwnerPublishingCredential, unlockOwnerAdminSession } from "./ownerPublishingSession";
 
 describe("owner publishing authorization", () => {
   afterEach(() => clearOwnerPublishingCredential());
@@ -10,5 +10,17 @@ describe("owner publishing authorization", () => {
     expect(readOwnerPublishingCredential()).toBe("owner-token");
     clearOwnerPublishingCredential();
     expect(readOwnerPublishingCredential()).toBeNull();
+  });
+
+  it("reuses a completed owner sign-in and verified connection during in-tab navigation only", () => {
+    expect(readOwnerAdminSession()).toBe(false);
+    expect(readOwnerPublishingConnection()).toBeNull();
+    unlockOwnerAdminSession();
+    persistOwnerPublishingConnection("owner-token", { login: "inkprowl" });
+    expect(readOwnerAdminSession()).toBe(true);
+    expect(readOwnerPublishingConnection()).toEqual({ token: "owner-token", identity: { login: "inkprowl" } });
+    clearOwnerPublishingCredential();
+    expect(readOwnerAdminSession()).toBe(false);
+    expect(readOwnerPublishingConnection()).toBeNull();
   });
 });

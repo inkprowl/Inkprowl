@@ -184,7 +184,7 @@
 - [x] Render enabled advertising placements in the public site without allowing third-party ad code to disrupt the image-grid or video-player layout.
 - [x] Diagnose and repair public catalogue propagation so deleting artwork or branding from the owner dashboard removes it reliably from the live gallery without leaving stale entries.
 - [x] Reduce perceived owner upload and branding-publish delay with accurate, visible lifecycle states while preserving GitHub-to-Cloudinary permanent storage.
-- [ ] Simplify the repeated owner authorization interaction as far as possible without persisting credentials in the public static site.
+- [x] Simplify the repeated owner authorization interaction as far as possible without persisting credentials in the public static site.
 - [x] Enforce the owner-requested landscape video frame on homepage and individual artwork placements and verify it against the live portrait source.
 - [x] Compact individual artwork titles, descriptions, and metadata on mobile so the artwork image, landscape sponsor video, and enabled advertising appear before lengthy copy.
 - [x] Repair the homepage hero rendering path so newly published, valid Cloudinary hero-banner uploads consistently display instead of a blank stage.
