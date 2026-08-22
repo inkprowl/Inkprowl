@@ -85,7 +85,7 @@ export function queuedForCloudinaryStatus(total: number, role?: "soundtrack" | "
   return {
     percent: 100,
     tone: "success",
-    message: `${total === 1 ? "Upload saved" : `${total} uploads saved`}. Publishing to your site now.${videoNote}`,
+    message: `${total === 1 ? "Upload saved" : `${total} uploads saved`}. Cloudinary and GitHub Pages are publishing it in the background; this can take a few minutes. Refresh the public site later—do not upload the same file again.${videoNote}`,
   };
 }
 

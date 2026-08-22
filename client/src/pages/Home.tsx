@@ -1,9 +1,16 @@
 import { ArrowDownRight, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
+import { useState } from "react";
 import { Link } from "wouter";
 import { ArtworkCard, ArtworkVisual, AdSlot } from "@/components/ArtworkCard";
 import { CloudinaryVideoPlayer, PageFrame } from "@/components/InkprowlChrome";
 import { categories, publishedArtworks, siteBranding, siteMedia, sponsoredCampaign } from "@/data/catalog";
 import { sponsorDisplayName } from "@/lib/sponsorPresentation";
+
+function HeroBanner({ src, fallback }: { src: string; fallback: React.ReactNode }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return <>{fallback}</>;
+  return <img className="hero-banner" src={src} alt="INKPROWL hero banner" loading="eager" decoding="sync" fetchPriority="high" onError={() => setFailed(true)} />;
+}
 
 export default function Home() {
   const lead = publishedArtworks[0];
@@ -20,7 +27,7 @@ export default function Home() {
           <p>INKPROWL makes collectible animal characters in the language of old engravings, sharp tailoring, and editorial wit.</p>
           <div className="hero-cta-row"><Link href="/gallery" className="button-light">Explore the gallery <ArrowRight size={16} /></Link><Link href="/categories" className="text-link-light">Browse categories <ArrowDownRight size={17} /></Link></div>
         </div>
-        <div className="hero-art-wrap"><div className="hero-stats"><span><ShieldCheck size={16} /> COLLECTIBLE EDITIONS</span><span>4K / 600 DPI</span></div>{siteBranding.heroBannerUrl ? <img className="hero-banner" src={siteBranding.heroBannerUrl} alt="INKPROWL hero banner" /> : <ArtworkVisual artwork={lead} large />}<div className="hero-art-caption"><span>{siteBranding.heroFeaturedLabel || "01 — FEATURED EDITION"}</span><strong>{siteBranding.heroFeaturedTitle || lead.title}</strong></div></div>
+        <div className="hero-art-wrap"><div className="hero-stats"><span><ShieldCheck size={16} /> COLLECTIBLE EDITIONS</span><span>4K / 600 DPI</span></div><div className="hero-art-stage">{siteBranding.heroBannerUrl ? <HeroBanner src={siteBranding.heroBannerUrl} fallback={<ArtworkVisual artwork={lead} large />} /> : <ArtworkVisual artwork={lead} large />}</div><div className="hero-art-caption"><span>{siteBranding.heroFeaturedLabel || "01 — FEATURED EDITION"}</span><strong>{siteBranding.heroFeaturedTitle || lead.title}</strong></div></div>
       </section>
       {stageVideoUrl && <section className="media-section section-wrap"><div className="section-heading inverse sponsor-heading"><div><span className="eyebrow light">{sponsorFilmIsHeroFallback ? sponsoredCampaign.label : "IN MOTION"}</span><h2>{sponsorFilmIsHeroFallback ? sponsorName : "In motion."}</h2></div><p>{sponsorFilmIsHeroFallback ? (sponsoredCampaign.clientUrl ? "Sponsored film. Use Visit to open the approved partner site." : "Sponsored film preview. Add a partner destination in the owner admin to enable Visit.") : "A Cloudinary-hosted studio film."}</p></div><div className="video-stage"><CloudinaryVideoPlayer className="hero-video full-video-fit" src={stageVideoUrl} title={stageVideoTitle} clientUrl={sponsorFilmIsHeroFallback ? sponsoredCampaign.clientUrl : undefined} clientName={sponsorFilmIsHeroFallback ? sponsorName : undefined} /></div></section>}
       {sponsoredCampaign.enabled && sponsoredCampaign.videoUrl && siteMedia.heroFilmUrl && <section className="sponsor-film-section section-wrap"><div className="section-heading sponsor-heading"><div><span className="eyebrow">{sponsoredCampaign.label}</span><h2>{sponsorName}</h2></div><p>{sponsoredCampaign.clientUrl ? "Sponsored film. Use Visit to open the approved partner site." : "Sponsored film preview. Add a partner destination in the owner admin to enable Visit."}</p></div><CloudinaryVideoPlayer className="sponsor-video full-video-fit" src={sponsoredCampaign.videoUrl} title={`${sponsorName} sponsored film`} clientUrl={sponsoredCampaign.clientUrl} clientName={sponsorName} /></section>}

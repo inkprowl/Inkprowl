@@ -372,19 +372,22 @@ export function OwnerLaunchDashboard({ connection, requestAuthorization, onLogou
       requestAuthorization();
       return;
     }
-    if (!catalogue?.assets[assetKey]) {
-      const asset = cloudinaryAssetFromDeliveryUrl(artwork.imageUrl);
-      if (!asset) { setStatus({ percent: 0, tone: "error", message: "This image does not have a removable Cloudinary delivery record." }); return; }
-      try {
-        setStatus(preparingArtworkDeletionStatus());
-        const next = await mutateGeneratedCatalogue(connection.token, "chore: register INKPROWL artwork for Cloudinary removal", (catalogue) => {
-          catalogue.assets[assetKey] = asset;
-        });
-        setCatalogue(next);
-      } catch (reason) {
-        setStatus(deletionFailureStatus(reason instanceof Error ? reason.message : "The image could not be prepared for Cloudinary deletion."));
-        return;
-      }
+    const asset = cloudinaryAssetFromDeliveryUrl(artwork.imageUrl);
+    if (!catalogue?.assets[assetKey] && !asset) { setStatus({ percent: 0, tone: "error", message: "This image does not have a removable Cloudinary delivery record." }); return; }
+    try {
+      setStatus(preparingArtworkDeletionStatus());
+      const next = await mutateGeneratedCatalogue(connection.token, "chore: hide and remove INKPROWL artwork", (nextCatalogue) => {
+        if (!nextCatalogue.assets[assetKey] && asset) nextCatalogue.assets[assetKey] = asset;
+        nextCatalogue.artworkOverrides[artwork.slug] = {
+          ...(nextCatalogue.artworkOverrides[artwork.slug] ?? {}),
+          isPublished: false,
+        };
+      });
+      setCatalogue(next);
+      setStatus({ percent: 20, tone: "working", message: "Artwork is hidden from the public gallery. Permanent Cloudinary removal is now in progress." });
+    } catch (reason) {
+      setStatus(deletionFailureStatus(reason instanceof Error ? reason.message : "The image could not be hidden before Cloudinary deletion."));
+      return;
     }
     await removeManagedAsset(assetKey);
   }

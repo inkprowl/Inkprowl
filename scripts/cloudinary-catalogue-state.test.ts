@@ -2,11 +2,11 @@ import { describe, expect, it } from "vitest";
 import { removeCatalogueAssetState } from "./cloudinary-catalogue-state";
 
 describe("removeCatalogueAssetState", () => {
-  it("removes a deleted artwork and its override so it cannot remain in the owner inventory", () => {
+  it("removes a deleted generated artwork and its published override from the owner inventory", () => {
     const catalogue = {
       assets: { "artwork:temporary-edition": { publicId: "inkprowl/temporary-edition" } },
       artworks: [{ slug: "temporary-edition", assetKey: "artwork:temporary-edition" }],
-      artworkOverrides: { "temporary-edition": { title: "Temporary", isPublished: false } },
+      artworkOverrides: { "temporary-edition": { title: "Temporary", isPublished: true } },
       artworkMedia: { "temporary-edition": { videoUrl: "https://res.cloudinary.com/y1pc8ocl/video/upload/temporary.mp4" } },
     };
 
@@ -16,6 +16,20 @@ describe("removeCatalogueAssetState", () => {
     expect(catalogue.artworks).toEqual([]);
     expect(catalogue.artworkOverrides).not.toHaveProperty("temporary-edition");
     expect(catalogue.artworkMedia).not.toHaveProperty("temporary-edition");
+  });
+
+  it("keeps an explicit hidden override so a deleted fallback edition cannot reappear publicly", () => {
+    const catalogue = {
+      assets: { "artwork:panther-in-pinstripe-suit": { publicId: "inkprowl/panther" } },
+      artworks: [],
+      artworkOverrides: { "panther-in-pinstripe-suit": { isPublished: false } },
+      artworkMedia: { "panther-in-pinstripe-suit": { videoUrl: "https://res.cloudinary.com/y1pc8ocl/video/upload/panther.mp4" } },
+    };
+
+    removeCatalogueAssetState(catalogue, "artwork:panther-in-pinstripe-suit");
+
+    expect(catalogue.artworkOverrides["panther-in-pinstripe-suit"]).toEqual({ isPublished: false });
+    expect(catalogue.artworkMedia).not.toHaveProperty("panther-in-pinstripe-suit");
   });
 
   it("preserves non-video artwork media while deleting an edition-video pointer", () => {

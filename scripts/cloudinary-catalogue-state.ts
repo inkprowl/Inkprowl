@@ -9,7 +9,8 @@ export function removeCatalogueAssetState(catalogue: GeneratedCatalogueState, ke
   if (key.startsWith("artwork:")) {
     const slug = key.slice("artwork:".length);
     catalogue.artworks = (catalogue.artworks ?? []).filter((artwork: { assetKey?: string }) => artwork.assetKey !== key);
-    if (catalogue.artworkOverrides) delete catalogue.artworkOverrides[slug];
+    const hiddenOverride = catalogue.artworkOverrides?.[slug]?.isPublished === false;
+    if (catalogue.artworkOverrides && !hiddenOverride) delete catalogue.artworkOverrides[slug];
     if (catalogue.artworkMedia) delete catalogue.artworkMedia[slug];
   }
 
