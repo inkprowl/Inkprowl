@@ -19,6 +19,24 @@
   display: none;
 }
 
+.owner-public-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.7rem;
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.22rem;
+}
+
+.owner-public-refresh small {
+  color: var(--muted-foreground);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
 @media (max-width: 800px) {
   .owner-publish-status.success {
     min-height: 48px;

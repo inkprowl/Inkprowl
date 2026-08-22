@@ -2,7 +2,11 @@ export type OwnerPublishStatus = {
   percent: number;
   tone: "idle" | "working" | "success" | "error";
   message: string;
+  revision?: string;
+  publicRefreshUrl?: string;
 };
+
+const publicRefreshUrl = (revision?: string) => `https://inkprowl.github.io/inkprowl/?published=${encodeURIComponent(revision || String(Date.now()))}`;
 
 export const initialOwnerPublishStatus: OwnerPublishStatus = {
   percent: 0,
@@ -24,11 +28,13 @@ export const savingCatalogueStatus = (): OwnerPublishStatus => ({
   message: "Saving your permanent catalogue change…",
 });
 
-export function catalogueSavedStatus(success: string): OwnerPublishStatus {
+export function catalogueSavedStatus(success: string, revision?: string): OwnerPublishStatus {
   return {
     percent: 100,
     tone: "success",
-    message: `${success} GitHub Pages will rebuild automatically from this permanent catalogue commit.`,
+    message: `${success} GitHub Pages will rebuild automatically from this permanent catalogue revision.`,
+    revision,
+    publicRefreshUrl: publicRefreshUrl(revision),
   };
 }
 
@@ -86,6 +92,7 @@ export function queuedForCloudinaryStatus(total: number, role?: "soundtrack" | "
     percent: 100,
     tone: "success",
     message: `${total === 1 ? "Upload saved" : `${total} uploads saved`}. Cloudinary and GitHub Pages are publishing it in the background; this can take a few minutes. Refresh the public site later—do not upload the same file again.${videoNote}`,
+    publicRefreshUrl: publicRefreshUrl(),
   };
 }
 

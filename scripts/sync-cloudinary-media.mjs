@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { classifyIncomingFile } from "./cloudinary-filename-policy.ts";
 import { removeCatalogueAssetState } from "./cloudinary-catalogue-state.ts";
+import { reconcileMissingCloudinaryAssets } from "./cloudinary-reconciliation.ts";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const incomingRoot = path.join(projectRoot, "incoming");
@@ -68,6 +69,17 @@ async function findExistingQueuedAsset(publicId) {
     }
   }
   return undefined;
+}
+
+async function cloudinaryResourceExists(asset) {
+  try {
+    await cloudinary.api.resource(asset.publicId, { resource_type: asset.resourceType });
+    return true;
+  } catch (error) {
+    const status = error?.http_code ?? error?.error?.http_code;
+    if (status === 404) return false;
+    throw new Error(`Cloudinary reconciliation lookup failed for ${asset.publicId} (${status ?? "unknown status"}).`);
+  }
 }
 
 async function uploadQueuedFile(file, asset) {
@@ -150,9 +162,20 @@ async function main() {
     return;
   }
 
-  if (operation !== "sync") throw new Error(`Unsupported operation: ${operation}`);
+  if (operation !== "sync" && operation !== "reconcile") throw new Error(`Unsupported operation: ${operation}`);
+  const removedKeys = await reconcileMissingCloudinaryAssets(catalogue, cloudinaryResourceExists);
+  for (const key of removedKeys) console.log(`Removed stale catalogue record for missing Cloudinary asset ${key}.`);
+  if (operation === "reconcile") {
+    if (removedKeys.length) writeCatalogue(catalogue);
+    console.log(removedKeys.length ? `Reconciled ${removedKeys.length} missing Cloudinary asset(s).` : "No stale managed Cloudinary assets found.");
+    return;
+  }
   const files = allFiles(incomingRoot);
-  if (!files.length) { console.log("No incoming media files found."); return; }
+  if (!files.length) {
+    if (removedKeys.length) writeCatalogue(catalogue);
+    console.log("No incoming media files found.");
+    return;
+  }
 
   for (const file of files) {
     const asset = classifyIncomingFile(path.basename(file));

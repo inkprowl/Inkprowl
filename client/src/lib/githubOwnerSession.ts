@@ -166,6 +166,10 @@ export async function mutateGeneratedCatalogue(
   throw new Error(`The public catalogue changed repeatedly while saving. Please save once more; no catalogue content was changed. (${detail})`);
 }
 
+export function recentGeneratedCatalogueRevision(token: string, message: string) {
+  return recentCatalogueSnapshots.get(`${token}\u0000${GENERATED_CATALOGUE_PATH}\u0000${message}`)?.sha;
+}
+
 export async function queueIncomingFile(token: string, filename: string, file: File) {
   const bytes = new Uint8Array(await file.arrayBuffer());
   const queueId = globalThis.crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;

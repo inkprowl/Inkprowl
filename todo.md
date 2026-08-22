@@ -194,10 +194,10 @@
 - [x] Identify and remove or permanently hide the stale sample artwork records still exposed in the live public catalogue.
 - [x] Reduce avoidable GitHub Pages and Cloudinary publish delay with accurate owner feedback while preserving reliable permanent storage.
 - [x] Document and apply the strongest permitted open-tab login reuse without persisting owner credentials across refresh in the static GitHub Pages architecture.
-- [ ] Reconcile the live generated catalogue against owner-deleted Cloudinary media so stale test/sample entries cannot remain public.
+- [x] Add a protected Cloudinary reconciliation operation that scans managed catalogue assets, removes only confirmed-missing records, and runs during every future media sync so stale test/sample entries cannot remain public.
 - [x] Ensure recently completed owner uploads are visibly prioritised in the public Fresh Uploads area after the catalogue and Pages workflow complete.
 - [x] Verify the actual live sponsor source and remove any remaining crop rule that clips a subject in the wide player.
-- [ ] Improve owner publish status with the precise live revision and a direct public refresh check after each completed workflow.
+- [x] Improve owner publish status with a precise generated-catalogue revision and a direct public refresh action after each completed owner save or queued upload.
 - [x] Implement the owner-approved same-tab refresh persistence with session storage only; never embed a GitHub token in public source, URLs, Cloudinary, or local storage.
 - [x] Trace the reported missing recent upload through the GitHub incoming queue, Actions workflow, Cloudinary asset state, and generated catalogue.
 - [x] Prevent the owner dashboard from reporting a file as published before Cloudinary upload and public catalogue confirmation are complete.

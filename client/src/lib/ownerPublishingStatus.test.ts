@@ -34,13 +34,17 @@ describe("INKPROWL owner publishing status transitions", () => {
     expect(queuedForCloudinaryStatus(1).message).toContain("can take a few minutes");
     expect(queuedForCloudinaryStatus(1).message).toContain("do not upload the same file again");
     expect(queuedForCloudinaryStatus(1, "sponsor-video").message).toContain("Cloudinary is preparing the video");
+    expect(queuedForCloudinaryStatus(1).publicRefreshUrl).toContain("https://inkprowl.github.io/inkprowl/");
     expect(publishFailureStatus("GitHub queue rejected the request.")).toEqual({ percent: 0, tone: "error", message: "GitHub queue rejected the request." });
     expect(publishFailureStatus().message).toContain("not published");
   });
 
   it("reports category-save and permanent-deletion states without claiming completion too early", () => {
     expect(savingCatalogueStatus()).toMatchObject({ percent: 25, tone: "working" });
-    expect(catalogueSavedStatus("Category renamed.").message).toContain("GitHub Pages will rebuild automatically");
+    const saved = catalogueSavedStatus("Category renamed.", "abc123456789");
+    expect(saved.message).toContain("GitHub Pages will rebuild automatically");
+    expect(saved).toMatchObject({ revision: "abc123456789" });
+    expect(saved.publicRefreshUrl).toContain("published=abc123456789");
     expect(requestingCloudinaryDeletionStatus()).toMatchObject({ percent: 45, tone: "working" });
     expect(cloudinaryDeletionQueuedStatus().message).toContain("protected workflow will delete");
     expect(deletionFailureStatus().message).toContain("permanent removal request failed");
