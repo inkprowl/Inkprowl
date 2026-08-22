@@ -195,9 +195,11 @@
 - [x] Reduce avoidable GitHub Pages and Cloudinary publish delay with accurate owner feedback while preserving reliable permanent storage.
 - [x] Document and apply the strongest permitted open-tab login reuse without persisting owner credentials across refresh in the static GitHub Pages architecture.
 - [ ] Reconcile the live generated catalogue against owner-deleted Cloudinary media so stale test/sample entries cannot remain public.
-- [ ] Ensure recently completed owner uploads are visibly prioritised in the public Fresh Uploads area after the catalogue and Pages workflow complete.
-- [ ] Verify the actual live sponsor source and remove any remaining crop rule that clips a subject in the wide player.
+- [x] Ensure recently completed owner uploads are visibly prioritised in the public Fresh Uploads area after the catalogue and Pages workflow complete.
+- [x] Verify the actual live sponsor source and remove any remaining crop rule that clips a subject in the wide player.
 - [ ] Improve owner publish status with the precise live revision and a direct public refresh check after each completed workflow.
 - [ ] Design a secure persistent owner-login option that does not embed a GitHub token in public source or browser-accessible storage.
-- [ ] Trace the reported missing recent upload through the GitHub incoming queue, Actions workflow, Cloudinary asset state, and generated catalogue.
-- [ ] Prevent the owner dashboard from reporting a file as published before Cloudinary upload and public catalogue confirmation are complete.
+- [x] Trace the reported missing recent upload through the GitHub incoming queue, Actions workflow, Cloudinary asset state, and generated catalogue.
+- [x] Prevent the owner dashboard from reporting a file as published before Cloudinary upload and public catalogue confirmation are complete.
+- [x] Persist the owner’s approved GitHub authorization through browser refresh in session storage only, clear it on logout/tab close, and never publish it in source.
+- [x] Hide public artwork cards immediately when their Cloudinary image delivery fails, so manually removed assets cannot remain visibly stale after cache expiry.

@@ -1,11 +1,13 @@
 import { Download } from "lucide-react";
 import { Link } from "wouter";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { activeAdvertisementProviders, advertisingPlacementLabels, advertisingSettings, isAdvertisementPlacementEnabled, type AdvertisingPlacement, type Artwork } from "@/data/catalog";
 import "./publicAdvertising.css";
 
-export function ArtworkVisual({ artwork, large = false }: { artwork: Artwork; large?: boolean }) {
-  if (artwork.imageUrl) return <img src={artwork.imageUrl} alt={artwork.title} className="art-image" />;
+export function ArtworkVisual({ artwork, large = false, onImageError }: { artwork: Artwork; large?: boolean; onImageError?: () => void }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  if (artwork.imageUrl && !imageFailed) return <img src={artwork.imageUrl} alt={artwork.title} className="art-image" onError={() => { setImageFailed(true); onImageError?.(); }} />;
+  if (imageFailed && onImageError) return null;
   return (
     <div className={`art-placeholder ${artwork.accent} ${artwork.orientation} ${large ? "large" : ""}`} aria-label={`${artwork.title} visual placeholder awaiting Cloudinary source`}>
       <div className="placeholder-halo" />
@@ -17,9 +19,11 @@ export function ArtworkVisual({ artwork, large = false }: { artwork: Artwork; la
 }
 
 export function ArtworkCard({ artwork, feature = false }: { artwork: Artwork; feature?: boolean }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  if (imageFailed) return null;
   return (
     <article className={`art-card ${feature ? "art-card-feature" : ""}`}>
-      <Link href={`/art/${artwork.slug}`} className="art-card-image"><ArtworkVisual artwork={artwork} large={feature} /></Link>
+      <Link href={`/art/${artwork.slug}`} className="art-card-image"><ArtworkVisual artwork={artwork} large={feature} onImageError={() => setImageFailed(true)} /></Link>
       <div className="art-card-copy"><Link href={`/art/${artwork.slug}`} className="art-title">{artwork.title}</Link><div className="art-card-actions"><span>Free download</span><Download size={16} /></div></div>
     </article>
   );

@@ -40,4 +40,11 @@ describe("public media layout contracts", () => {
     expect(css).toContain("-webkit-line-clamp:3");
     expect(chrome).toContain('window.matchMedia("(max-width: 800px)").matches');
   });
+
+  it("removes a public artwork card if its Cloudinary image no longer delivers", () => {
+    const card = source("client/src/components/ArtworkCard.tsx");
+    expect(card).toContain('onImageError={() => setImageFailed(true)}');
+    expect(card).toContain("if (imageFailed) return null;");
+    expect(card).toContain("if (imageFailed && onImageError) return null;");
+  });
 });
