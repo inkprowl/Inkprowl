@@ -32,6 +32,8 @@ describe("public media layout contracts", () => {
     expect(chrome).not.toContain('aria-label="Video volume"');
     expect(mediaCss).toContain(".detail-grid > .detail-video { padding: 14px 0 0 !important; background: transparent !important; }");
     expect(mediaCss).toContain(".detail-grid > .detail-video .cloudinary-video.detail-video-frame { width: 100%; border: 0; box-shadow: none; }");
+    expect(css).toContain(".detail-grid>.detail-video{display:block;grid-column:1/-1;padding:56px 0 0;background:transparent}");
+    expect(css).toContain(".detail-grid>.detail-video .cloudinary-video.detail-video-frame{display:block;width:100%;max-width:none}");
   });
 
   it("hides unrelated owner workspaces after the owner chooses a focused task", () => {

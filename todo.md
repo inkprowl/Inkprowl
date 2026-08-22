@@ -206,4 +206,4 @@
 - [x] Replace the large black side bars on portrait sponsor footage with a subject-complete, mobile-friendly presentation that does not crop the video.
 - [x] Correct the ambient portrait-video layer selectors so the foreground source remains visibly centered over the muted blurred backdrop.
 - [x] Replace the rejected portrait-video treatment with the owner’s new 16:9 sponsor upload and a clean single-player landscape layout without a blurred duplicate or custom playback chrome.
-- [ ] Remove the artwork-detail “In Motion” video inset so the approved 16:9 sponsor player reaches the full width of its landscape rectangle on mobile and desktop.
+- [x] Remove the remaining desktop split-grid constraint so the approved 16:9 sponsor player reaches the full width of its landscape rectangle on mobile and desktop.
