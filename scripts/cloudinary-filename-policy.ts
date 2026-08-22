@@ -9,15 +9,20 @@ export type IncomingAsset =
 
 const categories = new Map([
   ["business-animals", "Business Animals"],
+  ["business-animal-characters", "Business Animals"],
   ["mafia-bosses", "Mafia Bosses"],
   ["funny-animals", "Funny Animals"],
+  ["funny-animal-characters", "Funny Animals"],
   ["collectible-art", "Collectible Art"],
+  ["bear-bull-market", "BEAR & BULL MARKET"],
   ["tailored-animals", "Tailored Animals"],
   ["vintage-comic-art", "Vintage Comic Art"],
   ["cross-hatching", "Cross-Hatching"],
   ["2d-line-art", "2D Line Art"],
   ["animal-characters", "Animal Characters"],
   ["fashion-animals", "Fashion Animals"],
+  ["premium-art", "Premium Art"],
+  ["premium-animal-characters", "Premium Art"],
   ["free-art", "Free Art"],
 ]);
 

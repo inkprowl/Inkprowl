@@ -12,6 +12,13 @@ describe("INKPROWL owner upload filename policy", () => {
     });
   });
 
+  it("accepts the owner dashboard’s business, funny, premium, and market category labels", () => {
+    expect(classifyIncomingFile("art--business-animal-characters--new-7.jpg")).toMatchObject({ kind: "artwork", category: "Business Animals", slug: "new-7" });
+    expect(classifyIncomingFile("art--funny-animal-characters--new-3.jpg")).toMatchObject({ kind: "artwork", category: "Funny Animals", slug: "new-3" });
+    expect(classifyIncomingFile("art--premium-animal-characters--new-2.jpg")).toMatchObject({ kind: "artwork", category: "Premium Art", slug: "new-2" });
+    expect(classifyIncomingFile("art--bear-bull-market--billy-the-bear.jpg")).toMatchObject({ kind: "artwork", category: "BEAR & BULL MARKET", slug: "billy-the-bear" });
+  });
+
   it("maps soundtrack and edition-video filenames to their intended public media roles", () => {
     expect(classifyIncomingFile("song--evening-edition.mp3")).toEqual({ kind: "soundtrack", title: "Evening Edition" });
     expect(classifyIncomingFile("edition-video--bear-bull-market.mp4")).toEqual({ kind: "edition-video", slug: "bear-bull-market" });
