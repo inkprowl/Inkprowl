@@ -49,30 +49,6 @@
       "assetKey": "artwork:honey-badger-gamblers-den-vintage-mafia-dealer-comic-art"
     },
     {
-      "slug": "hippo-premium-vintage-attire-line-art-comic-book-boss-character",
-      "title": "Hippo Premium Vintage Attire Line Art Comic Book Boss Character",
-      "category": "BUSINESS ANIMAL CHARACTERS",
-      "description": "A free INKPROWL edition of Hippo Premium Vintage Attire Line Art Comic Book Boss Character, published from the owner upload queue and ready for direct Cloudinary download.",
-      "isPremium": false,
-      "accent": "gold",
-      "imageUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp.jpg",
-      "orientation": "square",
-      "tags": [
-        "hippo",
-        "premium",
-        "vintage",
-        "attire",
-        "line",
-        "art"
-      ],
-      "downloadFormats": [
-        "jpg",
-        "png",
-        "webp"
-      ],
-      "assetKey": "artwork:hippo-premium-vintage-attire-line-art-comic-book-boss-character"
-    },
-    {
       "slug": "female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer",
       "title": "Female Leopard Lexi In Denim Jeans Vintage Comic Art Photographer",
       "category": "FASHION TREND ANIMAL CHARACTERS",
@@ -331,7 +307,8 @@
         "book"
       ],
       "metaTitle": "INKPROWL ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ Hippo Premium Vintage Attire Line Art Comic Book Boss Character",
-      "metaDescription": "A free INKPROWL business animals edition featuring Hippo Premium Vintage Attire Line Art Comic Book Boss Character. Available in JPEG, PNG, and WebP direct"
+      "metaDescription": "A free INKPROWL business animals edition featuring Hippo Premium Vintage Attire Line Art Comic Book Boss Character. Available in JPEG, PNG, and WebP direct",
+      "isPublished": false
     },
     "female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer": {
       "title": "Female Leopard Lexi In Denim & Jeans Vintage Comic Art Photographer",
@@ -470,11 +447,6 @@
       "publicId": "inkprowl/art--business-animals--honey-badger-gamblers-den-vintage-mafia-dealer-comic-art_a35yjz",
       "resourceType": "image",
       "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--honey-badger-gamblers-den-vintage-mafia-dealer-comic-art_a35yjz.jpg"
-    },
-    "artwork:hippo-premium-vintage-attire-line-art-comic-book-boss-character": {
-      "publicId": "inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp",
-      "resourceType": "image",
-      "deliveryUrl": "https://res.cloudinary.com/y1pc8ocl/image/upload/v1787299120/inkprowl/art--business-animals--hippo-premium-vintage-attire-line-art-comic-book-boss-character_hkr2tp.jpg"
     },
     "artwork:female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer": {
       "publicId": "inkprowl/art--fashion-animals--female-leopard-lexi-in-denim-jeans-vintage-comic-art-photographer_h7gvnq",
