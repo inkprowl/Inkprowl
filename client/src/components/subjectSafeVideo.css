@@ -37,6 +37,7 @@
 .cloudinary-video.sponsor-video.is-portrait-source > .video-ratio-frame > video,
 .cloudinary-video.detail-video-frame.is-portrait-source > .video-ratio-frame > video {
   display: block;
+  position: relative !important;
   width: 100% !important;
   height: auto !important;
   min-height: 0 !important;
