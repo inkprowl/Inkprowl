@@ -63,7 +63,8 @@ async function findExistingQueuedAsset(publicId) {
     try {
       return await cloudinary.api.resource(publicId, { resource_type: resourceType });
     } catch (error) {
-      if (error?.http_code !== 404) throw error;
+      const status = error?.http_code ?? error?.error?.http_code;
+      if (status !== 404) throw new Error(`Cloudinary asset lookup failed for ${publicId} (${status ?? "unknown status"}).`);
     }
   }
   return undefined;
