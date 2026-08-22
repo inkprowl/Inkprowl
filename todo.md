@@ -198,9 +198,10 @@
 - [x] Ensure recently completed owner uploads are visibly prioritised in the public Fresh Uploads area after the catalogue and Pages workflow complete.
 - [x] Verify the actual live sponsor source and remove any remaining crop rule that clips a subject in the wide player.
 - [ ] Improve owner publish status with the precise live revision and a direct public refresh check after each completed workflow.
-- [ ] Design a secure persistent owner-login option that does not embed a GitHub token in public source or browser-accessible storage.
+- [x] Implement the owner-approved same-tab refresh persistence with session storage only; never embed a GitHub token in public source, URLs, Cloudinary, or local storage.
 - [x] Trace the reported missing recent upload through the GitHub incoming queue, Actions workflow, Cloudinary asset state, and generated catalogue.
 - [x] Prevent the owner dashboard from reporting a file as published before Cloudinary upload and public catalogue confirmation are complete.
 - [x] Persist the owner’s approved GitHub authorization through browser refresh in session storage only, clear it on logout/tab close, and never publish it in source.
 - [x] Hide public artwork cards immediately when their Cloudinary image delivery fails, so manually removed assets cannot remain visibly stale after cache expiry.
 - [x] Replace the large black side bars on portrait sponsor footage with a subject-complete, mobile-friendly presentation that does not crop the video.
+- [x] Correct the ambient portrait-video layer selectors so the foreground source remains visibly centered over the muted blurred backdrop.

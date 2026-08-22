@@ -1,7 +1,7 @@
 .cloudinary-video.full-video-fit > .video-ratio-frame > video,
-.cloudinary-video.hero-video > .video-ratio-frame > video,
-.cloudinary-video.sponsor-video > .video-ratio-frame > video,
-.cloudinary-video.detail-video-frame > .video-ratio-frame > video {
+.cloudinary-video.hero-video > .video-ratio-frame > video:not(.video-ambient-backdrop),
+.cloudinary-video.sponsor-video > .video-ratio-frame > video:not(.video-ambient-backdrop),
+.cloudinary-video.detail-video-frame > .video-ratio-frame > video:not(.video-ambient-backdrop) {
   object-fit: contain !important;
   object-position: center center !important;
   background: #110d0b;
@@ -48,9 +48,9 @@
   pointer-events: none !important;
 }
 
-.cloudinary-video.full-video-fit.is-portrait-source > .video-ratio-frame > video,
-.cloudinary-video.sponsor-video.is-portrait-source > .video-ratio-frame > video,
-.cloudinary-video.detail-video-frame.is-portrait-source > .video-ratio-frame > video {
+.cloudinary-video.full-video-fit.is-portrait-source > .video-ratio-frame > video:not(.video-ambient-backdrop),
+.cloudinary-video.sponsor-video.is-portrait-source > .video-ratio-frame > video:not(.video-ambient-backdrop),
+.cloudinary-video.detail-video-frame.is-portrait-source > .video-ratio-frame > video:not(.video-ambient-backdrop) {
   display: block;
   position: relative !important;
   z-index: 1 !important;
