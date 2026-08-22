@@ -52,6 +52,35 @@ const assetRecord = (result) => ({
   deliveryUrl: result.secure_url,
 });
 
+const queuePublicId = (file, asset) => {
+  const queueId = path.basename(path.dirname(file));
+  const suffix = asset.kind === "artwork" || asset.kind === "edition-video" ? asset.slug : asset.kind;
+  return `inkprowl/${queueId}/${suffix}`;
+};
+
+async function findExistingQueuedAsset(publicId) {
+  for (const resourceType of ["image", "video"]) {
+    try {
+      return await cloudinary.api.resource(publicId, { resource_type: resourceType });
+    } catch (error) {
+      if (error?.http_code !== 404) throw error;
+    }
+  }
+  return undefined;
+}
+
+async function uploadQueuedFile(file, asset) {
+  const publicId = queuePublicId(file, asset);
+  const existing = await findExistingQueuedAsset(publicId);
+  if (existing) return existing;
+  return cloudinary.uploader.upload(file, {
+    resource_type: "auto",
+    public_id: publicId,
+    unique_filename: false,
+    overwrite: false,
+  });
+}
+
 function applyUpload(catalogue, asset, result) {
   const record = assetRecord(result);
   catalogue.assets ??= {};
@@ -68,7 +97,7 @@ function applyUpload(catalogue, asset, result) {
   if (asset.kind === "artwork") {
     if (catalogue.artworks.some((artwork) => artwork.slug === asset.slug)) throw new Error(`A generated artwork already uses the slug ${asset.slug}. Choose a different filename or remove the old artwork first.`);
     const assetKey = `artwork:${asset.slug}`;
-    catalogue.artworks.push({
+    catalogue.artworks.unshift({
       slug: asset.slug,
       title: asset.title,
       category: asset.category,
@@ -80,6 +109,7 @@ function applyUpload(catalogue, asset, result) {
       tags: asset.tags,
       downloadFormats: ["jpg", "png", "webp"],
       assetKey,
+      publishedAt: new Date().toISOString(),
     });
     catalogue.assets[assetKey] = record;
     return;
@@ -125,7 +155,7 @@ async function main() {
 
   for (const file of files) {
     const asset = classifyIncomingFile(path.basename(file));
-    const result = await cloudinary.uploader.upload(file, { resource_type: "auto", folder: "inkprowl", use_filename: true, unique_filename: true, overwrite: false });
+    const result = await uploadQueuedFile(file, asset);
     applyUpload(catalogue, asset, result);
     fs.rmSync(file);
     console.log(`Uploaded ${path.basename(file)} as ${result.public_id}.`);

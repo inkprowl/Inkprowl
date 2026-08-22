@@ -20,11 +20,12 @@ describe("INKPROWL catalog", () => {
     expect(categories).toHaveLength(12);
   });
 
-  it("keeps a Cloudinary-backed collectible edition in the catalog", () => {
-    const panther = getArtwork("panther-in-pinstripe-suit");
+  it("shows only owner-managed Cloudinary editions in the catalog", () => {
+    const newest = publishedArtworks[0];
 
-    expect(panther?.isPremium).toBe(false);
-    expect(panther?.imageUrl).toMatch(/^https:\/\/res\.cloudinary\.com\//);
+    expect(newest?.isPremium).toBe(false);
+    expect(newest?.imageUrl).toMatch(/^https:\/\/res\.cloudinary\.com\//);
+    expect(artworks.every((artwork) => Boolean(artwork.assetKey))).toBe(true);
   });
 
   it("keeps every published edition available for free access", () => {
@@ -87,17 +88,17 @@ describe("INKPROWL catalog", () => {
   });
 
   it("creates Cloudinary attachment URLs for each approved free-download format", () => {
-    const buffalo = getArtwork("buffalo-tailor-shop")!;
-    expect(availableDownloadFormats(buffalo)).toEqual(["jpg", "png", "webp"]);
-    expect(new Set(availableDownloadFormats(buffalo))).toEqual(new Set(["jpg", "png", "webp"]));
+    const newest = publishedArtworks[0]!;
+    expect(availableDownloadFormats(newest)).toEqual(["jpg", "png", "webp"]);
+    expect(new Set(availableDownloadFormats(newest))).toEqual(new Set(["jpg", "png", "webp"]));
     for (const format of ["jpg", "png", "webp"] as const) {
-      expect(getCloudinaryDownloadUrl(buffalo.imageUrl, buffalo.slug, format)).toContain(`/image/upload/f_${format},fl_attachment:inkprowl-buffalo-tailor-shop-${format}/`);
+      expect(getCloudinaryDownloadUrl(newest.imageUrl, newest.slug, format)).toContain(`/image/upload/f_${format},fl_attachment:inkprowl-${newest.slug}-${format}/`);
     }
-    expect(getCloudinaryDownloadUrl(buffalo.imageUrl, buffalo.slug, "webp")).toContain("/image/upload/f_webp,fl_attachment:inkprowl-buffalo-tailor-shop-webp/");
+    expect(getCloudinaryDownloadUrl(newest.imageUrl, newest.slug, "webp")).toContain(`/image/upload/f_webp,fl_attachment:inkprowl-${newest.slug}-webp/`);
   });
 
   it("uses direct static edition URLs for social previews and validates owner media settings", () => {
-    expect(getArtworkShareUrl("buffalo-tailor-shop")).toBe("https://inkprowl.github.io/inkprowl/art/buffalo-tailor-shop/");
+    expect(getArtworkShareUrl(publishedArtworks[0]!.slug)).toBe(`https://inkprowl.github.io/inkprowl/art/${publishedArtworks[0]!.slug}/`);
     expect(() => validateOwnerConfiguration()).not.toThrow();
   });
 

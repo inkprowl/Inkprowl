@@ -31,6 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -63,7 +64,13 @@ jobs:
             fi
             echo "Push attempt ${attempt} was superseded by a newer owner change; rebasing the generated catalogue commit."
             git fetch origin main
-            git rebase origin/main
+            if git rebase origin/main; then
+              continue
+            fi
+            echo "The owner catalogue changed during this sync. Leaving the immutable queue file in GitHub and starting a clean retry."
+            git rebase --abort
+            gh workflow run sync-cloudinary-media.yml --repo "${{ github.repository }}" --ref main -f operation=sync
+            exit 0
           done
           echo "Unable to publish generated Cloudinary catalogue changes after three attempts."
           exit 1

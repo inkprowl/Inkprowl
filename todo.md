@@ -192,5 +192,12 @@
 - [x] Prevent subject faces from being cut off in the mobile landscape sponsor and artwork video frame while retaining a wide player.
 - [x] Reduce mobile artwork-page title, description, metadata, and floating-player obstruction so media appears before supporting text.
 - [x] Identify and remove or permanently hide the stale sample artwork records still exposed in the live public catalogue.
-- [ ] Reduce avoidable GitHub Pages and Cloudinary publish delay with accurate owner feedback while preserving reliable permanent storage.
+- [x] Reduce avoidable GitHub Pages and Cloudinary publish delay with accurate owner feedback while preserving reliable permanent storage.
 - [x] Document and apply the strongest permitted open-tab login reuse without persisting owner credentials across refresh in the static GitHub Pages architecture.
+- [ ] Reconcile the live generated catalogue against owner-deleted Cloudinary media so stale test/sample entries cannot remain public.
+- [ ] Ensure recently completed owner uploads are visibly prioritised in the public Fresh Uploads area after the catalogue and Pages workflow complete.
+- [ ] Verify the actual live sponsor source and remove any remaining crop rule that clips a subject in the wide player.
+- [ ] Improve owner publish status with the precise live revision and a direct public refresh check after each completed workflow.
+- [ ] Design a secure persistent owner-login option that does not embed a GitHub token in public source or browser-accessible storage.
+- [ ] Trace the reported missing recent upload through the GitHub incoming queue, Actions workflow, Cloudinary asset state, and generated catalogue.
+- [ ] Prevent the owner dashboard from reporting a file as published before Cloudinary upload and public catalogue confirmation are complete.
