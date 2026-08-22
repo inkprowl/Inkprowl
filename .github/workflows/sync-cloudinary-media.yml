@@ -60,6 +60,8 @@ jobs:
           git commit -m "chore: synchronize Cloudinary media catalogue"
           for attempt in 1 2 3; do
             if git push origin HEAD:main; then
+              echo "Generated catalogue published. Requesting a GitHub Pages rebuild for the updated public media state."
+              gh workflow run deploy-pages.yml --repo "${{ github.repository }}" --ref main || echo "Pages dispatch was unavailable; the next source update will rebuild the current catalogue."
               exit 0
             fi
             echo "Push attempt ${attempt} was superseded by a newer owner change; rebasing the generated catalogue commit."
